@@ -137,6 +137,14 @@
         "hint": "默认 jg。只有“前缀 + 空格 + 内容”才会进入酒馆叙事与记忆，普通群聊完全忽略。",
         "default": "jg"
       },
+      "command_triggers": {
+        "description": "命令触发词",
+        "type": "list",
+        "hint": "自定义列表会完全取代 /酒馆；最多 8 项，每项最多 16 个字符，且不得与剧情触发前缀相同。第一项用于运行时提示文案。",
+        "default": [
+          "酒馆"
+        ]
+      },
       "two_phase_checks": {
         "description": "严格两阶段行动判定",
         "type": "bool",
@@ -180,6 +188,22 @@
         "description": "自动快照间隔回合",
         "type": "int",
         "default": 5
+      },
+      "card_review_notification_mode": {
+        "description": "角色卡审核通知方式",
+        "type": "string",
+        "hint": "角色卡审核完成后，选择向成员发送结果的渠道。",
+        "options": [
+          "both",
+          "group",
+          "private"
+        ],
+        "labels": [
+          "私聊和群聊同时通知",
+          "仅群聊 @ 成员",
+          "仅私聊通知"
+        ],
+        "default": "both"
       },
       "ooc_prefixes": {
         "description": "场外发言前缀",

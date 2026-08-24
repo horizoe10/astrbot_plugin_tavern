@@ -4,6 +4,7 @@ from dataclasses import dataclass, field
 from typing import Any, Mapping
 
 from .constants import DEFAULT_WORLD_SLUG
+from .command_triggers import normalize_command_triggers
 from .lifecycle import normalize_time_rules
 
 
@@ -77,6 +78,7 @@ class TavernConfig:
 
     default_world_slug: str = DEFAULT_WORLD_SLUG
     trigger_prefix: str = "jg"
+    command_triggers: tuple[str, ...] = ("酒馆",)
     two_phase_checks: bool = True
     max_input_chars: int = 2000
     max_output_chars: int = 5000
@@ -85,6 +87,7 @@ class TavernConfig:
     memory_limit: int = 6
     user_cooldown_seconds: float = 1.5
     auto_snapshot_interval: int = 5
+    card_review_notification_mode: str = "both"
     ooc_prefixes: tuple[str, ...] = ("【OOC】", "[OOC]", "OOC:")
     time_rules: Mapping[str, Any] = field(
         default_factory=normalize_time_rules
@@ -147,6 +150,24 @@ class TavernConfig:
         prefixes = _strings(runtime.get("ooc_prefixes"))
         if not prefixes:
             prefixes = ("【OOC】", "[OOC]", "OOC:")
+
+        card_review_notification_mode = str(
+            runtime.get("card_review_notification_mode") or "both"
+        ).strip()
+        if card_review_notification_mode not in {
+            "both",
+            "group",
+            "private",
+        }:
+            card_review_notification_mode = "both"
+
+        trigger_prefix = _trigger_prefix(
+            runtime.get("trigger_prefix", "jg")
+        )
+        command_triggers = normalize_command_triggers(
+            runtime.get("command_triggers"),
+            story_trigger=trigger_prefix,
+        )
 
         provider_id = str(model.get("provider_id", "")).strip()
         fixed_fallbacks = [
@@ -219,9 +240,8 @@ class TavernConfig:
                 ).strip()
                 or DEFAULT_WORLD_SLUG
             ),
-            trigger_prefix=_trigger_prefix(
-                runtime.get("trigger_prefix", "jg")
-            ),
+            trigger_prefix=trigger_prefix,
+            command_triggers=command_triggers,
             two_phase_checks=bool(
                 runtime.get("two_phase_checks", True)
             ),
@@ -246,6 +266,7 @@ class TavernConfig:
             auto_snapshot_interval=_bounded_int(
                 runtime.get("auto_snapshot_interval"), 5, 0, 100
             ),
+            card_review_notification_mode=card_review_notification_mode,
             ooc_prefixes=prefixes,
             time_rules=normalize_time_rules(runtime.get("time_rules")),
             audit_retention_days=_bounded_int(
@@ -316,6 +337,14 @@ class TavernConfig:
             return True
         return normalized in self.allowed_group_ids
 
+    @property
+    def primary_command_trigger(self) -> str:
+        return self.command_triggers[0]
+
+    @property
+    def primary_command_prefix(self) -> str:
+        return f"/{self.primary_command_trigger}"
+
     def to_mapping(self) -> dict[str, Any]:
         return {
             "security": {
@@ -355,6 +384,7 @@ class TavernConfig:
             "runtime": {
                 "default_world_slug": self.default_world_slug,
                 "trigger_prefix": self.trigger_prefix,
+                "command_triggers": list(self.command_triggers),
                 "two_phase_checks": self.two_phase_checks,
                 "max_input_chars": self.max_input_chars,
                 "max_output_chars": self.max_output_chars,
@@ -363,6 +393,9 @@ class TavernConfig:
                 "memory_limit": self.memory_limit,
                 "user_cooldown_seconds": self.user_cooldown_seconds,
                 "auto_snapshot_interval": self.auto_snapshot_interval,
+                "card_review_notification_mode": (
+                    self.card_review_notification_mode
+                ),
                 "ooc_prefixes": list(self.ooc_prefixes),
                 "time_rules": dict(self.time_rules),
             },

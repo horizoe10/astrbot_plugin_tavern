@@ -87,6 +87,8 @@ from .storage import (
 )
 from .platform_delivery import capability_matrix, send_text as deliver_text
 from .chat_experience import normalize_chat_experience
+from .review_notifications import notify_card_review
+from .command_triggers import render_command_text
 
 
 _BACKUP_HASH_PATTERN = re.compile(r"^[0-9a-f]{64}$")
@@ -2101,12 +2103,15 @@ class TavernWebConsole:
     async def session_card_review(self):
         try:
             payload = await self._payload()
+            session_id = str(payload.get("session_id") or "")
+            approved = bool(payload.get("approved", False))
+            note = str(payload.get("note") or "")
             item = await self.database.review_character_card(
-                str(payload.get("session_id") or ""),
+                session_id,
                 str(payload.get("participant_ref") or ""),
-                bool(payload.get("approved", False)),
+                approved,
                 self._actor(),
-                str(payload.get("note") or ""),
+                note,
             )
             await self.broker.publish(
                 {
@@ -2114,6 +2119,16 @@ class TavernWebConsole:
                     "action": "review",
                     "session_id": item["session_id"],
                 }
+            )
+            await notify_card_review(
+                context=self.context,
+                database=self.database,
+                broker=self.broker,
+                config=TavernConfig.from_mapping(self.plugin_config),
+                participant=item,
+                approved=approved,
+                note=note,
+                logger=self.logger,
             )
             return json_response({"participant": item})
         except Exception as exc:
@@ -3018,6 +3033,8 @@ class TavernWebConsole:
     ) -> dict[str, Any]:
         """Send portable text or persist it for delivery on the next event."""
 
+        config = TavernConfig.from_mapping(self.plugin_config)
+        text = render_command_text(text, config.primary_command_trigger)
         policy = "next_event"
         try:
             instance = await self.database.get_instance_config(session_id)

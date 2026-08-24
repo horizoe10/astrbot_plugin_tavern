@@ -61,6 +61,19 @@ class StaticUiTests(unittest.TestCase):
         }
         self.assertEqual(duplicates, set())
 
+    def test_command_trigger_help_names_every_supported_separator(self) -> None:
+        start = self.html.index('<label for="setting-command-triggers">')
+        end = self.html.index("</div>", start)
+        field = self.html[start:end]
+
+        self.assertIn(
+            "多个触发词可使用换行、英文逗号（,）或中文逗号（，）分隔。",
+            field,
+        )
+        self.assertIn("完全取代 /酒馆", field)
+        self.assertIn("最多 8 项、每项最多 16", field)
+        self.assertIn("不得与剧情触发前缀相同", field)
+
     def test_extensions_panel_has_resilient_loading_and_retry_states(self) -> None:
         self.assertIn("Promise.allSettled", self.script)
         self.assertIn("正在读取扩展菜单", self.script)
@@ -261,6 +274,61 @@ class StaticUiTests(unittest.TestCase):
                 ).read_text(encoding="utf-8")
             )
             self.assertIn("console", messages["pages"])
+
+    def test_card_review_notification_schema(self) -> None:
+        schema = json.loads(
+            (ROOT / "_conf_schema.json").read_text(encoding="utf-8")
+        )
+        notification_mode = schema["runtime"]["items"][
+            "card_review_notification_mode"
+        ]
+        self.assertEqual(notification_mode["default"], "both")
+        self.assertEqual(
+            notification_mode["options"],
+            ["both", "group", "private"],
+        )
+        self.assertEqual(
+            notification_mode["labels"],
+            [
+                "私聊和群聊同时通知",
+                "仅群聊 @ 成员",
+                "仅私聊通知",
+            ],
+        )
+
+    def test_card_review_notification_selector(self) -> None:
+        self.assertIn(
+            'id="setting-card-review-notification-mode"',
+            self.html,
+        )
+        for mode in ("both", "group", "private"):
+            self.assertIn(f'<option value="{mode}">', self.html)
+        self.assertIn(
+            's.runtime.card_review_notification_mode || "both"',
+            self.script,
+        )
+
+    def test_command_trigger_schema(self) -> None:
+        schema = json.loads(
+            (ROOT / "_conf_schema.json").read_text(encoding="utf-8")
+        )
+        item = schema["runtime"]["items"]["command_triggers"]
+        self.assertEqual(item["type"], "list")
+        self.assertEqual(item["default"], ["酒馆"])
+        for marker in ("完全取代", "8", "16", "剧情触发"):
+            self.assertIn(marker, item["hint"])
+
+    def test_command_trigger_editor(self) -> None:
+        self.assertIn('id="setting-command-triggers"', self.html)
+        self.assertIn(
+            '(s.runtime.command_triggers || ["酒馆"]).join("\\n")',
+            self.script,
+        )
+        self.assertIn("split(/[\\n,，]+/)", self.script)
+        self.assertIn(
+            'card_review_notification_mode: $("#setting-card-review-notification-mode").value',
+            self.script,
+        )
 
 
 if __name__ == "__main__":

@@ -88,6 +88,7 @@ function installMockBridge() {
     runtime: {
       default_world_slug: "border-tavern",
       trigger_prefix: "jg",
+      command_triggers: ["团", "跑团"],
       two_phase_checks: true,
       max_input_chars: 2000,
       max_output_chars: 5000,
@@ -95,6 +96,7 @@ function installMockBridge() {
       memory_limit: 10,
       user_cooldown_seconds: 1.5,
       auto_snapshot_interval: 5,
+      card_review_notification_mode: "both",
       ooc_prefixes: ["【OOC】", "[OOC]", "OOC:"],
     },
     advanced: {
@@ -586,6 +588,18 @@ async function installTestFont(page) {
     await page.locator("#fallback-provider-list .provider-fallback-row").count(),
     2,
   );
+  assert.equal(
+    await page.locator("#setting-card-review-notification-mode").inputValue(),
+    "both",
+  );
+  assert.equal(
+    await page.locator("#setting-command-triggers").inputValue(),
+    "团\n跑团",
+  );
+  await page.locator("#setting-command-triggers").fill("新团，探险团\nTAVERN");
+  await page
+    .locator("#setting-card-review-notification-mode")
+    .selectOption("group");
   await page
     .locator('[data-fallback-action="up"][data-index="1"]')
     .click();
@@ -609,6 +623,15 @@ async function installTestFont(page) {
   assert.deepEqual(settingPost.body.model.fallback_provider_ids, [
     "story-backup-b",
     "story-backup-a",
+  ]);
+  assert.equal(
+    settingPost.body.runtime.card_review_notification_mode,
+    "group",
+  );
+  assert.deepEqual(settingPost.body.runtime.command_triggers, [
+    "新团",
+    "探险团",
+    "TAVERN",
   ]);
   await page.screenshot({
     path: path.join(screenshotDir, "tavern-console-settings.png"),

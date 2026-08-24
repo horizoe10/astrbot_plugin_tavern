@@ -45,7 +45,9 @@
 
 主持人在群内创建副本：
 
-`/团 开启 <副本>`
+`/团 开启`
+
+`/团 开启新副本 1` 或 `/团 开启旧副本 1`
 
 玩家加入：
 
@@ -63,7 +65,7 @@
 
 `/团 开演`
 
-详细步骤见[开团、建卡与角色管理](docs/USER_GUIDE.md#开团建卡与角色管理)。
+详细步骤见[开团、建卡与角色管理](docs/USER_GUIDE.md)。
 
 ## 故事推进、投票和真人主持
 
@@ -79,7 +81,7 @@
 
 `/团 回顾`
 
-真人主持可接管叙事、推进、直述或交回自动主持。具体命令和权限见[故事推进、投票与真人主持](docs/USER_GUIDE.md#故事推进投票与真人主持)。
+真人主持可接管叙事、推进、直述或交回自动主持。具体命令和权限见[故事推进、投票与真人主持](docs/USER_GUIDE.md)。
 
 ## 暂停、取消、重试和恢复
 
@@ -103,7 +105,7 @@
 
 `/团 取消建卡`
 
-更多失败场景和系统自动处理见[恢复与常见错误](docs/USER_GUIDE.md#恢复与常见错误)。
+更多失败场景和系统自动处理见[恢复与常见错误](docs/USER_GUIDE.md)。
 
 ## 世界包、WebUI 与备份
 
@@ -113,9 +115,9 @@
 
 相关说明：
 
-- [世界包使用与作者入口](docs/USER_GUIDE.md#世界包使用)
-- [WebUI 使用](docs/USER_GUIDE.md#webui-使用)
-- [备份与恢复](docs/USER_GUIDE.md#备份与恢复)
+- [世界包使用与作者入口](docs/USER_GUIDE.md)
+- [WebUI 使用](docs/USER_GUIDE.md)
+- [备份与恢复](docs/USER_GUIDE.md)
 - [世界创作指南](docs/WORLD_AUTHORING.md)
 - [世界创作最佳实践](docs/WORLD_AUTHORING_BEST_PRACTICES.md)
 - [故障排查](docs/TROUBLESHOOTING.md)

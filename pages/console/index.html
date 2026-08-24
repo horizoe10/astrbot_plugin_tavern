@@ -719,6 +719,30 @@
                     仅作为控制台建副本时的初始选择；群内开馆仍需选择副本。
                   </small>
                 </div>
+                <div class="field field-span-2">
+                  <label for="setting-command-triggers">命令触发词</label>
+                  <textarea
+                    id="setting-command-triggers"
+                    rows="4"
+                    placeholder="每行一项，例如：酒馆"
+                  ></textarea>
+                  <small>
+                    多个触发词可使用换行、英文逗号（,）或中文逗号（，）分隔。
+                    自定义内容会完全取代 /酒馆；最多 8 项、每项最多 16
+                    个字符。第一项用于提示文案，且不得与剧情触发前缀相同。
+                  </small>
+                </div>
+                <div class="field">
+                  <label for="setting-card-review-notification-mode">
+                    角色卡审核通知
+                  </label>
+                  <select id="setting-card-review-notification-mode">
+                    <option value="both">私聊和群聊同时通知</option>
+                    <option value="group">仅群聊 @ 成员</option>
+                    <option value="private">仅私聊通知</option>
+                  </select>
+                  <small>审核通过时会同时提醒成员发送 /酒馆 准备。</small>
+                </div>
                 <div class="field">
                   <label for="setting-recent-turns">最近回合数</label>
                   <input

@@ -96,7 +96,7 @@ _INSTANCE_PAGE_PATTERNS = (
 
 HELP_TEXT = f"""\
 【AI 酒馆 v{PLUGIN_VERSION}｜多人叙事、真人 DM 与世界协议 v5】
-主持：/酒馆 开启 <副本> → /酒馆 开演
+主持：/酒馆 开启 → /酒馆 开启新副本 <序号或世界标识>｜/酒馆 开启旧副本 <序号或副本标识> → /酒馆 开演
 恢复：/酒馆 暂停 → /酒馆 恢复 → 全员准备 → /酒馆 继续
 玩家：/酒馆 加入｜角色｜准备｜阵容｜暂离｜返回队列｜退出
 建卡：私聊 /酒馆 建卡 <验证码>｜当前步骤｜上一步｜修改 <字段>｜重填数值
@@ -159,81 +159,125 @@ def format_turn_status(turn: Mapping[str, Any]) -> str:
     )
 
 
+def _paged_items(
+    source: list[Mapping[str, Any]],
+    page: int,
+) -> tuple[int, int, int, list[Mapping[str, Any]]]:
+    total = len(source)
+    pages = max(1, (total + INSTANCE_LIST_PAGE_SIZE - 1) // INSTANCE_LIST_PAGE_SIZE)
+    effective_page = min(max(1, int(page or 1)), pages)
+    start = (effective_page - 1) * INSTANCE_LIST_PAGE_SIZE
+    page_items = source[start : start + INSTANCE_LIST_PAGE_SIZE]
+    return total, pages, start, page_items
+
+
+def format_existing_instance_list(
+    instances: list[Mapping[str, Any]],
+    *,
+    page: int = 1,
+) -> str:
+    total, pages, start, page_items = _paged_items(instances, page)
+    effective_page = min(max(1, int(page or 1)), pages)
+    lines = [f"【已有副本｜第 {effective_page}/{pages} 页｜共 {total} 个】"]
+    if not page_items:
+        lines.extend(("本群还没有酒馆副本。", "请先发送 /酒馆 开启新副本。"))
+        return "\n".join(lines)
+    state_labels = {
+        SESSION_CLOSED: "已关闭",
+        SESSION_PREPARING: "准备中",
+        SESSION_RUNNING: "运行中",
+        SESSION_PAUSED: "已暂停",
+        SESSION_FINISHED: "已完结",
+        SESSION_MAINTENANCE: "维护中",
+    }
+    for index, item in enumerate(page_items, start=start + 1):
+        marker = "▶" if item.get("selected") else "·"
+        lines.append(
+            f"{marker} {index}. {item.get('instance_name')} "
+            f"（{item.get('instance_slug')}）"
+            f" · {item.get('world_name')}"
+            f" · {state_labels.get(item.get('state'), item.get('state'))}"
+            f" · 第 {item.get('turn_no', 0)} 回合"
+        )
+        lines.append(
+            "   简介："
+            + _compact_instance_intro(
+                item.get("world_description") or item.get("description")
+            )
+        )
+    lines.extend(
+        _instance_list_footer(
+            effective_page,
+            pages,
+            selection_label=(
+                "选择已有副本：/酒馆 开启旧副本 <数字序号或副本标识>"
+                f"（例如：/酒馆 开启旧副本 {start + 1}）"
+            ),
+            page_command="/酒馆 开启旧副本",
+        )
+    )
+    return "\n".join(lines)
+
+
+def format_world_list(
+    worlds: list[Mapping[str, Any]],
+    *,
+    page: int = 1,
+    has_existing_instances: bool = False,
+) -> str:
+    total, pages, start, page_items = _paged_items(worlds, page)
+    effective_page = min(max(1, int(page or 1)), pages)
+    if has_existing_instances:
+        title = f"【可用世界｜第 {effective_page}/{pages} 页｜共 {total} 个】"
+    else:
+        title = (
+            f"【本群还没有酒馆副本｜可用世界第 {effective_page}/{pages} 页"
+            f"｜共 {total} 个】"
+        )
+    lines = [title]
+    for index, item in enumerate(page_items, start=start + 1):
+        lines.append(f"· {index}. {item.get('name')}（{item.get('slug')}）")
+        lines.append("   简介：" + _compact_instance_intro(item.get("description")))
+    if not page_items:
+        lines.append("当前没有可用世界包")
+        return "\n".join(lines)
+    lines.extend(
+        _instance_list_footer(
+            effective_page,
+            pages,
+            selection_label=(
+                "选择世界建立新副本：/酒馆 开启新副本 <数字序号或世界标识>"
+                f"（例如：/酒馆 开启新副本 {start + 1}）"
+            ),
+            page_command="/酒馆 开启新副本",
+        )
+    )
+    return "\n".join(lines)
+
+
+def format_opening_menu(
+    instances: list[Mapping[str, Any]],
+    worlds: list[Mapping[str, Any]],
+) -> str:
+    if not instances:
+        return format_world_list(worlds, page=1)
+    return "\n\n".join(
+        (
+            format_existing_instance_list(instances, page=1),
+            format_world_list(worlds, page=1, has_existing_instances=True),
+        )
+    )
+
+
 def format_instance_list(
     instances: list[Mapping[str, Any]],
     worlds: list[Mapping[str, Any]] | None = None,
     *,
     page: int = 1,
 ) -> str:
-    source = instances if instances else list(worlds or [])
-    total = len(source)
-    pages = max(1, (total + INSTANCE_LIST_PAGE_SIZE - 1) // INSTANCE_LIST_PAGE_SIZE)
-    effective_page = min(max(1, int(page or 1)), pages)
-    start = (effective_page - 1) * INSTANCE_LIST_PAGE_SIZE
-    page_items = source[start : start + INSTANCE_LIST_PAGE_SIZE]
-
     if instances:
-        state_labels = {
-            SESSION_CLOSED: "已关闭",
-            SESSION_PREPARING: "准备中",
-            SESSION_RUNNING: "运行中",
-            SESSION_PAUSED: "已暂停",
-            SESSION_FINISHED: "已完结",
-            SESSION_MAINTENANCE: "维护中",
-        }
-        lines = [
-            f"【请选择酒馆副本｜第 {effective_page}/{pages} 页"
-            f"｜共 {total} 个】"
-        ]
-        for index, item in enumerate(page_items, start=start + 1):
-            marker = "▶" if item.get("selected") else "·"
-            lines.append(
-                f"{marker} {index}. {item.get('instance_name')} "
-                f"（{item.get('instance_slug')}）"
-                f" · {item.get('world_name')}"
-                f" · {state_labels.get(item.get('state'), item.get('state'))}"
-                f" · 第 {item.get('turn_no', 0)} 回合"
-            )
-            lines.append(
-                "   简介："
-                + _compact_instance_intro(
-                    item.get("world_description")
-                    or item.get("description")
-                )
-            )
-        lines.extend(
-            _instance_list_footer(
-                effective_page,
-                pages,
-                selection_label="发送：/酒馆 开启 <副本标识>",
-            )
-        )
-        return "\n".join(lines)
-
-    lines = [
-        f"【本群还没有酒馆副本｜可用世界第 {effective_page}/{pages} 页"
-        f"｜共 {total} 个】"
-    ]
-    for index, item in enumerate(page_items, start=start + 1):
-        lines.append(f"· {index}. {item.get('name')}（{item.get('slug')}）")
-        lines.append(
-            "   简介："
-            + _compact_instance_intro(item.get("description"))
-        )
-    if not page_items:
-        lines.append("当前没有可用世界包")
-    else:
-        lines.extend(
-            _instance_list_footer(
-                effective_page,
-                pages,
-                selection_label=(
-                    "选择一个世界建立首个副本："
-                    "/酒馆 开启 <世界标识>"
-                ),
-            )
-        )
-    return "\n".join(lines)
+        return format_existing_instance_list(instances, page=page)
+    return format_world_list(list(worlds or []), page=page)
 
 
 def _instance_list_footer(
@@ -241,13 +285,14 @@ def _instance_list_footer(
     pages: int,
     *,
     selection_label: str,
+    page_command: str,
 ) -> list[str]:
     lines = ["", selection_label]
     navigation = []
     if page > 1:
-        navigation.append(f"上一页：/酒馆 开启 第{page - 1}页")
+        navigation.append(f"上一页：{page_command} 第{page - 1}页")
     if page < pages:
-        navigation.append(f"下一页：/酒馆 开启 第{page + 1}页")
+        navigation.append(f"下一页：{page_command} 第{page + 1}页")
     if navigation:
         lines.append("｜".join(navigation))
     return lines
@@ -1279,6 +1324,9 @@ __all__ = [
     "parse_instance_list_page",
     "_compact_instance_intro",
     "format_turn_status",
+    "format_existing_instance_list",
+    "format_world_list",
+    "format_opening_menu",
     "format_instance_list",
     "_instance_list_footer",
     "format_roster",

@@ -4709,7 +4709,10 @@ function renderSettings() {
   $("#setting-two-phase").checked = s.runtime.two_phase_checks;
 
   $("#setting-trigger-prefix").value = s.runtime.trigger_prefix || "jg";
+  $("#setting-command-triggers").value = (s.runtime.command_triggers || ["酒馆"]).join("\n");
   $("#setting-default-world").value = s.runtime.default_world_slug;
+  $("#setting-card-review-notification-mode").value =
+    s.runtime.card_review_notification_mode || "both";
   $("#setting-recent-turns").value = s.runtime.recent_turns;
   $("#setting-memory-limit").value = s.runtime.memory_limit;
   $("#setting-snapshot-interval").value = s.runtime.auto_snapshot_interval;
@@ -4768,6 +4771,10 @@ function collectSettings() {
     runtime: {
       default_world_slug: $("#setting-default-world").value.trim(),
       trigger_prefix: $("#setting-trigger-prefix").value.trim(),
+      command_triggers: $("#setting-command-triggers")
+        .value.split(/[\n,，]+/)
+        .map((item) => item.trim())
+        .filter(Boolean),
       two_phase_checks: $("#setting-two-phase").checked,
       max_input_chars: Number($("#setting-input-limit").value),
       max_output_chars: Number($("#setting-output-limit").value),
@@ -4775,6 +4782,7 @@ function collectSettings() {
       memory_limit: Number($("#setting-memory-limit").value),
       user_cooldown_seconds: Number($("#setting-cooldown").value),
       auto_snapshot_interval: Number($("#setting-snapshot-interval").value),
+      card_review_notification_mode: $("#setting-card-review-notification-mode").value,
       ooc_prefixes: splitLines($("#setting-ooc-prefixes").value),
       time_rules: {
         ...(app.settings?.runtime?.time_rules || {}),

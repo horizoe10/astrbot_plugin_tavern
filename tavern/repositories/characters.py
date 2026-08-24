@@ -398,10 +398,18 @@ class CharacterRepositoryMixin:
                     )
                     result["binding_code_reissued"] = renewed
                     return result
-                if existing:
+                if existing and existing["participation_status"] == PARTICIPANT_RETIRED:
                     raise ValueError(
                         "该角色已经正式退场；请使用 /酒馆 申请返场"
                     )
+                reusable_cancelled = bool(
+                    existing
+                    and existing["participation_status"] == PARTICIPANT_ARCHIVED
+                    and existing["exit_reason"] == "cancelled_card"
+                    and existing["card_status"] == CARD_UNCREATED
+                )
+                if existing and not reusable_cancelled:
+                    raise ValueError("该加入记录已归档；请联系主持人处理")
 
                 config_row = connection.execute(
                     """
@@ -467,28 +475,48 @@ class CharacterRepositoryMixin:
                         (display_name, now, player_id),
                     )
 
-                participant_id = new_id("participant")
-                connection.execute(
-                    """
-                    INSERT INTO participants(
-                        id, session_id, player_id, group_user_id,
-                        display_name, aliases_json, card_status, ready,
-                        participation_status, seat_reserved_at, joined_round,
-                        consecutive_timeouts, created_at, updated_at
-                    ) VALUES (?, ?, ?, ?, ?, '[]', 'uncreated', 0,
-                              'reserved', ?, 1, 0, ?, ?)
-                    """,
-                    (
-                        participant_id,
-                        session_id,
-                        player_id,
-                        user_id,
-                        display_name,
-                        now,
-                        now,
-                        now,
-                    ),
+                participant_id = (
+                    existing["id"]
+                    if reusable_cancelled
+                    else new_id("participant")
                 )
+                if reusable_cancelled:
+                    connection.execute(
+                        """
+                        UPDATE card_binding_codes SET status = 'expired'
+                        WHERE participant_id = ?
+                          AND status IN ('active', 'used')
+                        """,
+                        (participant_id,),
+                    )
+                    connection.execute(
+                        """
+                        UPDATE participants SET player_id = ?, display_name = ?,
+                            private_user_id = '', private_origin = '', aliases_json = '[]',
+                            character_card_id = NULL, character_version_id = NULL,
+                            character_name = '', character_code = '',
+                            card_status = 'uncreated', ready = 0, action_locked = 0,
+                            participation_status = 'reserved', seat_reserved_at = ?,
+                            joined_round = 1, consecutive_timeouts = 0,
+                            exit_reason = '', updated_at = ?
+                        WHERE id = ?
+                        """,
+                        (player_id, display_name, now, now, participant_id),
+                    )
+                else:
+                    connection.execute(
+                        """
+                        INSERT INTO participants(
+                            id, session_id, player_id, group_user_id,
+                            display_name, aliases_json, card_status, ready,
+                            participation_status, seat_reserved_at, joined_round,
+                            consecutive_timeouts, created_at, updated_at
+                        ) VALUES (?, ?, ?, ?, ?, '[]', 'uncreated', 0,
+                                  'reserved', ?, 1, 0, ?, ?)
+                        """,
+                        (participant_id, session_id, player_id, user_id,
+                         display_name, now, now, now),
+                    )
                 template = card_template(world)
                 time_rules = normalize_time_rules(
                     json_load(config_row["time_rules_json"], {})
@@ -503,6 +531,11 @@ class CharacterRepositoryMixin:
                         id, participant_id, template_version, fields_json,
                         current_step, status, expires_at, created_at, updated_at
                     ) VALUES (?, ?, ?, '{}', 0, 'active', ?, ?, ?)
+                    ON CONFLICT(participant_id) DO UPDATE SET
+                        template_version = excluded.template_version,
+                        fields_json = '{}', current_step = 0, status = 'active',
+                        expires_at = excluded.expires_at,
+                        created_at = excluded.created_at, updated_at = excluded.updated_at
                     """,
                     (
                         draft_id,
@@ -2341,9 +2374,20 @@ class CharacterRepositoryMixin:
                     """
                     UPDATE card_binding_codes
                     SET status = 'expired'
-                    WHERE participant_id = ? AND status = 'active'
+                    WHERE participant_id = ? AND status IN ('active', 'used')
                     """,
                     (row["id"],),
+                )
+                connection.execute(
+                    """
+                    UPDATE timer_instances
+                    SET status = 'cancelled', deadline_at = '',
+                        reminder_at = '', reminder_sent = 0, updated_at = ?
+                    WHERE participant_id = ?
+                      AND timer_type IN ('card_code', 'card_completion')
+                      AND status IN ('active', 'paused')
+                    """,
+                    (now, row["id"]),
                 )
                 self._insert_audit(
                     connection,
