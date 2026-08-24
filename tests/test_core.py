@@ -3,6 +3,11 @@ from __future__ import annotations
 import unittest
 
 from tavern.config import TavernConfig
+from tavern.command_triggers import (
+    canonicalize_command_message,
+    normalize_command_triggers,
+    render_command_text,
+)
 from tavern.lifecycle import normalize_choices_compat
 from tavern.resolution import (
     apply_state_patch,
@@ -19,11 +24,108 @@ from tavern.turns import advance_turn, join_turn, leave_turn
 
 
 class CoreRulesTests(unittest.TestCase):
+    def test_custom_command_trigger_contract(self) -> None:
+        self.assertEqual(
+            normalize_command_triggers(
+                [" /团 ", "跑团", "TAVERN", "tavern", "jg", "bad word"],
+                story_trigger="jg",
+            ),
+            ("团", "跑团", "TAVERN"),
+        )
+        self.assertEqual(
+            normalize_command_triggers([], story_trigger="jg"),
+            ("酒馆",),
+        )
+        self.assertEqual(
+            canonicalize_command_message(
+                "／跑团 状态",
+                ("团", "跑团"),
+                allow_bare=False,
+            ),
+            "/酒馆 状态",
+        )
+        self.assertIsNone(
+            canonicalize_command_message(
+                "/酒馆 状态",
+                ("团", "跑团"),
+                allow_bare=False,
+            )
+        )
+        self.assertIsNone(
+            canonicalize_command_message(
+                "团长 状态",
+                ("团",),
+                allow_bare=True,
+            )
+        )
+        self.assertEqual(
+            canonicalize_command_message(
+                "/TaVeRn 状态",
+                ("TAVERN",),
+                allow_bare=False,
+            ),
+            "/酒馆 状态",
+        )
+        self.assertEqual(
+            render_command_text("发送 /酒馆 准备；AI 酒馆", "团"),
+            "发送 /团 准备；AI 酒馆",
+        )
+        rendered = render_command_text("发送 /酒馆 选择 A", "酒馆2")
+        self.assertEqual(rendered, "发送 /酒馆2 选择 A")
+        self.assertEqual(render_command_text(rendered, "酒馆2"), rendered)
+
+    def test_custom_command_trigger_limits_and_config_round_trip(self) -> None:
+        raw = [f"命令{index}" for index in range(10)]
+        self.assertEqual(
+            normalize_command_triggers(raw, story_trigger="jg"),
+            tuple(raw[:8]),
+        )
+        self.assertEqual(
+            normalize_command_triggers(
+                ["x" * 17, "／", "ok"],
+                story_trigger="jg",
+            ),
+            ("ok",),
+        )
+        self.assertEqual(
+            normalize_command_triggers(
+                [0, False, None],
+                story_trigger="jg",
+            ),
+            ("0", "False"),
+        )
+        default = TavernConfig.from_mapping({})
+        self.assertEqual(default.command_triggers, ("酒馆",))
+        self.assertEqual(default.primary_command_trigger, "酒馆")
+        self.assertEqual(default.primary_command_prefix, "/酒馆")
+        config = TavernConfig.from_mapping(
+            {
+                "runtime": {
+                    "trigger_prefix": "jg",
+                    "command_triggers": [" /团 ", "跑团", "jg"],
+                }
+            }
+        )
+        self.assertEqual(config.command_triggers, ("团", "跑团"))
+        self.assertEqual(config.primary_command_prefix, "/团")
+        self.assertEqual(
+            config.to_mapping()["runtime"]["command_triggers"],
+            ["团", "跑团"],
+        )
+
     def test_command_parser_accepts_only_real_command_prefix(self) -> None:
         command = parse_tavern_command("／酒馆 开启 test-world")
         self.assertTrue(command.matched)
         self.assertEqual(command.action, "start")
         self.assertEqual(command.argument, "test-world")
+        self.assertEqual(
+            parse_tavern_command("/酒馆 开启新副本 2").action,
+            "start_new",
+        )
+        self.assertEqual(
+            parse_tavern_command("/酒馆 开启旧副本 old-campaign").action,
+            "start_existing",
+        )
         self.assertEqual(
             parse_tavern_command("/酒馆\t存档\t旧塔之前").argument,
             "旧塔之前",
@@ -109,6 +211,27 @@ class CoreRulesTests(unittest.TestCase):
         self.assertEqual(config.memory_limit, 0)
         self.assertEqual(config.user_cooldown_seconds, 0)
         self.assertEqual(config.trigger_prefix, "jg")
+
+    def test_card_review_notification_mode_normalizes(self) -> None:
+        self.assertEqual(
+            TavernConfig.from_mapping({}).card_review_notification_mode,
+            "both",
+        )
+        for mode in ("both", "group", "private"):
+            config = TavernConfig.from_mapping(
+                {"runtime": {"card_review_notification_mode": mode}}
+            )
+            self.assertEqual(config.card_review_notification_mode, mode)
+            self.assertEqual(
+                config.to_mapping()["runtime"][
+                    "card_review_notification_mode"
+                ],
+                mode,
+            )
+        invalid = TavernConfig.from_mapping(
+            {"runtime": {"card_review_notification_mode": "other"}}
+        )
+        self.assertEqual(invalid.card_review_notification_mode, "both")
 
     def test_story_trigger_requires_exact_prefix_and_space(self) -> None:
         self.assertEqual(

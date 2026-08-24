@@ -516,7 +516,7 @@ class PluginShellTests(unittest.IsolatedAsyncioTestCase):
             event=event,
             command=ParsedCommand(
                 matched=True,
-                action="start",
+                action="start_new",
                 argument="aelvion-ashen-crown",
             ),
             config=config,
@@ -543,8 +543,8 @@ class PluginShellTests(unittest.IsolatedAsyncioTestCase):
             event=event,
             command=ParsedCommand(
                 matched=True,
-                action="start",
-                argument="aelvion-ashen-crown",
+                action="start_existing",
+                argument=session["instance_slug"],
             ),
             config=config,
             group_id="group-shell",
@@ -945,7 +945,7 @@ class PluginShellTests(unittest.IsolatedAsyncioTestCase):
             ),
             command=ParsedCommand(
                 matched=True,
-                action="start",
+                action="start_new",
                 argument="aelvion-ashen-crown",
             ),
             config=TavernConfig.from_mapping(self.config),
@@ -959,30 +959,72 @@ class PluginShellTests(unittest.IsolatedAsyncioTestCase):
     def test_instance_list_includes_intro_and_paginates_five_at_a_time(
         self,
     ) -> None:
+        from astrbot_plugin_tavern.tavern import presentation
+
         worlds = [
             {
                 "slug": f"world-{index}",
-                "name": f"测试世界 {index}",
+                "name": f"World {index}",
                 "description": f"这是第 {index} 个世界的简介。",
             }
-            for index in range(1, 8)
+            for index in range(1, 7)
+        ]
+        instances = [
+            {
+                "instance_slug": f"existing-{index}",
+                "instance_name": f"Existing {index}",
+                "world_name": f"World {index}",
+                "world_description": f"已有副本 {index} 的简介。",
+                "state": "preparing",
+                "turn_no": index,
+                "selected": False,
+            }
+            for index in range(1, 7)
         ]
 
-        first_page = self.module.format_instance_list([], worlds, page=1)
+        first_page = presentation.format_world_list(worlds, page=1)
         self.assertIn("第 1/2 页", first_page)
         self.assertEqual(first_page.count("简介："), 5)
         self.assertIn("这是第 1 个世界的简介", first_page)
         self.assertIn("这是第 5 个世界的简介", first_page)
         self.assertNotIn("这是第 6 个世界的简介", first_page)
-        self.assertIn("/酒馆 开启 第2页", first_page)
+        self.assertIn("/酒馆 开启新副本 第2页", first_page)
 
-        second_page = self.module.format_instance_list([], worlds, page=2)
+        second_page = presentation.format_world_list(worlds, page=2)
         self.assertIn("第 2/2 页", second_page)
-        self.assertEqual(second_page.count("简介："), 2)
+        self.assertEqual(second_page.count("简介："), 1)
         self.assertNotIn("这是第 5 个世界的简介", second_page)
         self.assertIn("这是第 6 个世界的简介", second_page)
-        self.assertIn("这是第 7 个世界的简介", second_page)
-        self.assertIn("/酒馆 开启 第1页", second_page)
+        self.assertIn("· 6. World 6", second_page)
+        self.assertIn("/酒馆 开启新副本 6", second_page)
+        self.assertIn("/酒馆 开启新副本 第1页", second_page)
+
+        instance_page = presentation.format_existing_instance_list(
+            instances,
+            page=2,
+        )
+        self.assertIn("【已有副本｜第 2/2 页｜共 6 个】", instance_page)
+        self.assertIn("· 6. Existing 6", instance_page)
+        self.assertIn("/酒馆 开启旧副本 6", instance_page)
+
+        menu = presentation.format_opening_menu(instances, worlds)
+        self.assertIn("【已有副本｜第 1/2 页｜共 6 个】", menu)
+        self.assertIn("【可用世界｜第 1/2 页｜共 6 个】", menu)
+        self.assertIn("· 1. Existing 1", menu)
+        self.assertIn("· 1. World 1", menu)
+        self.assertIn("/酒馆 开启旧副本 第2页", menu)
+        self.assertIn("/酒馆 开启新副本 第2页", menu)
+        self.assertNotIn("/酒馆 开启 <", menu)
+
+        self.assertIn("当前没有可用世界包", presentation.format_world_list([]))
+        self.assertIn(
+            "/酒馆 开启新副本",
+            presentation.format_opening_menu([], worlds),
+        )
+        self.assertIn(
+            "本群还没有酒馆副本",
+            presentation.format_existing_instance_list([]),
+        )
         self.assertEqual(
             self.module.parse_instance_list_page("第 2 页"),
             2,
@@ -1022,7 +1064,7 @@ class PluginShellTests(unittest.IsolatedAsyncioTestCase):
             event=SimpleNamespace(unified_msg_origin="qq:group-shell"),
             command=ParsedCommand(
                 matched=True,
-                action="start",
+                action="start_new",
                 argument="第2页",
             ),
             config=TavernConfig.from_mapping(self.config),
@@ -1040,6 +1082,414 @@ class PluginShellTests(unittest.IsolatedAsyncioTestCase):
                 "group-shell",
             )
         )
+
+    async def test_split_start_routes_numeric_refs_and_invalid_inputs_without_writes(
+        self,
+    ) -> None:
+        from astrbot_plugin_tavern.tavern.config import TavernConfig
+        from astrbot_plugin_tavern.tavern.security import ParsedCommand
+
+        config = TavernConfig.from_mapping(self.config)
+        event = SimpleNamespace(unified_msg_origin="qq:group-shell")
+
+        empty_existing = await self.plugin._handle_command(
+            event=event,
+            command=ParsedCommand(matched=True, action="start_existing"),
+            config=config,
+            group_id="group-shell",
+            platform_id="qq",
+            sender_id="admin-1",
+        )
+        self.assertIn("本群还没有酒馆副本", empty_existing)
+        self.assertIn("/酒馆 开启新副本", empty_existing)
+
+        base_world = await self.plugin.database.get_world(
+            "aelvion-ashen-crown"
+        )
+        for internal_key in (
+            "id", "revision", "display_no", "sort_order",
+            "created_at", "updated_at", "archived",
+        ):
+            base_world.pop(internal_key, None)
+        await self.plugin.database.save_world(
+            {
+                **base_world,
+                "slug": "numeric-world",
+                "name": "数字选择世界",
+                "description": "用于验证全局世界序号。",
+            },
+            "admin-1",
+        )
+        worlds = await self.plugin.database.list_worlds()
+        world_ordinal = next(
+            index
+            for index, item in enumerate(worlds, start=1)
+            if item["slug"] == "numeric-world"
+        )
+        created = await self.plugin._handle_command(
+            event=event,
+            command=ParsedCommand(
+                matched=True,
+                action="start_new",
+                argument=str(world_ordinal),
+            ),
+            config=config,
+            group_id="group-shell",
+            platform_id="qq",
+            sender_id="admin-1",
+        )
+        self.assertIn("酒馆已开启", created)
+        self.assertIn("数字选择世界", created)
+
+        async def snapshot() -> list[tuple]:
+            return [
+                (
+                    item["id"], item["state"], item["revision"],
+                    item["selected"], item["updated_at"],
+                )
+                for item in await self.plugin.database.list_group_sessions(
+                    "qq", "group-shell"
+                )
+            ]
+
+        before = await snapshot()
+        legacy = await self.plugin._handle_command(
+            event=event,
+            command=ParsedCommand(
+                matched=True,
+                action="start",
+                argument="1",
+            ),
+            config=config,
+            group_id="group-shell",
+            platform_id="qq",
+            sender_id="admin-1",
+        )
+        self.assertIn("/酒馆 开启新副本", legacy)
+        self.assertIn("/酒馆 开启旧副本", legacy)
+        self.assertEqual(await snapshot(), before)
+
+        for invalid_world in ("999", "missing-world-slug"):
+            response = await self.plugin._handle_command(
+                event=event,
+                command=ParsedCommand(
+                    matched=True,
+                    action="start_new",
+                    argument=invalid_world,
+                ),
+                config=config,
+                group_id="group-shell",
+                platform_id="qq",
+                sender_id="admin-1",
+            )
+            self.assertIn("/酒馆 开启新副本", response)
+            self.assertEqual(await snapshot(), before)
+
+        second = await self.plugin.database.ensure_session(
+            "qq",
+            "group-shell",
+            "qq:group-shell",
+            "aelvion-ashen-crown",
+            "admin-1",
+            "existing-second",
+            "旧副本二号",
+        )
+        instances = await self.plugin.database.list_group_sessions(
+            "qq", "group-shell"
+        )
+        target = instances[1]
+        resumed = await self.plugin._handle_command(
+            event=event,
+            command=ParsedCommand(
+                matched=True,
+                action="start_existing",
+                argument="2",
+            ),
+            config=config,
+            group_id="group-shell",
+            platform_id="qq",
+            sender_id="admin-1",
+        )
+        self.assertIn("酒馆已开启", resumed)
+        self.assertIn(target["instance_name"], resumed)
+
+        before_invalid_existing = await snapshot()
+        for invalid_instance in ("999", "missing-instance"):
+            response = await self.plugin._handle_command(
+                event=event,
+                command=ParsedCommand(
+                    matched=True,
+                    action="start_existing",
+                    argument=invalid_instance,
+                ),
+                config=config,
+                group_id="group-shell",
+                platform_id="qq",
+                sender_id="admin-1",
+            )
+            self.assertIn("/酒馆 开启旧副本", response)
+            self.assertEqual(await snapshot(), before_invalid_existing)
+
+        by_slug = await self.plugin._handle_command(
+            event=event,
+            command=ParsedCommand(
+                matched=True,
+                action="start_existing",
+                argument=second["instance_slug"],
+            ),
+            config=config,
+            group_id="group-shell",
+            platform_id="qq",
+            sender_id="admin-1",
+        )
+        self.assertIn(second["instance_name"], by_slug)
+
+    async def test_start_new_creates_distinct_same_world_instances_without_touching_old(
+        self,
+    ) -> None:
+        from astrbot_plugin_tavern.tavern.config import TavernConfig
+        from astrbot_plugin_tavern.tavern.security import ParsedCommand
+
+        old = await self.plugin.database.ensure_session(
+            "qq",
+            "group-shell",
+            "qq:group-shell",
+            "aelvion-ashen-crown",
+            "admin-1",
+        )
+        await self.plugin.database.save_instance_time_rules(
+            old["id"],
+            {"turn_timeout_seconds": 4321},
+            "admin-1",
+        )
+        with self.plugin.database._connect() as connection:
+            connection.execute(
+                """
+                UPDATE sessions SET state = 'paused', turn_no = 7,
+                    revision = 11 WHERE id = ?
+                """,
+                (old["id"],),
+            )
+            connection.execute(
+                """
+                INSERT INTO timer_instances(
+                    id, session_id, participant_id, timer_type, status,
+                    deadline_at, remaining_seconds, reminder_at,
+                    reminder_sent, action_json, created_at, updated_at
+                ) VALUES (
+                    'timer-old-same-world', ?, '', 'turn', 'paused', '',
+                    321, '', 0, '{"marker":"old"}', 'old', 'old'
+                )
+                """,
+                (old["id"],),
+            )
+
+        async def old_snapshot() -> tuple:
+            session = await self.plugin.database.get_session(old["id"])
+            instance = await self.plugin.database.get_instance_config(old["id"])
+            with self.plugin.database._connect() as connection:
+                timers = [
+                    dict(row)
+                    for row in connection.execute(
+                        """
+                        SELECT * FROM timer_instances WHERE session_id = ?
+                        ORDER BY id
+                        """,
+                        (old["id"],),
+                    ).fetchall()
+                ]
+            return (
+                session["state"],
+                session["turn_no"],
+                session["revision"],
+                instance["time_rules"],
+                instance["phase_meta"],
+                timers,
+            )
+
+        before = await old_snapshot()
+        known_ids = {old["id"]}
+        config = TavernConfig.from_mapping(self.config)
+        event = SimpleNamespace(unified_msg_origin="qq:group-shell")
+
+        by_slug = await self.plugin._handle_command(
+            event=event,
+            command=ParsedCommand(
+                matched=True,
+                action="start_new",
+                argument="aelvion-ashen-crown",
+            ),
+            config=config,
+            group_id="group-shell",
+            platform_id="qq",
+            sender_id="admin-1",
+        )
+        self.assertIn("酒馆已开启", by_slug)
+        after_slug = await self.plugin.database.list_group_sessions(
+            "qq", "group-shell"
+        )
+        slug_new_ids = {item["id"] for item in after_slug} - known_ids
+        self.assertEqual(len(slug_new_ids), 1)
+        known_ids.update(slug_new_ids)
+        self.assertEqual(await old_snapshot(), before)
+
+        worlds = await self.plugin.database.list_worlds()
+        ordinal = next(
+            index
+            for index, item in enumerate(worlds, start=1)
+            if item["slug"] == "aelvion-ashen-crown"
+        )
+        by_number = await self.plugin._handle_command(
+            event=event,
+            command=ParsedCommand(
+                matched=True,
+                action="start_new",
+                argument=str(ordinal),
+            ),
+            config=config,
+            group_id="group-shell",
+            platform_id="qq",
+            sender_id="admin-1",
+        )
+        self.assertIn("酒馆已开启", by_number)
+        after_number = await self.plugin.database.list_group_sessions(
+            "qq", "group-shell"
+        )
+        number_new_ids = {item["id"] for item in after_number} - known_ids
+        self.assertEqual(len(number_new_ids), 1)
+        self.assertEqual(await old_snapshot(), before)
+        created = [
+            item
+            for item in after_number
+            if item["id"] in slug_new_ids | number_new_ids
+        ]
+        self.assertEqual(len({item["instance_slug"] for item in created}), 2)
+        self.assertTrue(
+            all(item["world_id"] == old["world_id"] for item in created)
+        )
+
+    async def test_start_new_avoids_default_slug_owned_by_another_world(
+        self,
+    ) -> None:
+        from astrbot_plugin_tavern.tavern.config import TavernConfig
+        from astrbot_plugin_tavern.tavern.security import ParsedCommand
+
+        base_world = await self.plugin.database.get_world(
+            "aelvion-ashen-crown"
+        )
+        for internal_key in (
+            "id", "revision", "display_no", "sort_order",
+            "created_at", "updated_at", "archived",
+        ):
+            base_world.pop(internal_key, None)
+        await self.plugin.database.save_world(
+            {
+                **base_world,
+                "slug": "occupied-world-slug",
+                "name": "被占标识世界",
+                "description": "默认副本标识已被另一世界占用。",
+            },
+            "admin-1",
+        )
+        world_b = await self.plugin.database.get_world("occupied-world-slug")
+        world_a_session = await self.plugin.database.ensure_session(
+            "qq",
+            "group-shell",
+            "qq:group-shell",
+            "aelvion-ashen-crown",
+            "admin-1",
+            "occupied-world-slug",
+            "世界 A 的旧副本",
+        )
+        await self.plugin.database.save_instance_time_rules(
+            world_a_session["id"],
+            {"turn_timeout_seconds": 2468},
+            "admin-1",
+        )
+        with self.plugin.database._connect() as connection:
+            connection.execute(
+                """
+                UPDATE sessions SET state = 'paused', turn_no = 5,
+                    revision = 9 WHERE id = ?
+                """,
+                (world_a_session["id"],),
+            )
+            connection.execute(
+                """
+                INSERT INTO timer_instances(
+                    id, session_id, participant_id, timer_type, status,
+                    deadline_at, remaining_seconds, reminder_at,
+                    reminder_sent, action_json, created_at, updated_at
+                ) VALUES (
+                    'timer-world-a', ?, '', 'turn', 'paused', '', 222,
+                    '', 0, '{"owner":"world-a"}', 'old', 'old'
+                )
+                """,
+                (world_a_session["id"],),
+        )
+
+        async def world_a_snapshot() -> tuple:
+            session = await self.plugin.database.get_session(
+                world_a_session["id"]
+            )
+            instance = await self.plugin.database.get_instance_config(
+                world_a_session["id"]
+            )
+            with self.plugin.database._connect() as connection:
+                timers = [
+                    dict(row)
+                    for row in connection.execute(
+                        """
+                        SELECT * FROM timer_instances
+                        WHERE session_id = ? ORDER BY id
+                        """,
+                        (world_a_session["id"],),
+                    ).fetchall()
+                ]
+            return (
+                session["world_id"],
+                session["state"],
+                session["turn_no"],
+                session["revision"],
+                instance["time_rules"],
+                timers,
+            )
+
+        before = await world_a_snapshot()
+        known_ids = {world_a_session["id"]}
+        config = TavernConfig.from_mapping(self.config)
+        event = SimpleNamespace(unified_msg_origin="qq:group-shell")
+        worlds = await self.plugin.database.list_worlds()
+        ordinal = next(
+            index
+            for index, item in enumerate(worlds, start=1)
+            if item["id"] == world_b["id"]
+        )
+
+        for argument in (world_b["slug"], str(ordinal)):
+            response = await self.plugin._handle_command(
+                event=event,
+                command=ParsedCommand(
+                    matched=True,
+                    action="start_new",
+                    argument=argument,
+                ),
+                config=config,
+                group_id="group-shell",
+                platform_id="qq",
+                sender_id="admin-1",
+            )
+            self.assertIn("酒馆已开启", response)
+            sessions = await self.plugin.database.list_group_sessions(
+                "qq", "group-shell"
+            )
+            new_ids = {item["id"] for item in sessions} - known_ids
+            self.assertEqual(len(new_ids), 1)
+            created = next(item for item in sessions if item["id"] in new_ids)
+            self.assertEqual(created["world_id"], world_b["id"])
+            self.assertNotEqual(created["instance_slug"], world_b["slug"])
+            known_ids.update(new_ids)
+            self.assertEqual(await world_a_snapshot(), before)
 
     async def test_start_without_argument_only_lists_existing_instances(
         self,
@@ -1089,7 +1539,8 @@ class PluginShellTests(unittest.IsolatedAsyncioTestCase):
             sender_id="admin-1",
         )
 
-        self.assertIn("请选择酒馆副本", response)
+        self.assertIn("已有副本", response)
+        self.assertIn("可用世界", response)
         self.assertIn("主线副本", response)
         self.assertIn("（main-copy）", response)
         self.assertIn("二周目副本", response)
@@ -1168,6 +1619,8 @@ class PluginShellTests(unittest.IsolatedAsyncioTestCase):
             set(group.commands),
             {
                 "开启",
+                "开启新副本",
+                "开启旧副本",
                 "开演",
                 "暂停",
                 "恢复",
@@ -1222,6 +1675,8 @@ class PluginShellTests(unittest.IsolatedAsyncioTestCase):
             },
         )
         self.assertEqual(group.commands["开启"]["alias"], {"启动"})
+        self.assertEqual(group.commands["开启新副本"]["priority"], 200)
+        self.assertEqual(group.commands["开启旧副本"]["priority"], 200)
         self.assertEqual(group.commands["恢复"]["alias"], set())
         self.assertEqual(group.commands["继续"]["alias"], set())
         self.assertEqual(group.commands["顺序"]["alias"], {"轮次"})
@@ -1363,24 +1818,72 @@ class PluginShellTests(unittest.IsolatedAsyncioTestCase):
         self.assertNotIn("审核用私密内容", detail)
         self.assertIn("最终属性", detail)
 
-        approved = await self.plugin._handle_command(
-            event=event,
-            command=ParsedCommand(
-                matched=True,
-                action="review",
-                argument=f"{review_reference} 通过 群聊审核通过",
-            ),
-            config=config,
-            group_id="group-shell",
-            platform_id="qq",
-            sender_id="admin-1",
-        )
+        with patch(
+            "astrbot_plugin_tavern.main.notify_card_review",
+            new=AsyncMock(return_value={"private": "sent"}),
+        ) as notify:
+            approved = await self.plugin._handle_command(
+                event=event,
+                command=ParsedCommand(
+                    matched=True,
+                    action="review",
+                    argument=f"{review_reference} 通过 群聊审核通过",
+                ),
+                config=config,
+                group_id="group-shell",
+                platform_id="qq",
+                sender_id="admin-1",
+            )
         self.assertIn("已通过", approved)
         self.assertIn("剩余待审核：1 人", approved)
+        notify.assert_awaited_once()
+        notify_kwargs = notify.await_args.kwargs
+        self.assertTrue(notify_kwargs["approved"])
+        self.assertEqual(notify_kwargs["note"], "群聊审核通过")
+        self.assertEqual(notify_kwargs["config"], config)
+        self.assertEqual(
+            notify_kwargs["participant"]["character_name"],
+            "待审角色1",
+        )
         roster = await self.plugin.database.list_roster(session["id"])
         self.assertEqual(
             sum(item["card_status"] == "approved" for item in roster),
             1,
+        )
+
+    async def test_webui_card_review_notifies_rejected_player(self) -> None:
+        participant = {
+            "id": "participant-web-review",
+            "session_id": "session-web-review",
+            "character_name": "白鸦",
+            "private_origin": "qq:FriendMessage:web-user",
+        }
+        self.plugin.web_console._payload = AsyncMock(
+            return_value={
+                "session_id": "session-web-review",
+                "participant_ref": "participant-web-review",
+                "approved": False,
+                "note": "请补充背景",
+            }
+        )
+        self.plugin.database.review_character_card = AsyncMock(
+            return_value=participant
+        )
+        sys.modules["astrbot.api.web"].request.username = "admin-1"
+        with patch(
+            "astrbot_plugin_tavern.tavern.web_console.notify_card_review",
+            new=AsyncMock(return_value={"private": "sent"}),
+        ) as notify:
+            response = await self.plugin.web_console.session_card_review()
+        self.assertEqual(response["participant"], participant)
+        notify.assert_awaited_once()
+        kwargs = notify.await_args.kwargs
+        self.assertFalse(kwargs["approved"])
+        self.assertEqual(kwargs["note"], "请补充背景")
+        self.assertEqual(kwargs["participant"], participant)
+        self.assertEqual(
+            kwargs["config"].card_review_notification_mode,
+            "both",
         )
 
     @unittest.skip("旧四属性手填默认模板已被职业预设数值取代；通用数值向导由独立世界包夹具覆盖")
@@ -1630,12 +2133,64 @@ class PluginShellTests(unittest.IsolatedAsyncioTestCase):
             )
         )
 
-        event.message_str = "酒馆 开启 aelvion-ashen-crown"
+        event.message_str = "酒馆 开启新副本 aelvion-ashen-crown"
         started_responses = [
-            item async for item in self.plugin.tavern_start(event)
+            item async for item in self.plugin.tavern_start_new(event)
         ]
         self.assertEqual(len(started_responses), 1)
         self.assertIn("酒馆已开启", started_responses[0])
+
+    async def test_private_blank_notice_is_ignored_before_any_processing(
+        self,
+    ) -> None:
+        class Event:
+            unified_msg_origin = "qq:FriendMessage:private-user"
+
+            def __init__(self, message: str) -> None:
+                self.message_str = message
+                self.stopped = False
+
+            @staticmethod
+            def get_sender_id():
+                return "private-user"
+
+            def stop_event(self):
+                self.stopped = True
+
+        for message in ("", " \t\r\n "):
+            event = Event(message)
+            with (
+                patch.object(
+                    self.plugin,
+                    "_deliver_pending",
+                    new=AsyncMock(),
+                ) as deliver_pending,
+                patch.object(
+                    self.plugin,
+                    "_parse_command_relaxed",
+                    new=AsyncMock(),
+                ) as parse_command,
+                patch.object(
+                    self.plugin,
+                    "_handle_private_card_message",
+                    new=AsyncMock(return_value=None),
+                ) as handle_card,
+                patch.object(
+                    self.plugin.database,
+                    "card_draft_for_private",
+                    new=AsyncMock(),
+                ) as read_draft,
+            ):
+                responses = [
+                    item async for item in self.plugin.on_private_message(event)
+                ]
+
+            self.assertEqual(responses, [])
+            self.assertFalse(event.stopped)
+            deliver_pending.assert_not_awaited()
+            parse_command.assert_not_awaited()
+            handle_card.assert_not_awaited()
+            read_draft.assert_not_awaited()
 
     async def test_private_native_card_commands_accept_halfwidth_slash(
         self,
@@ -1721,7 +2276,7 @@ class PluginShellTests(unittest.IsolatedAsyncioTestCase):
         self,
     ) -> None:
         class Event:
-            message_str = "酒馆 开启 aelvion-ashen-crown"
+            message_str = "酒馆 开启新副本 aelvion-ashen-crown"
             unified_msg_origin = "qq:group-shell"
             message_obj = SimpleNamespace(group_id="group-shell")
 
@@ -1748,7 +2303,7 @@ class PluginShellTests(unittest.IsolatedAsyncioTestCase):
                 return value
 
         event = Event()
-        _ = [item async for item in self.plugin.tavern_start(event)]
+        _ = [item async for item in self.plugin.tavern_start_new(event)]
         event.message_str = "酒馆 存档 旧塔 之前"
         responses = [item async for item in self.plugin.tavern_save(event)]
 
@@ -1793,6 +2348,326 @@ class PluginShellTests(unittest.IsolatedAsyncioTestCase):
         self.assertEqual(len(responses), 1)
         self.assertIn("未知命令：不存在", responses[0])
 
+    async def test_configured_command_triggers_route_and_hot_reload(self) -> None:
+        self.config["runtime"] = {
+            "command_triggers": ["团", "跑团"],
+        }
+
+        class Event:
+            is_at_or_wake_command = True
+            unified_msg_origin = "qq:group-shell"
+            message_obj = SimpleNamespace(group_id="group-shell")
+
+            def __init__(self, message: str, *, private: bool = False) -> None:
+                self.message_str = message
+                self.private = private
+                self.stopped = False
+                if private:
+                    self.unified_msg_origin = "qq:FriendMessage:user-1"
+                    self.message_obj = SimpleNamespace(group_id="")
+
+            def get_group_id(self):
+                return "" if self.private else "group-shell"
+
+            @staticmethod
+            def get_platform_id():
+                return "qq"
+
+            @staticmethod
+            def get_sender_id():
+                return "admin-1"
+
+            def get_message_str(self):
+                return self.message_str
+
+            def stop_event(self):
+                self.stopped = True
+
+            @staticmethod
+            def plain_result(value):
+                return value
+
+        for message in ("/团 状态", "／跑团 状态", "团 状态"):
+            event = Event(message)
+            with (
+                patch.object(
+                    self.plugin,
+                    "_deliver_pending",
+                    new=AsyncMock(return_value=0),
+                ),
+                patch.object(
+                    self.plugin,
+                    "_handle_command",
+                    new=AsyncMock(return_value="状态结果"),
+                ) as handle,
+            ):
+                responses = [
+                    item async for item in self.plugin.on_group_message(event)
+                ]
+            self.assertEqual(responses, ["状态结果"])
+            self.assertTrue(event.stopped)
+            self.assertEqual(handle.await_args.kwargs["command"].action, "status")
+
+        private_event = Event("/团 当前步骤", private=True)
+        with (
+            patch.object(
+                self.plugin,
+                "_deliver_pending",
+                new=AsyncMock(return_value=0),
+            ),
+            patch.object(
+                self.plugin,
+                "_handle_private_card_message",
+                new=AsyncMock(return_value="当前步骤结果"),
+            ) as handle_private,
+        ):
+            responses = [
+                item
+                async for item in self.plugin.on_private_message(private_event)
+            ]
+        self.assertEqual(responses, ["当前步骤结果"])
+        self.assertEqual(
+            handle_private.await_args.args[1].action,
+            "card_current",
+        )
+
+        inactive = Event("/酒馆 状态")
+        with (
+            patch.object(
+                self.plugin,
+                "_handle_command",
+                new=AsyncMock(return_value="不应执行"),
+            ) as native_handle,
+            patch.object(
+                self.plugin.database,
+                "write_audit",
+                new=AsyncMock(),
+            ) as audit,
+        ):
+            responses = [
+                item async for item in self.plugin.tavern_status(inactive)
+            ]
+        self.assertEqual(responses, [])
+        self.assertFalse(inactive.stopped)
+        native_handle.assert_not_awaited()
+        audit.assert_not_awaited()
+
+        self.config["runtime"]["command_triggers"] = ["新团"]
+        hot_event = Event("/新团 状态")
+        with (
+            patch.object(
+                self.plugin,
+                "_deliver_pending",
+                new=AsyncMock(return_value=0),
+            ),
+            patch.object(
+                self.plugin,
+                "_handle_command",
+                new=AsyncMock(return_value="热更新结果"),
+            ) as hot_handle,
+        ):
+            responses = [
+                item async for item in self.plugin.on_group_message(hot_event)
+            ]
+        self.assertEqual(responses, ["热更新结果"])
+        self.assertEqual(hot_handle.await_args.kwargs["command"].action, "status")
+
+    async def test_runtime_text_uses_primary_command_trigger(self) -> None:
+        from astrbot_plugin_tavern.tavern.platform_delivery import DeliveryResult
+
+        self.config["runtime"] = {
+            "command_triggers": ["团", "跑团"],
+        }
+
+        class Event:
+            is_at_or_wake_command = True
+            unified_msg_origin = "qq:group-shell"
+            message_obj = SimpleNamespace(group_id="group-shell")
+
+            def __init__(self, message: str, *, private: bool = False) -> None:
+                self.message_str = message
+                self.private = private
+                self.stopped = False
+                if private:
+                    self.unified_msg_origin = "qq:FriendMessage:user-1"
+                    self.message_obj = SimpleNamespace(group_id="")
+
+            def get_group_id(self):
+                return "" if self.private else "group-shell"
+
+            @staticmethod
+            def get_platform_id():
+                return "qq"
+
+            @staticmethod
+            def get_sender_id():
+                return "admin-1"
+
+            def stop_event(self):
+                self.stopped = True
+
+            @staticmethod
+            def plain_result(value):
+                return value
+
+        help_event = Event("/团 帮助")
+        with patch.object(
+            self.plugin,
+            "_deliver_pending",
+            new=AsyncMock(return_value=0),
+        ):
+            help_responses = [
+                item async for item in self.plugin.on_group_message(help_event)
+            ]
+        self.assertIn("/团 开启", help_responses[0])
+        self.assertIn("/团 开启新副本", help_responses[0])
+        self.assertIn("/团 开启旧副本", help_responses[0])
+        self.assertNotIn("/团 开启 <副本>", help_responses[0])
+        self.assertNotIn("/酒馆", help_responses[0])
+        self.assertIn("AI 酒馆", help_responses[0])
+
+        private_event = Event("/团 建卡", private=True)
+        with patch.object(
+            self.plugin,
+            "_deliver_pending",
+            new=AsyncMock(return_value=0),
+        ):
+            private_responses = [
+                item
+                async for item in self.plugin.on_private_message(private_event)
+            ]
+        self.assertIn("/团 建卡", private_responses[0])
+        self.assertNotIn("/酒馆 建卡", private_responses[0])
+
+        with patch(
+            "astrbot_plugin_tavern.main.deliver_text",
+            new=AsyncMock(return_value=DeliveryResult(True, "sent")),
+        ) as deliver:
+            await self.plugin._send_text(
+                "qq:group-shell",
+                "发送 /酒馆 状态；AI 酒馆",
+            )
+        self.assertEqual(
+            deliver.await_args.args[2],
+            "发送 /团 状态；AI 酒馆",
+        )
+
+        self.config["runtime"] = {"command_triggers": ["酒馆2"]}
+        event = SimpleNamespace(unified_msg_origin="qq:group-shell")
+        with patch(
+            "astrbot_plugin_tavern.main.deliver_text",
+            new=AsyncMock(return_value=DeliveryResult(True, "sent")),
+        ) as deliver_parts:
+            unsent = await self.plugin._send_event_parts(
+                event,
+                ["请发送 /酒馆 选择 A"],
+            )
+        self.assertEqual(unsent, [])
+        self.assertEqual(
+            deliver_parts.await_args.args[2],
+            "请发送 /酒馆2 选择 A",
+        )
+        self.config["runtime"] = {"command_triggers": ["团", "跑团"]}
+
+        with (
+            patch(
+                "astrbot_plugin_tavern.main.deliver_text",
+                new=AsyncMock(
+                    return_value=DeliveryResult(False, "rejected", "失败")
+                ),
+            ),
+            patch.object(
+                self.plugin.database,
+                "get_instance_config",
+                new=AsyncMock(return_value={"world_snapshot": {}}),
+            ),
+            patch.object(
+                self.plugin.database,
+                "queue_delivery",
+                new=AsyncMock(return_value={"id": "delivery-new"}),
+            ) as queue,
+        ):
+            await self.plugin._send_or_queue(
+                session_id="session-1",
+                origin="qq:group-shell",
+                text="请发送 /酒馆 准备",
+                kind="test.notice",
+            )
+        self.assertEqual(queue.await_args.kwargs["text"], "请发送 /团 准备")
+
+        stored = {
+            "id": "delivery-old",
+            "kind": "legacy.notice",
+            "text": "旧消息仍提示 /酒馆 状态",
+        }
+        with (
+            patch.object(
+                self.plugin.database,
+                "list_deliveries",
+                new=AsyncMock(return_value=[stored]),
+            ),
+            patch.object(
+                self.plugin.database,
+                "finish_delivery",
+                new=AsyncMock(),
+            ),
+            patch(
+                "astrbot_plugin_tavern.main.deliver_text",
+                new=AsyncMock(return_value=DeliveryResult(True, "sent")),
+            ) as deliver_old,
+        ):
+            await self.plugin._deliver_pending("qq:group-shell")
+        self.assertEqual(deliver_old.await_args.args[2], stored["text"])
+
+    async def test_webui_group_send_renders_primary_trigger_before_delivery_and_queue(
+        self,
+    ) -> None:
+        from astrbot_plugin_tavern.tavern.platform_delivery import DeliveryResult
+
+        self.config["runtime"] = {"command_triggers": ["团"]}
+        with patch(
+            "astrbot_plugin_tavern.tavern.web_console.deliver_text",
+            new=AsyncMock(return_value=DeliveryResult(True, "sent")),
+        ) as deliver:
+            result = await self.plugin.web_console._send_group_text(
+                "session-web-send",
+                "qq:GroupMessage:web-group",
+                "请发送 /酒馆 选择 A；AI 酒馆",
+                kind="delegation.forced_choose",
+            )
+        self.assertTrue(result["ok"])
+        self.assertEqual(
+            deliver.await_args.args[2],
+            "请发送 /团 选择 A；AI 酒馆",
+        )
+
+        with (
+            patch(
+                "astrbot_plugin_tavern.tavern.web_console.deliver_text",
+                new=AsyncMock(
+                    return_value=DeliveryResult(False, "rejected", "失败")
+                ),
+            ),
+            patch.object(
+                self.plugin.database,
+                "get_instance_config",
+                new=AsyncMock(return_value={"world_snapshot": {}}),
+            ),
+            patch.object(
+                self.plugin.database,
+                "queue_delivery",
+                new=AsyncMock(return_value={"id": "delivery-web"}),
+            ) as queue,
+        ):
+            result = await self.plugin.web_console._send_group_text(
+                "session-web-send",
+                "qq:GroupMessage:web-group",
+                "请发送 /酒馆 选择 A",
+                kind="delegation.forced_choose",
+            )
+        self.assertTrue(result["queued"])
+        self.assertEqual(queue.await_args.kwargs["text"], "请发送 /团 选择 A")
+
     async def test_group_listener_ignores_unprefixed_chat_and_strips_jg(
         self,
     ) -> None:
@@ -1803,7 +2678,7 @@ class PluginShellTests(unittest.IsolatedAsyncioTestCase):
             event=SimpleNamespace(unified_msg_origin="qq:group-shell"),
             command=ParsedCommand(
                 matched=True,
-                action="start",
+                action="start_new",
                 argument="aelvion-ashen-crown",
             ),
             config=TavernConfig.from_mapping(self.config),

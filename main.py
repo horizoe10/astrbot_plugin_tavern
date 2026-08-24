@@ -65,6 +65,11 @@ from .tavern.platform_delivery import (
     send_text as deliver_text,
 )
 from .tavern.chat_experience import normalize_chat_experience
+from .tavern.review_notifications import notify_card_review
+from .tavern.command_triggers import (
+    canonicalize_command_message,
+    render_command_text,
+)
 
 
 INSTANCE_LIST_PAGE_SIZE = 5
@@ -100,9 +105,46 @@ _INSTANCE_PAGE_PATTERNS = (
 )
 
 
+def _resolve_numbered_ref(
+    argument: str,
+    rows: list[Mapping[str, Any]],
+    *,
+    ref_key: str,
+) -> tuple[str | None, bool]:
+    text = str(argument or "").strip()
+    if not text.isdecimal():
+        return text or None, False
+    ordinal = int(text)
+    if ordinal < 1 or ordinal > len(rows):
+        return None, True
+    return str(rows[ordinal - 1][ref_key]), True
+
+
+def _next_new_instance_slug(
+    world: Mapping[str, Any],
+    instances: list[Mapping[str, Any]],
+) -> str:
+    existing = {
+        str(item.get("instance_slug") or "").casefold()
+        for item in instances
+    }
+    world_slug = str(world.get("slug") or "")
+    if world_slug.casefold() not in existing:
+        return ""
+    base = world_slug[:45].rstrip("-_")
+    stamp = datetime.now().astimezone().strftime("%Y%m%d%H%M%S")
+    candidate = f"{base}-run-{stamp}"
+    serial = 2
+    while candidate.casefold() in existing:
+        suffix = f"-{serial:02d}"
+        candidate = f"{base[:64 - len(suffix) - 19]}-run-{stamp}{suffix}"
+        serial += 1
+    return candidate
+
+
 HELP_TEXT = """\
 【AI 酒馆 v0.12.0｜全平台文本跑团、真人 DM 与世界协议 v5】
-主持：/酒馆 开启 <副本> → /酒馆 开演
+主持：/酒馆 开启 → /酒馆 开启新副本 <序号或世界标识>｜/酒馆 开启旧副本 <序号或副本标识> → /酒馆 开演
 恢复：/酒馆 暂停 → /酒馆 恢复 → 全员准备 → /酒馆 继续
 玩家：/酒馆 加入｜角色｜准备｜阵容｜暂离｜返回队列｜退出
 建卡：私聊 /酒馆 建卡 <验证码>｜当前步骤｜上一步｜修改 <字段>｜重填数值
@@ -124,6 +166,9 @@ from .tavern.presentation import (
     parse_instance_list_page,
     _compact_instance_intro,
     format_turn_status,
+    format_existing_instance_list,
+    format_world_list,
+    format_opening_menu,
     format_instance_list,
     _instance_list_footer,
     format_roster,
@@ -293,6 +338,7 @@ class TavernPlugin(Star):
     ) -> bool:
         """Use the platform-neutral text path and report only confirmed sends."""
 
+        text = self._render_command_text(text)
         result = await deliver_text(
             self.context,
             origin,
@@ -321,6 +367,7 @@ class TavernPlugin(Star):
         kind: str,
         dedupe_key: str = "",
     ) -> bool:
+        text = self._render_command_text(text)
         policy = "next_event"
         try:
             instance = await self.database.get_instance_config(session_id)
@@ -415,14 +462,18 @@ class TavernPlugin(Star):
 
         unsent: list[str] = []
         for part in parts:
-            text = str(part or "").strip()
+            text = self._render_command_text(part).strip()
             if text and not await self._send_event_text(event, text):
                 unsent.append(text)
         return unsent
 
+    def _render_command_text(self, text: Any, config: Any = None) -> str:
+        current = config if isinstance(config, TavernConfig) else self.runtime_config()
+        return render_command_text(text, current.primary_command_trigger)
+
     async def _message_result(self, event: Any, text: Any, config: Any = None):
         """Return the single portable response representation: plain text."""
-        text = str(text or "").strip()
+        text = self._render_command_text(text, config).strip()
         if not text:
             return None
         return event.plain_result(text)
@@ -639,19 +690,33 @@ class TavernPlugin(Star):
     ) -> str | None:
         """Dispatch a command already matched by AstrBot's native router."""
 
-        event.stop_event()
         getter = getattr(event, "get_message_str", None)
         message = str(
             getter() if callable(getter) else getattr(event, "message_str", "")
         )
-        parts = message.strip().split(maxsplit=2)
+        config = self.runtime_config()
+        canonical = canonicalize_command_message(
+            message,
+            config.command_triggers,
+            allow_bare=False,
+        )
+        if canonical is None and not message.strip().startswith(("/", "／")):
+            # AstrBot may remove the slash before invoking a native handler.
+            canonical = canonicalize_command_message(
+                message,
+                config.command_triggers,
+                allow_bare=True,
+            )
+        if canonical is None:
+            return None
+        event.stop_event()
+        parts = canonical.split(maxsplit=2)
         command = ParsedCommand(
             matched=True,
             action=action,
             argument=parts[2].strip() if len(parts) > 2 else "",
             raw_action=parts[1].strip() if len(parts) > 1 else action,
         )
-        config = self.runtime_config()
         group_id = self._group_id(event)
         sender_id = str(event.get_sender_id() or "")
         platform_id = self._platform_id(event)
@@ -704,6 +769,22 @@ class TavernPlugin(Star):
         """列出副本，或按命令后的副本标识开启。"""
 
         response = await self._run_native_command(event, "start")
+        if response:
+            yield await self._message_result(event, response)
+
+    @tavern.command("开启新副本", priority=200)
+    async def tavern_start_new(self, event: AstrMessageEvent):
+        """列出可用世界，或按序号、世界标识建立新副本。"""
+
+        response = await self._run_native_command(event, "start_new")
+        if response:
+            yield await self._message_result(event, response)
+
+    @tavern.command("开启旧副本", priority=200)
+    async def tavern_start_existing(self, event: AstrMessageEvent):
+        """列出已有副本，或按序号、副本标识进入旧副本。"""
+
+        response = await self._run_native_command(event, "start_existing")
         if response:
             yield await self._message_result(event, response)
 
@@ -988,7 +1069,7 @@ class TavernPlugin(Star):
                 _story_reply_parts(response),
             )
             if unsent:
-                yield event.plain_result("\n\n".join(unsent))
+                yield await self._message_result(event, "\n\n".join(unsent))
 
     @tavern.command("重整选项", priority=200)
     async def tavern_reroll(self, event: AstrMessageEvent):
@@ -1019,7 +1100,7 @@ class TavernPlugin(Star):
                     _story_reply_parts(response),
                 )
                 if unsent:
-                    yield event.plain_result("\n\n".join(unsent))
+                    yield await self._message_result(event, "\n\n".join(unsent))
             else:
                 yield await self._message_result(event, response)
 
@@ -1037,7 +1118,7 @@ class TavernPlugin(Star):
                 _story_reply_parts(response),
             )
             if unsent:
-                yield event.plain_result("\n\n".join(unsent))
+                yield await self._message_result(event, "\n\n".join(unsent))
 
     @tavern.command("投票", priority=200)
     async def tavern_vote(self, event: AstrMessageEvent):
@@ -1346,11 +1427,20 @@ class TavernPlugin(Star):
             )
 
     @staticmethod
-    def _looks_like_bare_tavern(text: str) -> bool:
+    def _looks_like_bare_tavern(
+        text: str,
+        triggers: Sequence[str],
+    ) -> bool:
         """Whether ``text`` is a tavern command missing its ``/`` prefix."""
 
-        return text == "酒馆" or (
-            text.startswith("酒馆") and text[2:3].isspace()
+        return (
+            not str(text or "").strip().startswith(("/", "／"))
+            and canonicalize_command_message(
+                text,
+                triggers,
+                allow_bare=True,
+            )
+            is not None
         )
 
     async def _parse_command_relaxed(
@@ -1359,6 +1449,7 @@ class TavernPlugin(Star):
         message: str,
         actor_id: str = "",
         target: str = "",
+        triggers: Sequence[str] = ("酒馆",),
     ) -> ParsedCommand:
         """Parse a tavern command, tolerating a missing ``/`` prefix.
 
@@ -1372,13 +1463,23 @@ class TavernPlugin(Star):
         供总览「群内指令」统计斜杠兜底解析命中数。
         """
 
-        command = parse_tavern_command(message)
-        if command.matched:
-            return command
         text = str(message or "").strip()
-        if not self._looks_like_bare_tavern(text):
+        canonical = canonicalize_command_message(
+            text,
+            triggers,
+            allow_bare=False,
+        )
+        if canonical is not None:
+            return parse_tavern_command(canonical)
+        command = ParsedCommand(matched=False)
+        if not self._looks_like_bare_tavern(text, triggers):
             return command
-        relaxed = parse_tavern_command("/" + text)
+        canonical = canonicalize_command_message(
+            text,
+            triggers,
+            allow_bare=True,
+        )
+        relaxed = parse_tavern_command(canonical or "")
         if not relaxed.matched:
             return command
         if relaxed.action not in ("unknown", "help"):
@@ -1412,12 +1513,16 @@ class TavernPlugin(Star):
     )
     async def on_private_message(self, event: AstrMessageEvent):
         message = str(getattr(event, "message_str", "") or "").strip()
+        if not message:
+            return
+        config = self.runtime_config()
         await self._deliver_pending(self._event_origin(event))
         command = await self._parse_command_relaxed(
             event,
             message,
             str(event.get_sender_id() or ""),
             "private",
+            config.command_triggers,
         )
         response = await self._handle_private_card_message(
             event,
@@ -1433,14 +1538,15 @@ class TavernPlugin(Star):
     )
     async def on_group_message(self, event: AstrMessageEvent):
         message = str(event.message_str or "")
+        config = self.runtime_config()
         await self._deliver_pending(self._event_origin(event))
         command = await self._parse_command_relaxed(
             event,
             message,
             str(event.get_sender_id() or ""),
             self._group_id(event),
+            config.command_triggers,
         )
-        config = self.runtime_config()
         group_id = self._group_id(event)
         sender_id = str(event.get_sender_id() or "")
         platform_id = self._platform_id(event)
@@ -1636,13 +1742,16 @@ class TavernPlugin(Star):
                 reply_parts.append(reply.text)
             unsent = await self._send_event_parts(event, reply_parts)
             if unsent:
-                yield event.plain_result("\n\n".join(unsent))
+                yield await self._message_result(event, "\n\n".join(unsent))
         except TavernTurnOrderError as exc:
-            yield event.plain_result(f"【回合秩序】{exc}")
+            yield await self._message_result(event, f"【回合秩序】{exc}")
         except TavernBusyError as exc:
-            yield event.plain_result(f"【酒馆】{exc}")
+            yield await self._message_result(event, f"【酒馆】{exc}")
         except TavernPlayerDisabledError:
-            yield event.plain_result("【酒馆】你的玩家身份当前不可用。")
+            yield await self._message_result(
+                event,
+                "【酒馆】你的玩家身份当前不可用。",
+            )
         except (TavernEngineError, ValueError) as exc:
             await self.database.write_audit(
                 session["id"],
@@ -1652,7 +1761,8 @@ class TavernPlugin(Star):
                 {"error": str(exc)[:500]},
             )
             logger.warning("AI 酒馆本轮失败：%s", exc)
-            yield event.plain_result(
+            yield await self._message_result(
+                event,
                 f"【酒馆】本轮裁定未完成，世界状态没有改变。\n{exc}"
             )
         except Exception as exc:
@@ -1664,7 +1774,8 @@ class TavernPlugin(Star):
                 {"error_type": type(exc).__name__},
             )
             logger.exception("AI 酒馆处理群消息时发生异常")
-            yield event.plain_result(
+            yield await self._message_result(
+                event,
                 "【酒馆】叙事引擎出现内部错误，世界状态没有改变。"
             )
 
@@ -1716,6 +1827,8 @@ class TavernPlugin(Star):
         )
         host_actions = {
             "start",
+            "start_new",
+            "start_existing",
             "perform",
             "pause",
             "recover",
@@ -1776,7 +1889,8 @@ class TavernPlugin(Star):
 
         auto_bound = False
         if not group_allowed:
-            if is_admin and command.action == "start":
+            opening_actions = {"start", "start_new", "start_existing"}
+            if is_admin and command.action in opening_actions:
                 try:
                     auto_bound = await self._allow_group(
                         group_id=group_id,
@@ -1893,59 +2007,120 @@ class TavernPlugin(Star):
                 )
 
             if command.action == "start":
-                list_page = parse_instance_list_page(command.argument)
-                if not command.argument or list_page is not None:
+                if command.argument:
+                    return (
+                        "【酒馆】开启指令已拆分：\n"
+                        "· 建立新副本：/酒馆 开启新副本 "
+                        "<数字序号或世界标识>\n"
+                        "· 进入旧副本：/酒馆 开启旧副本 "
+                        "<数字序号或副本标识>"
+                    )
+                instances = await self.database.list_group_sessions(
+                    platform_id,
+                    group_id,
+                )
+                worlds = await self.database.list_worlds()
+                prefix = (
+                    "当前群已完成绑定，但尚未启动任何副本。"
+                    f"\n平台实例 ID：{platform_id}"
+                    f"\n群 ID：{group_id}\n"
+                    if auto_bound
+                    else ""
+                )
+                return prefix + format_opening_menu(instances, worlds)
+
+            if command.action in {"start_new", "start_existing"}:
+                if command.action == "start_new":
+                    page = parse_instance_list_page(command.argument)
+                    worlds = await self.database.list_worlds()
+                    if not command.argument or page is not None:
+                        return format_world_list(worlds, page=page or 1)
+                    selected_ref, numeric = _resolve_numbered_ref(
+                        command.argument,
+                        worlds,
+                        ref_key="slug",
+                    )
+                    if numeric and selected_ref is None:
+                        return (
+                            "【酒馆】世界序号不存在，请发送 "
+                            "/酒馆 开启新副本 查看可用世界。"
+                        )
+                    world = next(
+                        (
+                            item
+                            for item in worlds
+                            if str(item.get("slug") or "").casefold()
+                            == str(selected_ref or "").casefold()
+                        ),
+                        None,
+                    )
+                    if not world:
+                        return (
+                            "【酒馆】没有找到该世界，请发送 "
+                            "/酒馆 开启新副本 查看可用世界。"
+                        )
+                    world_ref = str(world["slug"])
                     instances = await self.database.list_group_sessions(
                         platform_id,
                         group_id,
                     )
-                    worlds = (
-                        await self.database.list_worlds()
-                        if not instances
-                        else None
-                    )
-                    prefix = (
-                        "当前群已完成绑定，但尚未启动任何副本。"
-                        f"\n平台实例 ID：{platform_id}"
-                        f"\n群 ID：{group_id}\n"
-                        if auto_bound
-                        else ""
-                    )
-                    return prefix + format_instance_list(
+                    instance_slug = _next_new_instance_slug(
+                        world,
                         instances,
-                        worlds,
-                        page=list_page or 1,
                     )
-
-                selected = await self.database.get_session_by_group_ref(
-                    platform_id,
-                    group_id,
-                    command.argument,
-                )
-                created = not selected or bool(
-                    selected
-                    and selected.get("state") == SESSION_FINISHED
-                )
-                if not selected:
+                    created = True
                     session = await self.database.ensure_session(
                         platform_id,
                         group_id,
                         str(event.unified_msg_origin or ""),
-                        command.argument,
+                        world_ref,
                         sender_id,
-                    )
-                elif selected.get("state") == SESSION_FINISHED:
-                    session = await self.database.ensure_session(
-                        platform_id,
-                        group_id,
-                        str(event.unified_msg_origin or ""),
-                        str(selected["world_id"]),
-                        sender_id,
-                        str(selected["instance_slug"]),
-                        str(selected["instance_name"]),
+                        instance_slug,
                     )
                 else:
-                    session = selected
+                    page = parse_instance_list_page(command.argument)
+                    instances = await self.database.list_group_sessions(
+                        platform_id,
+                        group_id,
+                    )
+                    if not command.argument or page is not None:
+                        return format_existing_instance_list(
+                            instances,
+                            page=page or 1,
+                        )
+                    selected_ref, numeric = _resolve_numbered_ref(
+                        command.argument,
+                        instances,
+                        ref_key="instance_slug",
+                    )
+                    if numeric and selected_ref is None:
+                        return (
+                            "【酒馆】副本序号不存在，请发送 "
+                            "/酒馆 开启旧副本 查看已有副本。"
+                        )
+                    selected = await self.database.get_session_by_group_ref(
+                        platform_id,
+                        group_id,
+                        str(selected_ref or ""),
+                    )
+                    if not selected:
+                        return (
+                            "【酒馆】没有找到该副本，请发送 "
+                            "/酒馆 开启旧副本 查看已有副本。"
+                        )
+                    created = selected.get("state") == SESSION_FINISHED
+                    if created:
+                        session = await self.database.ensure_session(
+                            platform_id,
+                            group_id,
+                            str(event.unified_msg_origin or ""),
+                            str(selected["world_id"]),
+                            sender_id,
+                            str(selected["instance_slug"]),
+                            str(selected["instance_name"]),
+                        )
+                    else:
+                        session = selected
                 if created:
                     created_world = await self.database.get_world(
                         session["world_id"]
@@ -2426,6 +2601,16 @@ class TavernPlugin(Star):
                     approved,
                     sender_id,
                     note,
+                )
+                await notify_card_review(
+                    context=self.context,
+                    database=self.database,
+                    broker=self.broker,
+                    config=TavernConfig.from_mapping(self.plugin_config),
+                    participant=participant,
+                    approved=approved,
+                    note=note,
+                    logger=logger,
                 )
                 remaining = len(pending) - 1
                 return (

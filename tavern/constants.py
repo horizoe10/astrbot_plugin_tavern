@@ -29,6 +29,8 @@ SESSION_STATES = {
 MANAGEMENT_ACTIONS = {
     "开启": "start",
     "启动": "start",
+    "开启新副本": "start_new",
+    "开启旧副本": "start_existing",
     "开演": "perform",
     "开始故事": "perform",
     "暂停": "pause",

@@ -12,6 +12,7 @@ from tavern.constants import (
     DEFAULT_WORLD_SLUG,
     SESSION_CLOSED,
     SESSION_PAUSED,
+    SESSION_PREPARING,
     SESSION_RUNNING,
 )
 from tavern.database import (
@@ -521,6 +522,304 @@ class DatabaseTests(unittest.IsolatedAsyncioTestCase):
             await self._commit(original, fact="过期请求")
         current = await self.database.get_session(original["id"])
         self.assertEqual(current["turn_no"], 1)
+
+    async def test_cancelled_card_can_rejoin_but_retired_still_cannot(self) -> None:
+        await self.database.transition_session(
+            self.session["id"], SESSION_PREPARING, "admin-1"
+        )
+        first = await self.database.reserve_participant(
+            self.session["id"], "rejoin-user", "重入玩家"
+        )
+        origin = "qq:FriendMessage:rejoin-user"
+        await self.database.bind_card_code(
+            first["binding_code"], "private-rejoin-user", origin
+        )
+        await self.database.fill_card_draft(origin, "旧草稿内容")
+        await self.database.cancel_card_draft(origin)
+        with self.database._connect() as connection:
+            connection.execute(
+                """
+                INSERT INTO character_cards(
+                    id, owner_user_id, world_id, display_name, archived,
+                    deleted, current_version, created_at, updated_at
+                ) VALUES ('card-residual', 'rejoin-user', ?, '旧角色卡',
+                          0, 0, 1, 'old', 'old')
+                """,
+                (self.session["world_id"],),
+            )
+            connection.execute(
+                """
+                INSERT INTO character_card_versions(
+                    id, character_card_id, version_no, template_version,
+                    profile_json, stats_json, status, review_note,
+                    reviewed_by, created_at
+                ) VALUES ('version-residual', 'card-residual', 1, 1,
+                          '{}', '{}', 'approved', '', '', 'old')
+                """
+            )
+            connection.execute(
+                """
+                UPDATE participants SET
+                    character_card_id = 'card-residual',
+                    character_version_id = 'version-residual',
+                    character_name = '旧角色', character_code = 'OLD-CODE',
+                    aliases_json = '["旧别名"]', action_locked = 1,
+                    joined_round = 7
+                WHERE id = ?
+                """,
+                (first["id"],),
+            )
+            old_timer_ids = {
+                row["id"]
+                for row in connection.execute(
+                    "SELECT id FROM timer_instances WHERE participant_id = ?",
+                    (first["id"],),
+                ).fetchall()
+            }
+
+        second = await self.database.reserve_participant(
+            self.session["id"], "rejoin-user", "重入玩家"
+        )
+        self.assertTrue(second["joined"])
+        self.assertEqual(second["id"], first["id"])
+        self.assertNotEqual(second["binding_code"], first["binding_code"])
+        self.assertEqual(second["participation_status"], "reserved")
+        self.assertEqual(second["private_origin"], "")
+        with self.database._connect() as connection:
+            participant = connection.execute(
+                "SELECT * FROM participants WHERE id = ?", (first["id"],)
+            ).fetchone()
+            draft = connection.execute(
+                "SELECT * FROM character_card_drafts WHERE participant_id = ?",
+                (first["id"],),
+            ).fetchone()
+            codes = connection.execute(
+                """
+                SELECT code, status, private_user_id, private_origin, used_at
+                FROM card_binding_codes WHERE participant_id = ?
+                ORDER BY created_at, id
+                """,
+                (first["id"],),
+            ).fetchall()
+            timers = connection.execute(
+                """
+                SELECT id, timer_type, status FROM timer_instances
+                WHERE participant_id = ? ORDER BY created_at, id
+                """,
+                (first["id"],),
+            ).fetchall()
+        self.assertEqual(
+            (
+                participant["private_user_id"],
+                participant["private_origin"],
+                participant["character_card_id"],
+                participant["character_version_id"],
+                participant["character_name"],
+                participant["character_code"],
+                participant["aliases_json"],
+                participant["card_status"],
+                participant["ready"],
+                participant["action_locked"],
+                participant["joined_round"],
+                participant["exit_reason"],
+            ),
+            ("", "", None, None, "", "", "[]", "uncreated", 0, 0, 1, ""),
+        )
+        self.assertEqual(
+            (draft["status"], draft["fields_json"], draft["current_step"]),
+            ("active", "{}", 0),
+        )
+        self.assertEqual(len(codes), 2)
+        code_statuses = {row["code"]: row["status"] for row in codes}
+        self.assertEqual(code_statuses[first["binding_code"]], "expired")
+        self.assertEqual(code_statuses[second["binding_code"]], "active")
+        new_code_row = next(
+            row for row in codes if row["code"] == second["binding_code"]
+        )
+        self.assertEqual(
+            (
+                new_code_row["private_user_id"],
+                new_code_row["private_origin"],
+                new_code_row["used_at"],
+            ),
+            ("", "", ""),
+        )
+        for timer in timers:
+            if timer["id"] in old_timer_ids:
+                self.assertIn(timer["status"], {"cancelled", "completed"})
+        live_timers = [
+            row for row in timers if row["status"] in {"active", "paused"}
+        ]
+        self.assertEqual(
+            sorted(row["timer_type"] for row in live_timers),
+            ["card_code", "card_completion"],
+        )
+        with self.assertRaisesRegex(ValueError, "建卡码不存在或已使用"):
+            await self.database.bind_card_code(
+                first["binding_code"], "old-private", "qq:FriendMessage:old"
+            )
+
+        with self.database._connect() as connection:
+            connection.execute(
+                "UPDATE participants SET participation_status = 'retired' WHERE id = ?",
+                (first["id"],),
+            )
+            retired_before = dict(
+                connection.execute(
+                    "SELECT * FROM participants WHERE id = ?", (first["id"],)
+                ).fetchone()
+            )
+        with self.assertRaisesRegex(ValueError, "正式退场.*申请返场"):
+            await self.database.reserve_participant(
+                self.session["id"], "rejoin-user", "重入玩家"
+            )
+        with self.database._connect() as connection:
+            retired_after = dict(
+                connection.execute(
+                    "SELECT * FROM participants WHERE id = ?", (first["id"],)
+                ).fetchone()
+            )
+        self.assertEqual(retired_after, retired_before)
+
+    async def test_other_archived_participants_are_not_reactivated(self) -> None:
+        await self.database.transition_session(
+            self.session["id"], SESSION_PREPARING, "admin-1"
+        )
+        cases = (
+            ("other-archive", "removed_by_admin", "uncreated"),
+            ("cancelled-draft", "cancelled_card", "draft"),
+        )
+        for user_id, exit_reason, card_status in cases:
+            participant = await self.database.reserve_participant(
+                self.session["id"], user_id, user_id
+            )
+            with self.database._connect() as connection:
+                connection.execute(
+                    """
+                    UPDATE participants SET participation_status = 'archived',
+                        exit_reason = ?, card_status = ? WHERE id = ?
+                    """,
+                    (exit_reason, card_status, participant["id"]),
+                )
+                before = dict(
+                    connection.execute(
+                        "SELECT * FROM participants WHERE id = ?",
+                        (participant["id"],),
+                    ).fetchone()
+                )
+            with self.assertRaisesRegex(ValueError, "已归档.*主持人") as caught:
+                await self.database.reserve_participant(
+                    self.session["id"], user_id, f"{user_id}-new"
+                )
+            self.assertNotIn("申请返场", str(caught.exception))
+            with self.database._connect() as connection:
+                after = dict(
+                    connection.execute(
+                        "SELECT * FROM participants WHERE id = ?",
+                        (participant["id"],),
+                    ).fetchone()
+                )
+            self.assertEqual(after, before)
+
+    async def test_cancelled_card_rejoin_still_obeys_capacity(self) -> None:
+        await self.database.transition_session(
+            self.session["id"], SESSION_PREPARING, "admin-1"
+        )
+        first = await self.database.reserve_participant(
+            self.session["id"], "capacity-user", "候补玩家"
+        )
+        origin = "qq:FriendMessage:capacity-user"
+        await self.database.bind_card_code(first["binding_code"], "private", origin)
+        await self.database.cancel_card_draft(origin)
+        for index in range(4):
+            await self.database.reserve_participant(
+                self.session["id"], f"occupant-{index}", f"占位玩家{index}"
+            )
+
+        with self.database._connect() as connection:
+            participant_before = dict(
+                connection.execute(
+                    "SELECT * FROM participants WHERE id = ?", (first["id"],)
+                ).fetchone()
+            )
+            player_before = dict(
+                connection.execute(
+                    "SELECT * FROM players WHERE id = ?", (first["player_id"],)
+                ).fetchone()
+            )
+            draft_before = dict(
+                connection.execute(
+                    "SELECT * FROM character_card_drafts WHERE participant_id = ?",
+                    (first["id"],),
+                ).fetchone()
+            )
+            codes_before = [
+                dict(row)
+                for row in connection.execute(
+                    """
+                    SELECT * FROM card_binding_codes WHERE participant_id = ?
+                    ORDER BY id
+                    """,
+                    (first["id"],),
+                ).fetchall()
+            ]
+            timers_before = [
+                dict(row)
+                for row in connection.execute(
+                    """
+                    SELECT * FROM timer_instances WHERE participant_id = ?
+                    ORDER BY id
+                    """,
+                    (first["id"],),
+                ).fetchall()
+            ]
+
+        with self.assertRaisesRegex(ValueError, "已满"):
+            await self.database.reserve_participant(
+                self.session["id"], "capacity-user", "不应写入的新名字"
+            )
+        with self.database._connect() as connection:
+            participant_after = dict(
+                connection.execute(
+                    "SELECT * FROM participants WHERE id = ?", (first["id"],)
+                ).fetchone()
+            )
+            player_after = dict(
+                connection.execute(
+                    "SELECT * FROM players WHERE id = ?", (first["player_id"],)
+                ).fetchone()
+            )
+            draft_after = dict(
+                connection.execute(
+                    "SELECT * FROM character_card_drafts WHERE participant_id = ?",
+                    (first["id"],),
+                ).fetchone()
+            )
+            codes_after = [
+                dict(row)
+                for row in connection.execute(
+                    """
+                    SELECT * FROM card_binding_codes WHERE participant_id = ?
+                    ORDER BY id
+                    """,
+                    (first["id"],),
+                ).fetchall()
+            ]
+            timers_after = [
+                dict(row)
+                for row in connection.execute(
+                    """
+                    SELECT * FROM timer_instances WHERE participant_id = ?
+                    ORDER BY id
+                    """,
+                    (first["id"],),
+                ).fetchall()
+            ]
+        self.assertEqual(participant_after, participant_before)
+        self.assertEqual(player_after, player_before)
+        self.assertEqual(draft_after, draft_before)
+        self.assertEqual(codes_after, codes_before)
+        self.assertEqual(timers_after, timers_before)
 
     async def test_merge_backup_is_insert_only_and_preserves_live_data(self) -> None:
         session = await self._start()
