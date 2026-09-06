@@ -432,8 +432,9 @@ from .auth import AuthMixin
 from .http import HttpMixin
 from .assets import AssetsMixin
 from .api import ApiMixin
+from ..card_web_wizard import CardWebMixin, CardWebRegistry
 
-class _PanelHandler(AuthMixin, HttpMixin, AssetsMixin, ApiMixin, BaseHTTPRequestHandler):
+class _PanelHandler(CardWebMixin, AuthMixin, HttpMixin, AssetsMixin, ApiMixin, BaseHTTPRequestHandler):
     protocol_version = "HTTP/1.1"
     server_version = "TavernPanel/1.0.0-rc10"
 
@@ -490,6 +491,7 @@ class RemotePanelServer(ThreadingHTTPServer):
         external_scheme: str = "http",
         secure_cookie: bool | None = None,
         trusted_proxy_cidrs: Any = None,
+        card_ai: Any = None,
     ) -> None:
         resolved_static_root = Path(
             static_root
@@ -532,6 +534,8 @@ class RemotePanelServer(ThreadingHTTPServer):
             self.sessions: dict[str, dict[str, Any]] = {}
             self.session_lock = threading.RLock()
             self.rate_limiter = _RateLimiter()
+            self.card_registry = CardWebRegistry(logger=self.logger)
+            self.card_ai = card_ai
             self._revoked_at = 0.0
             self.refresh_revoked_at()
         except BaseException:
@@ -575,6 +579,7 @@ def start_panel_server(
     external_scheme: str = "http",
     secure_cookie: bool | None = None,
     trusted_proxy_cidrs: Any = None,
+    card_ai: Any = None,
 ) -> tuple[RemotePanelServer, threading.Thread] | None:
     """按配置启动面板服务；绑定失败返回 None 并写日志（不崩溃）。"""
     if logger is None:
@@ -610,6 +615,7 @@ def start_panel_server(
             external_scheme=scheme,
             secure_cookie=secure_cookie,
             trusted_proxy_cidrs=trusted_proxy_cidrs,
+            card_ai=card_ai,
         )
     except (OSError, ValueError) as exc:
         logger.error("321开团独立面板启动失败（%s:%s）：%s", host, port, exc)

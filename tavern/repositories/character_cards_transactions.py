@@ -88,7 +88,10 @@ class CharacterCardsTransactionsRepositoryMixin:
                         now,
                     ),
                 )
-                if entry_beat is not None:
+                # rc12 native bug：`entry_beat` 是未实现特性残留的未定义变量，
+                # 整段条件体目前无法执行。临时把 `entry_beat is not None` 这一行
+                # 永久置 False，等上游真正实现"重启时插入入场幕间"再启用。
+                if False and entry_beat is not None:
                     append_event(
                         connection,
                         session_id=row["session_id"],

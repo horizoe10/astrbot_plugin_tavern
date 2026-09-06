@@ -227,6 +227,46 @@ class CommandMethods:
         if response:
             yield await self._message_result(event, response)
 
+    async def tavern_card_random(self, event: AstrMessageEvent):
+        """由 AI 随机生成当前建卡字段的设定内容并填入。"""
+
+        async for result in self._run_card_ai_command(event, "card_random"):
+            yield result
+
+    async def tavern_card_expand(self, event: AstrMessageEvent):
+        """基于玩家的初始设定，由 AI 补全当前建卡字段。"""
+
+        async for result in self._run_card_ai_command(event, "card_expand"):
+            yield result
+
+    async def tavern_card_web(self, event: AstrMessageEvent):
+        """签发网页建卡链接（一次性、15 分钟有效）。"""
+
+        response = await self._run_native_command(event, "card_web")
+        if response:
+            yield await self._message_result(event, response)
+
+    async def _run_card_ai_command(
+        self,
+        event: AstrMessageEvent,
+        action: str,
+    ):
+        """先发送生成中提示，再执行 AI 建卡指令并转发结果。
+
+        模型生成通常需要数秒到数十秒；提示只在私聊中发送，群聊里
+        这两个指令会被私聊限制文案直接拒绝，无需额外噪音。
+        """
+
+        if not self._group_id(event):
+            yield await self._message_result(
+                event,
+                "【AI设定生成中】正在调用语言模型撰写设定，"
+                "通常需要十几秒，请稍候…",
+            )
+        response = await self._run_native_command(event, action)
+        if response:
+            yield await self._message_result(event, response)
+
     async def tavern_card_abandon(self, event: AstrMessageEvent):
         """二次确认后释放尚未建立正式角色的席位。"""
 
@@ -442,8 +482,19 @@ class CommandMethods:
             yield await self._message_result(event, response)
 
     async def tavern_help(self, event: AstrMessageEvent):
-        """显示开团指令帮助。"""
+        """显示开团指令帮助（渲染为图片）。
+        私聊 / 群聊都可用。图片渲染失败时回退到纯文本。"""
 
+        import logging as _logging
+        _logging.getLogger("ai_tavern.cmd").info(
+            "tavern_help ENTRY group_id=%r", self._group_id(event)
+        )
+        scope = "private" if not self._group_id(event) else "group"
+        image_path = await self._render_help_image(event, scope=scope)
+        if image_path:
+            event.stop_event()  # 必须 stop_event，否则 priority=100 的 on_group_message 会再发 contextual_help 大段文本
+            yield event.image_result(image_path)
+            return
         response = await self._run_native_command(event, "help")
         if response:
             yield await self._message_result(event, response)

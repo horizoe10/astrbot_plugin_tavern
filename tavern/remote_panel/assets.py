@@ -455,10 +455,15 @@ class AssetsMixin:
         finally:
             request_value.close()
     def _handle(self) -> None:
+        path = urlsplit(self.path).path
+        # 网页建卡命名空间：自带一次性令牌认证，玩家 IP 不在管理员白名单
+        # 内属预期行为，因此必须在管理员白名单之前拦截分流。
+        if path == "/cw" or path.startswith("/cw/"):
+            self._handle_card_wizard(path)
+            return
         if not ip_allowed(self._client_ip(), self.panel.credentials.get("ip_allowlist")):
             self._send_json({"error": "IP 不在白名单"}, status=403)
             return
-        path = urlsplit(self.path).path
         try:
             if self.command == "GET":
                 if path == "/":

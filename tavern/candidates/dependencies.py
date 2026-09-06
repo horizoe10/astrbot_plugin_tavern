@@ -1,6 +1,27 @@
 from .common import *
 from .normalization import *
 
+
+def _candidate_rule_field_refs(
+    raw: Any,
+    *,
+    include_recommendations: bool = True,
+) -> set[str]:
+    """Break the ``evaluation -> dependencies`` import cycle.
+
+    ``candidate_rule_field_refs`` is defined in ``evaluation``, which
+    star-imports this module, so it cannot be imported at module top-level
+    here. Import it lazily at call time instead.
+    """
+
+    from .evaluation import candidate_rule_field_refs
+
+    return candidate_rule_field_refs(
+        raw,
+        include_recommendations=include_recommendations,
+    )
+
+
 def _fields_from(value: Sequence[Mapping[str, Any]] | Mapping[str, Any]) -> tuple[list[Mapping[str, Any]], Mapping[str, Any] | None]:
     if isinstance(value, Mapping):
         fields = [
@@ -48,7 +69,7 @@ def dependency_graph(
                 # 依赖图构建保持容错以免重复抛错掩盖问题清单。
                 try:
                     graph[key].update(
-                        candidate_rule_field_refs(
+                        _candidate_rule_field_refs(
                             candidate,
                             include_recommendations=False,
                         )
@@ -246,7 +267,7 @@ def validate_constraint_graph(template: Mapping[str, Any]) -> list[dict[str, Any
                     )
                     rule_viable = False
                 else:
-                    for rule_field in sorted(candidate_rule_field_refs(candidate)):
+                    for rule_field in sorted(_candidate_rule_field_refs(candidate)):
                         if rule_field not in by_key:
                             issues.append(
                                 {

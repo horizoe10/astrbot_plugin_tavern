@@ -453,6 +453,7 @@ class TavernConfig:
         "127.0.0.1",
         "::1",
     )
+    remote_panel_public_url: str = ""
 
     @classmethod
     def from_mapping(cls, raw: Mapping[str, Any] | None) -> "TavernConfig":
@@ -649,6 +650,9 @@ class TavernConfig:
                 _string_list(remote_panel.get("trusted_proxy_cidrs"))
                 or ("127.0.0.1", "::1")
             ),
+            remote_panel_public_url=str(
+                remote_panel.get("public_url", "") or ""
+            ).strip().rstrip("/"),
         )
 
     @classmethod

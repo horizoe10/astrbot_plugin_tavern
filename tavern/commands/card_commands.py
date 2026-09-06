@@ -35,8 +35,11 @@
 from __future__ import annotations
 
 import logging
+import time
 from typing import Any, Mapping
 
+from ..card_ai import CardAIComposer, CardAIError
+from ..card_web_wizard import web_active_until
 from ..card_delivery import (
     WIZARD_DELIVERY_KEY,
     build_candidate_bundle,
@@ -88,6 +91,9 @@ PRIVATE_CARD_ACTIONS = frozenset(
         "card_rename",
         "card_nickname",
         "card_abandon",
+        "card_random",
+        "card_expand",
+        "card_web",
     }
 )
 
@@ -103,6 +109,7 @@ _CANDIDATE_PREFLIGHT_EXEMPT = frozenset(
         "card_cancel",
         "card_restart",
         "card_abandon",
+        "card_web",
     }
 )
 
@@ -112,6 +119,11 @@ _PRIVATE_CARD_HELP_TEXT = (
     "/团 当前\n\n"
     "查看已填写资料\n"
     "/团 预览\n\n"
+    "AI 设定助手（由模型代写或扩写当前字段）\n"
+    "/团 随机\n"
+    "/团 补全 <初始设定>\n\n"
+    "网页建卡（浏览器逐项填写，含 AI 按钮）\n"
+    "/团 网页建卡\n\n"
     "返回或修改\n"
     "/团 上一步\n"
     "/团 修改 <完整字段名称>\n\n"
@@ -178,8 +190,17 @@ def candidate_failure_feedback(
 class CardCommandService:
     """建卡命令应用服务：只编排应用服务，不触碰平台事件对象。"""
 
-    def __init__(self, database: CardFlowProtocol) -> None:
+    def __init__(
+        self,
+        database: CardFlowProtocol,
+        ai: CardAIComposer | None = None,
+        web: Any = None,
+    ) -> None:
         self.database = database
+        # AI 设定助手（/团 随机、/团 补全）；未注入时对应指令返回未启用提示。
+        self.ai = ai
+        # 网页建卡链接网关（/团 网页建卡）；未注入时返回未启用提示。
+        self.web = web
 
     def handles(self, action: str) -> bool:
         """该命令动作是否属于建卡命令（供路由分发使用）。"""
@@ -199,6 +220,11 @@ class CardCommandService:
 
         origin = ctx.origin
         draft = await self.database.card_draft_for_private(origin)
+        if web_active_until(
+            draft.get("fields") if isinstance(draft, Mapping) else None
+        ) > time.time():
+            # 网页建卡激活期间，聊天侧不再拦截/推送候选，避免双端刷屏。
+            return None
         if not draft:
             return None
         try:
@@ -534,7 +560,7 @@ class CardCommandService:
             status = (
                 "角色卡已自动通过，可以回群发送 /团 准备。"
                 if result.get("auto_approved")
-                else "角色卡已提交审核，审核通过后再回群准备。"
+                else "角色卡已提交主持人审核：主持人在团局群发送 /团 审核 即可查看并审批，通过后再回群准备。"
             )
             extras = []
             pending_count = int(result.get("card_stage_pending_count") or 0)
@@ -606,6 +632,22 @@ class CardCommandService:
                     ),
                 ),
             )
+        if command.matched and command.action == "card_web":
+            return await self._issue_web_link(ctx, draft)
+        if command.matched and command.action in {
+            "card_random",
+            "card_expand",
+        }:
+            return await self._ai_generate_and_fill(
+                ctx,
+                draft,
+                mode=(
+                    "random"
+                    if command.action == "card_random"
+                    else "expand"
+                ),
+                user_draft=str(command.argument or "").strip(),
+            )
         if command.matched and command.action == "card_fill":
             value = command.argument
         elif command.matched:
@@ -628,6 +670,117 @@ class CardCommandService:
             format_card_prompt(result),
             (confirmation,) if confirmation is not None else (),
             result,
+        )
+
+    async def _ai_generate_and_fill(
+        self,
+        ctx: RequestContext,
+        draft: Mapping[str, Any] | None,
+        *,
+        mode: str,
+        user_draft: str = "",
+    ) -> tuple[str, tuple[DeliveryIntent, ...], Mapping[str, Any]]:
+        """AI 生成当前字段设定，并按标准填写流程校验落库。
+
+        生成值不绕过任何数据规则：仍交给 ``fill_card_draft`` 做字段
+        校验、依赖清理与游标推进；校验失败时把生成内容原样交还，
+        供玩家手动发送填写。
+        """
+
+        if not draft:
+            raise DatabaseNotFoundError("当前私聊没有进行中的角色卡")
+        if mode == "expand" and not user_draft:
+            raise ValueError(
+                "补全设定失败：命令后缺少你的初始设定。"
+                "\n系统没有修改角色卡。"
+                "\n下一步：发送 /团 补全 <初始设定>，例如"
+                " /团 补全 一个腐朽的木制魔杖和一本老旧的魔法书"
+            )
+        if self.ai is None:
+            raise ValueError(
+                "AI 设定助手未启用：插件没有可用的语言模型接入。"
+                "\n系统没有修改角色卡。"
+                "\n下一步：请手动填写当前字段，"
+                "或联系管理员检查插件的叙事模型配置。"
+            )
+        try:
+            value, field_label, generated = await self.ai.compose_field_value(
+                ctx.origin,
+                draft,
+                mode=mode,
+                user_draft=user_draft,
+            )
+        except CardAIError as exc:
+            return (
+                "【AI设定生成失败】\n"
+                f"失败操作：为当前字段生成 AI 设定。\n"
+                f"原因：{exc}\n"
+                "自动处理：系统没有修改角色卡。\n"
+                "下一步：可重新发送指令重试，或手动填写当前字段。",
+                (),
+            )
+        try:
+            result = await self.database.fill_card_draft(
+                ctx.origin,
+                value,
+                source_event_id=self._transport_event_id(ctx),
+            )
+        except ValueError as exc:
+            if "草稿已过期" in str(exc):
+                raise
+            return (
+                "【AI设定未能自动填入】\n"
+                f"失败操作：写入「{field_label}」。\n"
+                f"原因：{exc}\n"
+                "自动处理：系统没有修改角色卡，生成内容保留如下。\n"
+                "下一步：可复制下方内容直接发送填写，或重新生成。\n\n"
+                + generated,
+                (),
+            )
+        if result.get("duplicate"):
+            return (
+                "【私聊建卡】这条消息已经处理过，当前步骤未重复推进。\n"
+                + format_card_prompt(result),
+                (),
+                result,
+            )
+        title = "AI随机设定" if mode == "random" else "AI补全设定"
+        body = (
+            f"【{title}·{field_label}】\n\n"
+            + generated
+            + "\n\n———\n已写入角色卡并推进到下一步。"
+            "不满意可发送 /团 上一步 后重新生成；"
+            "查看全部资料可发送 /团 预览。\n\n"
+            + format_card_prompt(result)
+        )
+        return (body, (), result)
+
+    async def _issue_web_link(
+        self,
+        ctx: RequestContext,
+        draft: Mapping[str, Any] | None,
+    ) -> tuple[str, tuple[DeliveryIntent, ...]]:
+        """签发网页建卡魔法链接（一次性、15 分钟有效）。"""
+
+        if not draft:
+            raise DatabaseNotFoundError("当前私聊没有进行中的角色卡")
+        if self.web is None:
+            return (
+                "网页建卡未启用：插件缺少网页建卡网关。",
+                (),
+            )
+        url, error = await self.web.issue_link(ctx.origin, draft)
+        if error:
+            return (error, ())
+        return (
+            "【网页建卡已就绪】\n\n"
+            "请在本机或手机浏览器打开下面的链接（15 分钟内有效，仅可使用一次）：\n"
+            f"{url}\n\n"
+            "网页里可以逐项填写资料，每项旁有「随机」「补全」AI 按钮；"
+            "预览、修改和确认建卡也都能在网页完成。\n"
+            "链接泄露给他人等于交出你的建卡权，请勿转发；"
+            "链接失效后重新发送 /团 网页建卡 即可。",
+            (),
         )
 
     async def _group_created_intents(
@@ -691,7 +844,12 @@ class CardCommandService:
         平台发送与 ``set_card_delivery_state`` 持久化留给入口层。
         """
 
-        if not draft or command.action == "card_detail":
+        if (
+            not draft
+            or command.action == "card_detail"
+            or web_active_until(draft.get("fields")) > time.time()
+        ):
+            # 网页建卡激活期间聊天侧候选静默；网页操作会刷新该截止时间。
             return ()
         bundle = build_candidate_bundle(draft, platform_id=ctx.platform)
         if not bundle:

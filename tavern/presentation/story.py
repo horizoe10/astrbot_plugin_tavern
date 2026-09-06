@@ -3,6 +3,26 @@ from .sessions import *
 from .characters import *
 from .reviews import *
 
+def format_pending_reviews_compact(
+    pending: list[Mapping[str, Any]],
+) -> str:
+    """群内待审核名单的紧凑版：一行汇总 + 私聊网页审核指引。"""
+
+    if not pending:
+        return "【待审核角色卡】当前没有待审核玩家。"
+    names = "；".join(
+        f"{index}. {item.get('character_name') or item.get('display_name')}"
+        f"（{item.get('character_code') or '无代号'}）"
+        for index, item in enumerate(pending, 1)
+    )
+    return (
+        f"【待审核角色卡｜共 {len(pending)} 人】{names}\n"
+        "📱 网页审核（推荐）：私聊 Bot 发送 /团 审核 获取链接，"
+        "网页中查看详情并通过 / 驳回\n"
+        "💬 群内快速审批：/团 审核 <序号或审核号> 通过|驳回 [备注]"
+    )
+
+
 def format_pending_reviews(
     pending: list[Mapping[str, Any]],
     *,

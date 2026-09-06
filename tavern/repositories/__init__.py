@@ -11,6 +11,7 @@ from .character_cards_mutations import CharacterCardsMutationsRepositoryMixin
 from .character_cards_queries import CharacterCardsQueriesRepositoryMixin
 from .character_cards_transactions import CharacterCardsTransactionsRepositoryMixin
 from .character_reviews import CharacterReviewsRepositoryMixin
+from .character_web_state import CharacterWebStateRepositoryMixin
 from .character_runtime import CharacterRuntimeRepositoryMixin
 from .character_runtime_queries import CharacterRuntimeQueriesRepositoryMixin
 from .choices import ChoicesRepositoryMixin
@@ -109,6 +110,7 @@ class RepositoryFacade(
     AuditRepositoryMixin,
     BackupImportRepositoryMixin,
     CharacterAssetsRepositoryMixin,
+    CharacterWebStateRepositoryMixin,
     CharacterCardsRepositoryMixin,
     CharacterCardsMutationsRepositoryMixin,
     CharacterCardsQueriesRepositoryMixin,

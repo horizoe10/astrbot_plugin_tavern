@@ -186,6 +186,8 @@ HELP_TEXT_TEMPLATE = f"""\
 恢复：/团 暂停 → /团 恢复 → 全员准备 → /团 继续
 玩家：/团 加入｜角色｜准备｜阵容｜暂离｜返回队列｜退出
 建卡：私聊 /团 建卡 <验证码>｜当前步骤｜上一步｜修改 <字段>
+AI代写：/团 随机｜/团 补全 <初始设定>（建卡私聊中可用）
+网页建卡：/团 网页建卡（私聊签发链接，浏览器逐项填写）
 改名：/团 修改角色名 <名称>｜/团 修改昵称 <昵称>
 草稿：/团 重新建卡｜取消建卡｜放弃席位 确认
 回合：{{prefix}} A｜/团 选择 A｜/团 重整选项
@@ -486,6 +488,7 @@ from ..presentation import (
     _pending_review_cards,
     _resolve_pending_review,
     format_pending_reviews,
+    format_pending_reviews_compact,
     format_review_card,
     _format_remaining_time,
     _story_reply_parts,

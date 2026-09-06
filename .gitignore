@@ -15,3 +15,4 @@ browser_profile*/
 *.tmp
 *.bak
 *.orig
+.idea/

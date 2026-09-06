@@ -2,8 +2,8 @@ from __future__ import annotations
 
 
 PLUGIN_NAME = "astrbot_plugin_tavern"
-PLUGIN_VERSION = "1.0.0-rc10"
-PLUGIN_DISPLAY_VERSION = "v1.0.0-rc10"
+PLUGIN_VERSION = "1.0.0-rc13"
+PLUGIN_DISPLAY_VERSION = "v1.0.0-rc13"
 WORLD_PROTOCOL_VERSION = "TWP 1.0.0-rc10"
 TWP_VERSION = "1.0.0-rc10"
 TWP_CORE_VERSION = "1.0.0-rc10"
@@ -64,6 +64,11 @@ MANAGEMENT_ACTIONS = {
     "智能队友": "ai_companions",
     "建卡": "card",
     "填写": "card_fill",
+    "随机": "card_random",
+    "sj": "card_random",
+    "补全": "card_expand",
+    "bq": "card_expand",
+    "网页建卡": "card_web",
     "上一步": "card_previous",
     "修改": "card_modify",
     "当前步骤": "card_current",
@@ -88,6 +93,8 @@ MANAGEMENT_ACTIONS = {
     "强制全员准备": "force_ready",
     "阵容": "roster",
     "审核": "review",
+    "网页审核": "review",
+    "审核链接": "review",
     "选择": "choose",
     "灵感": "inspiration",
     "灵感重投": "inspiration_reroll",
@@ -171,6 +178,9 @@ MUTATING_ACTIONS = {
     "join",
     "card",
     "card_fill",
+    "card_random",
+    "card_expand",
+    "card_web",
     "card_previous",
     "card_modify",
     "card_next",
@@ -239,6 +249,9 @@ PLAYER_ACTIONS = {
     "join",
     "card",
     "card_fill",
+    "card_random",
+    "card_expand",
+    "card_web",
     "card_previous",
     "card_modify",
     "card_current",

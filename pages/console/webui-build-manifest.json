@@ -1,6 +1,6 @@
 {
   "schema": "tavern-console-webui-build-manifest/1.0.0",
-  "version": "1.0.0-rc10",
+  "version": "1.0.0-rc12",
   "source_root": "pages/console-src",
   "runtime_root": "pages/console",
   "self_excluded": true,
@@ -694,7 +694,7 @@
   ],
   "css_bundle": {
     "schema": "tavern-console-css-build-manifest/1.0.0",
-    "version": "1.0.0-rc10",
+    "version": "1.0.0-rc12",
     "layer_prologue_sha256": "d61db4de942ffd294c92fae5a9613af028cb7795899dc3c588c60a9b0290bab8",
     "modules": [
       {

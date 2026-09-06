@@ -4,7 +4,7 @@ desc: "面向群聊的多人与世界运行平台：私聊建卡、AI/真人主�
 short_desc: "多人跑团、世界运行、AI/真人主持与可靠归档。"
 help: "配置管理员 ID 后使用 /团 开启 <副本>；建卡码过期会自动补发。使用 /团 主持 开启 可接管叙事，再以 推进、直述、交棒、自动 控制流程。"
 author: "Ghostberry"
-version: 1.0.0-rc10
+version: 1.0.0-rc13
 repo: "https://github.com/horizoe10/astrbot_plugin_tavern"
 astrbot_version: ">=4.26,<5"
 support_platforms:

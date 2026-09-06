@@ -1,52 +1,52 @@
 {
   "format": "astrbot-plugin-runtime",
   "format_version": 2,
-  "version": "1.0.0-rc10",
+  "version": "1.0.0-rc12",
   "members": [
     {
       "path": ".astrbot-plugin/i18n/en-US.json",
-      "bytes": 445,
-      "sha256": "13e986df7d55da8f4dea911fe21c61c80d64c72f933248aad4a268ab90f6fcc7"
+      "bytes": 538,
+      "sha256": "9bdb47923a95052b701a1098be5936b4c5fca186516c7cea7e21248da55352cc"
     },
     {
       "path": ".astrbot-plugin/i18n/zh-CN.json",
-      "bytes": 425,
-      "sha256": "c90ecb418de3690c0866b80e9c9bb8cadfd9160d7f8faebfd685f49897a26525"
+      "bytes": 542,
+      "sha256": "4407db5f622841f33ee96291585bc87c1f283784c678cdbac3964eaa70c1a918"
     },
     {
       "path": ".gitignore",
-      "bytes": 240,
-      "sha256": "56741ade11bc057a936596c17b76706302033545fa194f86617b7f99e14e79f1"
+      "bytes": 257,
+      "sha256": "d593beb54b999c8905cda00d1d4dc003ce986d82a7e260349931474694a58756"
     },
     {
       "path": "__init__.py",
-      "bytes": 40,
-      "sha256": "37c653a39cae9d128e73fd0d5b00bce2a9223a7297c43e5f9ee410a56c598cbd"
+      "bytes": 41,
+      "sha256": "01ead5a97873462184d0980b9dfc5156d9b9c8803e8ee61456e4d981d4697d71"
     },
     {
       "path": "_conf_schema.json",
-      "bytes": 18295,
-      "sha256": "8c4a6a86f8e928a4a6787312b5cdd9298672f8746127bc9916b3046aa9665e42"
+      "bytes": 19178,
+      "sha256": "815ef5878f14084fd0203494c4dd640ad11fce6f9e12e968b0aea48074b1432b"
     },
     {
       "path": "CHANGELOG.md",
-      "bytes": 17062,
-      "sha256": "020e6801fe63cd79c99946e22d2e978a2bf3bc55aff12078a274ece8cb8cb21d"
+      "bytes": 18965,
+      "sha256": "b9b9316768e81287c0634b33fdf019750ae7c32466d2c4a9747da6c9f782b4bd"
     },
     {
       "path": "data/t2i_templates/astrbot_powershell.html",
-      "bytes": 5122,
-      "sha256": "d41a240dbd441c4e975adc7867de72f3590cc32a337195a95d58baf9e9ed2b74"
+      "bytes": 5326,
+      "sha256": "efb5f4ed06285cbfc5ea92c5172fce98bc4fd35bd4a8af9eb919f6ff31e8e9bf"
     },
     {
       "path": "data/t2i_templates/astrbot_vitepress.html",
-      "bytes": 14132,
-      "sha256": "f77775d78015ccde13d63b3b9a571631dd50711c453d17eb05aeb70257fb4371"
+      "bytes": 14669,
+      "sha256": "67a03571972360d526866e6232b628c1e66abfb9345a8065c0cd68298312eb6b"
     },
     {
       "path": "data/t2i_templates/base.html",
-      "bytes": 7407,
-      "sha256": "23714149d06b3abdcee3a5ac1aed3a95785efd75a49a3a3f4a8d26e0f84253e1"
+      "bytes": 7679,
+      "sha256": "d14f0a62b45502866a65959fefd444a190cfcf62da5e77c01c9053965f358647"
     },
     {
       "path": "logo.png",
@@ -55,48 +55,48 @@
     },
     {
       "path": "logo.svg",
-      "bytes": 379587,
-      "sha256": "329efe40129a1496300fa335bd68acf1a62d49dcec0a98de167190721c733371"
+      "bytes": 384515,
+      "sha256": "53d168cd00befbdb8346683ccc6a0667fed66d511e0e45a895c418c69bdb4bb1"
     },
     {
       "path": "main.py",
-      "bytes": 11715,
-      "sha256": "216a65b8fb0a36b7713c7f68638abcd603bdf83adc8b692934781aacf8ecc323"
+      "bytes": 12190,
+      "sha256": "3f977fe5bd3ecf2e702b74468d831362ae0c7342c09d7e45f15d723a90e175a2"
     },
     {
       "path": "metadata.yaml",
-      "bytes": 954,
-      "sha256": "3de048c280ef6146fa3480d574a020083b92e060bf4369482f5ef576bd1fa285"
+      "bytes": 959,
+      "sha256": "9069542be01691d6c1598ac05ba613b18597b83798d8bf1ed6391643f9e53361"
     },
     {
       "path": "pages/console/app/actions.js",
-      "bytes": 2718,
-      "sha256": "97c4c545edc04f4534caf1b56f5148fda822edffcd79282f3f6c6c7357df9c63"
+      "bytes": 2796,
+      "sha256": "9d5a128006e5af4b034cab238590d242b15415299601c16a8790cbb978e233e2"
     },
     {
       "path": "pages/console/app/bootstrap.js",
-      "bytes": 10779,
-      "sha256": "2bdc3653ba14679d8e6d42fc04cca14a1708b732b3fef91bb3fc8f627965145e"
+      "bytes": 11052,
+      "sha256": "905990aeafb63ca3588ce9d5d10fad8e138b532e6a3c22d2b97930a208d1e973"
     },
     {
       "path": "pages/console/app/client.js",
-      "bytes": 20454,
-      "sha256": "df0d5139f0e0d73eb3c72c9f361463c2682cd637154fd673583e7655c6950bae"
+      "bytes": 20953,
+      "sha256": "7300e28646db5be533ca96ea2081d9b25911d5ca70c046817b2b4493bd79098d"
     },
     {
       "path": "pages/console/app/router.js",
-      "bytes": 2990,
-      "sha256": "bf3632538aa2b028f5c0eab7974a4730e79e9b937bbadfb1eea52857d56a9f13"
+      "bytes": 3056,
+      "sha256": "3afb4a4154a0e5d40e66cf90161fff04ec6c8b30088a49398225d9158ac9ace4"
     },
     {
       "path": "pages/console/app/security.js",
-      "bytes": 713,
-      "sha256": "17999eefa54107fa8b09eea59a824cbff932ebaea05ec8ff67feedcc86ed2a2b"
+      "bytes": 726,
+      "sha256": "55e2de9d7a4aee37c94cea9a711738192653e90837eab85f38525c3e0bb9a44c"
     },
     {
       "path": "pages/console/app/store.js",
-      "bytes": 11135,
-      "sha256": "c111e56ab7c282aee25287aadbc3dc377e74f434ad13578e4d3e90948bc0aa7f"
+      "bytes": 11404,
+      "sha256": "827bca91324d7fdcf63239669fc48120ce767350900022a030beafbce9781a4e"
     },
     {
       "path": "pages/console/assets/tavern-logo.png",
@@ -105,478 +105,478 @@
     },
     {
       "path": "pages/console/components/buttons.js",
-      "bytes": 1944,
-      "sha256": "c0906f5d599e515587bead0ea15db1054402c66103a6806ac028cafffb5b6ef5"
+      "bytes": 1998,
+      "sha256": "2900941f0d959569b65780057b546955c8af6e6f28991b9f01ca1619a20b9181"
     },
     {
       "path": "pages/console/components/capability-hub.js",
-      "bytes": 10678,
-      "sha256": "d624a8b4de29a02f66f3361d392c268a27900adfe4a7edfb014686c3ebdd9d24"
+      "bytes": 10914,
+      "sha256": "bcc025e87868545ea518f24b9d85cb71c88290c33c3e3a91e0226b9b3cba9763"
     },
     {
       "path": "pages/console/components/cards.js",
-      "bytes": 3892,
-      "sha256": "5fa77a4f74f0fd3c96552a2c6ef25d3ddb849886a63452d55316a24282605d77"
+      "bytes": 3999,
+      "sha256": "3ac2c9dacde51d67fb42a7cf7285cd40c4dee908752220d93c5421c735a50764"
     },
     {
       "path": "pages/console/components/dom.js",
-      "bytes": 1289,
-      "sha256": "8cc38a73da792965a7fc3f748c78603be4516a9660641758a619486fcf35dd0d"
+      "bytes": 1316,
+      "sha256": "530686e24e3ae9fb9ae59cda7af3549cee589cf42cd06065af9350118fa59ddc"
     },
     {
       "path": "pages/console/components/empty-problem.js",
-      "bytes": 7320,
-      "sha256": "d9b9a0e834f05889858c472d2594cb6d3e5f4cb30b182ad1054e493a4e0f8ce5"
+      "bytes": 7496,
+      "sha256": "1d93ee5a1cdb6ecfb9a5b4a943b6850b30028fe1cd80df02810fc17bd0bcff3a"
     },
     {
       "path": "pages/console/components/filters.js",
-      "bytes": 3952,
-      "sha256": "07907b994bcc05f01c627e847923c5e80d4a54210ce59eb81b106810755cb8d0"
+      "bytes": 4064,
+      "sha256": "5883310293de85f52b0c299caf06ecf57deb1209425abe45383400a104746a68"
     },
     {
       "path": "pages/console/components/forms.js",
-      "bytes": 4366,
-      "sha256": "efa467f067099273ad7bd3af8554f18d4266abfa01f14658abdb12bc5088f136"
+      "bytes": 4501,
+      "sha256": "a8a5e1ea01fcd30f56cf4d42654d69c5a62c788904795fad01a2cef9d762a9f9"
     },
     {
       "path": "pages/console/components/lists.js",
-      "bytes": 1924,
-      "sha256": "c2f5613f46211abd77c87603a9daa5d06eb59aba4aaa12139e0d9360974c0cff"
+      "bytes": 1976,
+      "sha256": "fd2308c5cbc51a21919034ff0c83d0b94b77c867f6bbcffb0cfb4c5a56e8705d"
     },
     {
       "path": "pages/console/components/page-skeleton.js",
-      "bytes": 1287,
-      "sha256": "79bc074d5b98b0d11208b1ca4a2751f4bffd94f34eeddf54e105a14ff3e19f2c"
+      "bytes": 1330,
+      "sha256": "1d6f41712253c95d3680e79b542a7729f5846f9268f2850e4d914793a2c490a3"
     },
     {
       "path": "pages/console/components/pagination.js",
-      "bytes": 1879,
-      "sha256": "94573d6f6886cf0573864b55ad6cc81b15377a89d991f48753bb9906967f1f10"
+      "bytes": 1935,
+      "sha256": "edd6d1c3666da89a9fa2d2fa4d304fcc4a1480d53fa9b7d509bb75f8ace6d61f"
     },
     {
       "path": "pages/console/components/status.js",
-      "bytes": 2850,
-      "sha256": "d097c526f35a9e88f17aff1d07cb5f3eb795d08fa9f32f7eb47591bdd30679a1"
+      "bytes": 2919,
+      "sha256": "368ca92efab87c7e973a8f91757c447603cec9b544f507a5b2a19542fca681d8"
     },
     {
       "path": "pages/console/components/surface-host.js",
-      "bytes": 1052,
-      "sha256": "1b31faeaf2ca88d170d7e1e0feda0cf078a0f5f5ab247945fad7ecdaa7557335"
+      "bytes": 1081,
+      "sha256": "0dda77f2be02f79cd0e9164bd624f4f79c69f6562929a3069f77321fb7228c9b"
     },
     {
       "path": "pages/console/components/surface-kit.js",
-      "bytes": 4113,
-      "sha256": "307737e2c5da1821f872fadc72266c22cf413f0bb80d055e412d43d417ea30a5"
+      "bytes": 4199,
+      "sha256": "c25f61f222e656b77cc3b52141645428e22aa37d51bc022d441da9b95717c76a"
     },
     {
       "path": "pages/console/components/surface-registry.js",
-      "bytes": 2523,
-      "sha256": "71ee8b3474f34cb32c793d16a89227c714454f1be891c0e7c9b37b6d2ec6d4df"
+      "bytes": 2587,
+      "sha256": "687565a4a009b82f7a14f413b14627b72b5e137254644e3ecc46d771afdd6f06"
     },
     {
       "path": "pages/console/components/surfaces/definitions.js",
-      "bytes": 1676,
-      "sha256": "fdc0f608553ad88a7630970de93a65561e760011e6cb35a437372bbb708bb6a8"
+      "bytes": 1705,
+      "sha256": "9c2f1b7ec44d9e47beb71c4e2331c80d63b6c7096f7cf88ad9c29c7615824b89"
     },
     {
       "path": "pages/console/components/surfaces/outcomes.js",
-      "bytes": 15634,
-      "sha256": "9f08a0a268bb1dc73813cb0cbac6d69fcc7c2d0ed87ab19698d358c41b5f0e8a"
+      "bytes": 15867,
+      "sha256": "96a1adf581b2a4a3baee8378cd51458f9239faf42d822778eccc4cef97a55082"
     },
     {
       "path": "pages/console/components/surfaces/story.js",
-      "bytes": 15601,
-      "sha256": "dea14328968aed7b8568c11c75bc0630b6118dfff520dc09d0a807395859f1b9"
+      "bytes": 15840,
+      "sha256": "711355105d0146c43cf32924541cf1e6034fa84fb2100e55e7565a7d4157668c"
     },
     {
       "path": "pages/console/components/surfaces/systems.js",
-      "bytes": 2360,
-      "sha256": "9b76c4765712f484d36f38544b9fdc614dd867608120776b9edc4015e83a19b0"
+      "bytes": 2390,
+      "sha256": "6fe4abe7b6f55f4a96260ec36f6dbfc30c7512a7e65fdde2e837835a82745ba2"
     },
     {
       "path": "pages/console/components/time.js",
-      "bytes": 1729,
-      "sha256": "3aaa3f89d879c96b10dfc423ce14d4464c241f2d8479763006f8d05a2fdd8817"
+      "bytes": 1771,
+      "sha256": "20f9ae9965e2f6bb53f9803c9ffc6733af06e8883519d400421e49379f5fe811"
     },
     {
       "path": "pages/console/contracts/page-model-policy.js",
-      "bytes": 10719,
-      "sha256": "c241599a39fa1698cf347a697a66aff5bc054734cd9d507b1f4670d15879e97d"
+      "bytes": 10953,
+      "sha256": "9d8a8061e3de77c821a3656d46df9e9efca98471ce80e9706117b726a2c49f95"
     },
     {
       "path": "pages/console/contracts/page-models/about.js",
-      "bytes": 452,
-      "sha256": "5034bbbb4b3c7601b14bdcd040b53bcfd7d1f84f585788ecf41f15a2e4c7326a"
+      "bytes": 454,
+      "sha256": "11f4625b5879f37c07d58e327a5bdf08d836c34850bb754210bc409598b8eb1d"
     },
     {
       "path": "pages/console/contracts/page-models/audit.js",
-      "bytes": 416,
-      "sha256": "57d4f033f17987602c4f9260256dd7272f7b51321b9b5da695b54710c5c37ed6"
+      "bytes": 418,
+      "sha256": "bb8e7b1bde5f632739e1b0c692a7c2fc114b82f78275f26ebe7cc38673158a53"
     },
     {
       "path": "pages/console/contracts/page-models/author-jobs.js",
-      "bytes": 664,
-      "sha256": "bd11dcec9148537c250fec1bdd5eeac36997b692acc2ca3a8efe69d1854ff412"
+      "bytes": 676,
+      "sha256": "b86ebbb3f91e2f998fda67d00402368f2e38f034e8efde3bdd0baca3aba951ff"
     },
     {
       "path": "pages/console/contracts/page-models/characters.js",
-      "bytes": 631,
-      "sha256": "358255e9209c0b1f6c7f4ac52c764ccf11e43c0bc0f158a125e85b080dc4c153"
+      "bytes": 634,
+      "sha256": "b2e9ec98e3fb2de25e8c7f140fb51f4db4d407c0d19a81968d4f91c60d46e811"
     },
     {
       "path": "pages/console/contracts/page-models/core.js",
-      "bytes": 5684,
-      "sha256": "27c6bd9ae72650a6b111aa46ac9eaf58f80d05b7158c6c1ca9c2798b97708e3e"
+      "bytes": 5797,
+      "sha256": "7e83a00d07e1dd1a49c3ee0923202df5a77ce3a7d76b5c20018272c9775a9852"
     },
     {
       "path": "pages/console/contracts/page-models/dashboard.js",
-      "bytes": 667,
-      "sha256": "246f8911eb6a2626b41de493ad8815c2a5a5b712dbc673b70a1686c99992cad5"
+      "bytes": 669,
+      "sha256": "537dbb411d9d2c03eadcbd83d7363471ec3647f6c58359aa944844f6d250426e"
     },
     {
       "path": "pages/console/contracts/page-models/designer.js",
-      "bytes": 866,
-      "sha256": "f0d443dad5d9d59ff4f7426075f26b3aa68d987f73b49b7cef6a6f99e5c7cf8d"
+      "bytes": 869,
+      "sha256": "8dea7a889d7cd93b026bc3ca6096463cd07c88f120face314665b5380a3438a2"
     },
     {
       "path": "pages/console/contracts/page-models/health.js",
-      "bytes": 1726,
-      "sha256": "1491f26b1c464f453c1aeeae8fff64fb2f61d13a21fb855b490a7b16d18c937b"
+      "bytes": 1730,
+      "sha256": "9f465764da4ac908dc681d7b81774ee579e1f4e5d4c1d753043a33da46dde944"
     },
     {
       "path": "pages/console/contracts/page-models/live-session.js",
-      "bytes": 1129,
-      "sha256": "fe5333dedb8696f8085084382892a35dab74a2b5d7a22d4122e5f80725c8ba0b"
+      "bytes": 1132,
+      "sha256": "c95fef35eef4fd0b06b4e548a03ca7d22604a52ddbcf1e0966e2486dbc1dedc6"
     },
     {
       "path": "pages/console/contracts/page-models/memories.js",
-      "bytes": 338,
-      "sha256": "f219116e1279fac1ff83e462c9623a8dfbd8e2e02ab6670b98f14be1529f4b36"
+      "bytes": 340,
+      "sha256": "b250e0b2f2a008eaa1401919d6df35e1ccc8ba806df223656471dce4a2fa9103"
     },
     {
       "path": "pages/console/contracts/page-models/modules.js",
-      "bytes": 389,
-      "sha256": "05cd8b364b751ca127725ab17253cbd685076e0b639e26b664666a0ff8fb3fb6"
+      "bytes": 391,
+      "sha256": "1ea76327a045667148bcac1fef628fa3524b13a75f9dbb55773f7c7713e33438"
     },
     {
       "path": "pages/console/contracts/page-models/sessions.js",
-      "bytes": 660,
-      "sha256": "b95392a2a0f8fd66516a0e5e5062cfbd216cbb61640b0a8dd5615f65b38ef8da"
+      "bytes": 663,
+      "sha256": "bdc137368e73b6fe0468f4eb25149e927c784fe61aa5e1af65e7063e5efbbf9b"
     },
     {
       "path": "pages/console/contracts/page-models/settings.js",
-      "bytes": 796,
-      "sha256": "591611256b5a843a8cdc5f4e8a3ff627545b5fe6aff6524c6fc8416d0b440a54"
+      "bytes": 799,
+      "sha256": "db1a962f1d49f28244f8aae65996706d1031fd8c2643eb56a27dd6d69a87b35c"
     },
     {
       "path": "pages/console/contracts/page-models/tendencies.js",
-      "bytes": 806,
-      "sha256": "cef2b3dc7efe8d25d23c8bd5f72c168f653f9e46b9e9472e338d9ccb6b569411"
+      "bytes": 809,
+      "sha256": "f5df1a330d090e174adc10b5ea60119613ddd8b5e8556a4b8ba056b5d10884e1"
     },
     {
       "path": "pages/console/contracts/page-models/todo.js",
-      "bytes": 516,
-      "sha256": "a3f63b580205f3f9ac5c7176fcb4c4ae92849adb623da35fbf70de6199f24480"
+      "bytes": 518,
+      "sha256": "e8b7f00c91e1b6dd4579446d3c00b91f97e876d645346e7875c5fb834172a6ab"
     },
     {
       "path": "pages/console/contracts/page-models/worlds.js",
-      "bytes": 712,
-      "sha256": "c09d2713e6b72543aea3e60161339ff7a2b11ef833399eac952a0d6bed2f6b69"
+      "bytes": 715,
+      "sha256": "564164ff1446ba55f6b9b9e75ca55359081c7914891e936af96c30a411baf330"
     },
     {
       "path": "pages/console/contracts/page-models.js",
-      "bytes": 1845,
-      "sha256": "4bbb271d60372f4dab3cc3028a4e686fa9571119d4bc200eabddac94b11c29fa"
+      "bytes": 1886,
+      "sha256": "77174894f67c870b457f15941bea30dfb7e2ac74d5eeb647ba00a81dab9e4156"
     },
     {
       "path": "pages/console/contracts/visual-envelope.js",
-      "bytes": 225,
-      "sha256": "2c7f530370f926eaaf731ba52d254ffb7b3e7ad1ae83ccc77b84f5da139680cd"
+      "bytes": 228,
+      "sha256": "6a47ec206ef0a5528c093bb1b414831b234b3b4e74bb9056f571b3851d7a6c2d"
     },
     {
       "path": "pages/console/copy/catalog-core.js",
-      "bytes": 26035,
-      "sha256": "dcdfee85ab88c41119b594c86bb7d4a56fc3ddc811ec2b9035145b6b262274e9"
+      "bytes": 26394,
+      "sha256": "b1b90fe803fdd43e6bbf7edd20dea4daeba47015adb630ea3e3b225b6ef67dc9"
     },
     {
       "path": "pages/console/copy/catalog-dialogs.js",
-      "bytes": 17613,
-      "sha256": "b59523dfc07ced1c9eb458276c944d9da871cad25dd39367f0590665938a8b85"
+      "bytes": 17837,
+      "sha256": "195ff4f40ad343d9aa444497fd8d61c9dba5979df8aa98ccb5ac3ac1ef67e41f"
     },
     {
       "path": "pages/console/copy/catalog-pages-creation.js",
-      "bytes": 26995,
-      "sha256": "e5b5c223a168fd877c0fb8dcbd07ad0b076301d6085891c5557e6e493f2e829e"
+      "bytes": 27356,
+      "sha256": "283d9518dd0daadb4694efcedc009264ff139b025f95fcccddfe5686b2fba5ef"
     },
     {
       "path": "pages/console/copy/catalog-pages-runtime.js",
-      "bytes": 25913,
-      "sha256": "1ef7212bcdb08a47f06c6edc07304e575f9c9b5b7e4d9efe5d650683360cdf4e"
+      "bytes": 26246,
+      "sha256": "927a0e73882402ef460c982278452525a2a6ad6d269d4ce47cec52dbaae7d8ce"
     },
     {
       "path": "pages/console/copy/catalog-pages-system.js",
-      "bytes": 16251,
-      "sha256": "bd4eb48ac12444f404d3c3b2878b7ea4e1773f238af926b3150f8baef0c6d75a"
+      "bytes": 16467,
+      "sha256": "9c3a3878d4bbc56ca7f6c1bc37ddffffec76b96e50a639148e5783f580876d68"
     },
     {
       "path": "pages/console/copy/catalog-visualizations.js",
-      "bytes": 9799,
-      "sha256": "9f1f4a58ddd898b6daa4c2ad4d0525451142ed6fef1b130cc5cb1a695ae44fa4"
+      "bytes": 9914,
+      "sha256": "bc1465368da20fd5a21b4566d90ebd7decb27c2959cc1f66952c4a9d6830f868"
     },
     {
       "path": "pages/console/copy/catalog.js",
-      "bytes": 1262,
-      "sha256": "235a18b8e49d6257c858405e699dd9ded5a4d212bba97d10bd5d3dc2e2d834b1"
+      "bytes": 1292,
+      "sha256": "9e80a4816a61f7d1eb555c3bd4f57903e1d22106ba0b705c12c2f390d8566b39"
     },
     {
       "path": "pages/console/dialogs/capability-dialog.js",
-      "bytes": 2461,
-      "sha256": "da4a23c1fa6100c0265915273ccadbca4271118c9a4eba6d11ac98738b7e7ff5"
+      "bytes": 2545,
+      "sha256": "b3eca733efda125a55aaba677ae3b96091eaf2a39d0dd23fcf0ccae9eb4e8e65"
     },
     {
       "path": "pages/console/dialogs/confirm-dialog.js",
-      "bytes": 4184,
-      "sha256": "813b0a445efbd167df3be19abe6219e6c806bd5a0f244bbb9f04bec6fabe173f"
+      "bytes": 4303,
+      "sha256": "bb40e06f613192d4bdfc6ebc3739835070f60ca99a5f5b856c600439390a6bda"
     },
     {
       "path": "pages/console/dialogs/detail-dialog.js",
-      "bytes": 7322,
-      "sha256": "23ba162ae3eb694a4b69aa72585d190be884f515f5e4af7f4836bffcd4922de0"
+      "bytes": 7521,
+      "sha256": "74938ae1082878a5be0c56fd9298fcc49ef748ff2f78fe6a11d432215a8bc2d3"
     },
     {
       "path": "pages/console/dialogs/dialog-manager.js",
-      "bytes": 10373,
-      "sha256": "847288170029d4c6e9cf68bcb8cecf73b37b4b262b908d78c0d2dfd7e0bf6df3"
+      "bytes": 10674,
+      "sha256": "5b24bbd1fd6e86885a60b70098d0c85c8ad855e0f7809b22f28f9e27d0750775"
     },
     {
       "path": "pages/console/dialogs/editor-dialog.js",
-      "bytes": 17469,
-      "sha256": "fbe64330bcb59a5783e3b40d86435fd271047e8902cf4fd3249db3dd3c84acf2"
+      "bytes": 17845,
+      "sha256": "e891313ac6b7c40ab5b8fbe839f50ab96400d4579192d92a623950e55c28490d"
     },
     {
       "path": "pages/console/dialogs/mobile-sheet.js",
-      "bytes": 1229,
-      "sha256": "bb0565b21a4149ba4a52da75aff27c4c139d5ca9f28c3d971d2d4d0f14722006"
+      "bytes": 1270,
+      "sha256": "93048b255a1e2f226a887dc948184255213798c0ebe5a622b52ab5c94ea0a8d6"
     },
     {
       "path": "pages/console/dialogs/session-detail.js",
-      "bytes": 34395,
-      "sha256": "1a071f5995eb8a22bdef698a1f27d8e153867051f890c40fc7c7cf4253e79325"
+      "bytes": 34971,
+      "sha256": "3e16a708e541e5305baef57ef070e1f9035d4c85d14e54fa9684417a3fe85e28"
     },
     {
       "path": "pages/console/index.html",
-      "bytes": 747,
-      "sha256": "16fa47392c7f45db67f22018445d03e5234bff0d669561d9bfce5065ae151387"
+      "bytes": 765,
+      "sha256": "292c3c4bdec1076eafc7f0513f5b4dd6661af798a7f3e935eeff1443c3768a99"
     },
     {
       "path": "pages/console/pages/about.js",
-      "bytes": 7116,
-      "sha256": "1d3f691d144386a4474f5f77ac8958b01268f217e8a9d782fba4f0afff257023"
+      "bytes": 7247,
+      "sha256": "f2cd6208fb89a812ce6d307371db87706f76c9fdf76f218cd89b63659e7240a9"
     },
     {
       "path": "pages/console/pages/audit.js",
-      "bytes": 16624,
-      "sha256": "bb2d256797ab8bd146cd572b8d0bd92640df570772189a3c880550552622d2d7"
+      "bytes": 16934,
+      "sha256": "5986bcf67ed7ad3ea2c1cb0d781cba3853e4fa39d1fb8dfc92240e9e215606e0"
     },
     {
       "path": "pages/console/pages/author-jobs.js",
-      "bytes": 12801,
-      "sha256": "c7e750ab8bf740875d98a07da59e841f7a8192a0d0623847fd5b0368c31fc844"
+      "bytes": 12985,
+      "sha256": "c37b51e081f145e84ac2dddb9f3acc3a30108f2d7ec80a43ee378af0d5d3d079"
     },
     {
       "path": "pages/console/pages/characters.js",
-      "bytes": 12325,
-      "sha256": "944868d93884bed90bc8eb4f57375b43bb79b09f0e4a8de22147fa72e582df5f"
+      "bytes": 12435,
+      "sha256": "507f7ecf5724047b061a8df95d98f2f6e684d73a91ce2acacb5c190ffbc8d183"
     },
     {
       "path": "pages/console/pages/dashboard.js",
-      "bytes": 21951,
-      "sha256": "2dbc34f748c0452d246573efc041a0ad641f4cd413c0c7c368ca360271c51e55"
+      "bytes": 22427,
+      "sha256": "bf7ab8882f36122e72951d9e887015fe1dec3c3ee08fb1073f2488539b215d44"
     },
     {
       "path": "pages/console/pages/designer.js",
-      "bytes": 19701,
-      "sha256": "11454772883b1848b82a72084c04f576dea27c36420d3aa9f2d79349da5b9212"
+      "bytes": 19998,
+      "sha256": "42fac2faad3fd818bc08d3edec3f21884dc3194c80f3b1e49fce8c73fbb02941"
     },
     {
       "path": "pages/console/pages/health.js",
-      "bytes": 13142,
-      "sha256": "4cfa6183fe278c6f88d4cfdd6c62f75fb20a69c26c32d4c3a4f09828ffdea3fc"
+      "bytes": 13366,
+      "sha256": "e28a88774aca0e2e5ad28868cac5221713fafb2c23e13c1a22fc94d3ba30d677"
     },
     {
       "path": "pages/console/pages/index.js",
-      "bytes": 1864,
-      "sha256": "6cd5501a86238221b4a2bccaf34c53f336c77d7bda167fed18c105c9a1971805"
+      "bytes": 1910,
+      "sha256": "a79f645b89342f5019f9b8658e8d78718188316f565d765727fa8e0e7afcac07"
     },
     {
       "path": "pages/console/pages/live-session-controls.js",
-      "bytes": 9419,
-      "sha256": "2474347321d2ca7335ad347969a18d56abc7e0a3ca9277de4b1770de6d05233a"
+      "bytes": 9622,
+      "sha256": "624d44a6c33cb0602ae202e26c727d2a3ed57f2cca0244e4479485e91dfb2f03"
     },
     {
       "path": "pages/console/pages/live-session-fate.js",
-      "bytes": 7013,
-      "sha256": "70e426d37c8bb96e0554f813a2c8da06b303effa5af791b1b2f315d169ea8eff"
+      "bytes": 7183,
+      "sha256": "36a56cba1112f8b312621cac2919cdc15ec7e3028720039940e23d4c3239294a"
     },
     {
       "path": "pages/console/pages/live-session.js",
-      "bytes": 61097,
-      "sha256": "1a439f986b29ef779c37dc7d0ffbf776998fc6fefb7373e9e007ecce156a0491"
+      "bytes": 62466,
+      "sha256": "30774983ba6d25e4955f0f0c9da713eacaf5381b1d3655b89ddef414dbbce71c"
     },
     {
       "path": "pages/console/pages/memories.js",
-      "bytes": 10700,
-      "sha256": "8343adcb9c7f4b12ce03aef5507147b33b347a3f54b639c83338e9c451819158"
+      "bytes": 10888,
+      "sha256": "4b10a1c0026f2ef4afa105902ee8e19337f77577ab4e300708fbc0471e932005"
     },
     {
       "path": "pages/console/pages/modules.js",
-      "bytes": 10096,
-      "sha256": "5cfe565c44cc2f3cf159e62888cb115934ef2d28225da480b22c0eff7b5089c7"
+      "bytes": 10245,
+      "sha256": "f91a7d1af0774e33511f48563d712b3ee38c12f1c47f048edf0f2709292b6a49"
     },
     {
       "path": "pages/console/pages/sessions.js",
-      "bytes": 14912,
-      "sha256": "d45a43c02e330b4ecd6227f1f32f9dc19a8da2590b416224891ba33e9cf5952a"
+      "bytes": 15189,
+      "sha256": "dd9197a6a93e39cfe13fd9a513b474dc8a1a2f874f293e2c7b1e85ce92c05af8"
     },
     {
       "path": "pages/console/pages/settings.js",
-      "bytes": 24704,
-      "sha256": "541d91792567ffa43474308d3e385df965c32cdf70e5601af08fefa21d4bbdfb"
+      "bytes": 25170,
+      "sha256": "012b13a947a9cd46c3a484a7673e6cf47d4df93604e5c17cf802f94a934877e5"
     },
     {
       "path": "pages/console/pages/shared.js",
-      "bytes": 2463,
-      "sha256": "8eb25ac2586dccc99359bb4fd6718a4c02d6cae94986a5f7c5a2d068abb9a361"
+      "bytes": 2516,
+      "sha256": "f74c0801c8aaaadbbd071e44e46abdcb95ac52286590bda7e7b1bcdd5290f007"
     },
     {
       "path": "pages/console/pages/tendencies.js",
-      "bytes": 6864,
-      "sha256": "6c6057b00227338b334b2a795f0ac610103521ae3819a9df6638bc52fcb126d0"
+      "bytes": 7007,
+      "sha256": "d229b307f2da41b5416bae0cae75343daf1f823813ac97b77b600d55774f92f4"
     },
     {
       "path": "pages/console/pages/todo.js",
-      "bytes": 8718,
-      "sha256": "77cbe4c814508cd9f758a645a2ca6a355bdfb7fb0f2d234343132558dce1e0f4"
+      "bytes": 8861,
+      "sha256": "e9ad103f839465e60deb8cb8176f8f01fde40e176f72f7cf5d1e252d1c8cc467"
     },
     {
       "path": "pages/console/pages/worlds.js",
-      "bytes": 43990,
-      "sha256": "56bc5ccaf3f6bd7c7b1da0b625f86a0ea7225c70a0bdb11493f24a0e5c4d6252"
+      "bytes": 44829,
+      "sha256": "96388a01e91e38db366fff9d62dadd86a57e405aa7aad2c3031fa0263b6df794"
     },
     {
       "path": "pages/console/shell/app-shell.js",
-      "bytes": 11614,
-      "sha256": "e0164eee63171554c850e4955ea3fa045014de0d6f56be33919891607c08b8ca"
+      "bytes": 11799,
+      "sha256": "3d8a178f6024b78bfd59ed23314e86e16b96daa5c73308e48e193c8e05599c03"
     },
     {
       "path": "pages/console/shell/registry.js",
-      "bytes": 4605,
-      "sha256": "e0af7132f0cd0a92ddd3e8fd079143408323c71d095b404ea907c3568226bcdc"
+      "bytes": 4680,
+      "sha256": "da302418c634d1b1e524b136f2b626b9eaa2dab298886b1f33aa0a80b2f1cfdb"
     },
     {
       "path": "pages/console/styles/tavern-console.css",
-      "bytes": 241395,
-      "sha256": "1656687671a2f568bd699c195200dad814793ba76e14bc769d12fa21b9a51066"
+      "bytes": 245965,
+      "sha256": "b19cb4606c244ec8d7f3b72e529692c1ab4f8f06e44c9c0c2d2d4d4159b5b58f"
     },
     {
       "path": "pages/console/visualizations/actor.js",
-      "bytes": 12728,
-      "sha256": "ffe77ef241ee43e5bb36e6e353fb7090958babbcc26b93ddc457952f9a134804"
+      "bytes": 13007,
+      "sha256": "6197050c28a510697c53936a7469c86aee9f29645ab16e809ce539254ecf292e"
     },
     {
       "path": "pages/console/visualizations/attributes.js",
-      "bytes": 6750,
-      "sha256": "7b18a4707515146a81f495bae78dab6f79bcff6d020879c947b963200c2a9f8b"
+      "bytes": 6910,
+      "sha256": "5815d072b3f19c61a1c07fa67f7dd33fa013cb34cb252f5e4dd8049c07ce83b8"
     },
     {
       "path": "pages/console/visualizations/charts.js",
-      "bytes": 2701,
-      "sha256": "53bb1fe8b8a0f305f5af982ebc925572fcaceb9c8f5229889f7f5ec8c3a6e32e"
+      "bytes": 2772,
+      "sha256": "0899a9d24c21359a0a660697fa312ae85a90122e2a5398db5897697dc2aa6540"
     },
     {
       "path": "pages/console/visualizations/delivery.js",
-      "bytes": 2774,
-      "sha256": "8257a7891f93a0b33fe141b3d6aaa4bd1a6bea3f3f1823165b6482dda2e0aa7b"
+      "bytes": 2835,
+      "sha256": "ceddbf621c7278d834e267c1eab50c89fbec6807d741f7bcc4fb5360fe82b413"
     },
     {
       "path": "pages/console/visualizations/generation.js",
-      "bytes": 11012,
-      "sha256": "cbd070316b15af7b91fd489b6ff5a6391e362aebfd37a6f7844dfc2744fc10ec"
+      "bytes": 11252,
+      "sha256": "dfba5d1ff4accca2796f5cd201a1c65d907fa496c5ba450119c7bb4a59d679b6"
     },
     {
       "path": "pages/console/visualizations/icons.js",
-      "bytes": 3366,
-      "sha256": "9944f7f4d175d9969bf87d8c7d544d12c7812da0a02a662598d29134f7180345"
+      "bytes": 3384,
+      "sha256": "243b7a9cebdad5cb8cc922199dfb3a63144013fc2e2da9c60267dfd914e9ec80"
     },
     {
       "path": "pages/console/visualizations/narrative-document.js",
-      "bytes": 13361,
-      "sha256": "a2cfcaed40e2860ef110da6fa02c39965dc815d389169d6262b0b88d902cbbfa"
+      "bytes": 13718,
+      "sha256": "5c1297513c39d79c2d99eac1276bed1bcb34442df8db322d49b4a3dca2a6944a"
     },
     {
       "path": "pages/console/visualizations/progress.js",
-      "bytes": 2983,
-      "sha256": "8d8587a708ad1645b920bd79c34b3d451bf00614dd5a6fe372c0ae2e61a34380"
+      "bytes": 3052,
+      "sha256": "3de92acbbd924f5a4491a7d8494623eb59457e7d40e91d7542ab76081db83fb6"
     },
     {
       "path": "pages/console/visualizations/quest-clock.js",
-      "bytes": 4232,
-      "sha256": "753860ff0850925c9cd641f292317f3c0d652380c67134f20fdbba30f5a645e3"
+      "bytes": 4320,
+      "sha256": "e053877fb248f81aa977a58dafca30a34f6a2f6947d1baaf8d53c70c7cc9f7cd"
     },
     {
       "path": "pages/console/visualizations/relation.js",
-      "bytes": 5232,
-      "sha256": "81807a040ce87115c9c3e8aa32ca08e803dacf5e5a991390e767f1e8ad5241f1"
+      "bytes": 5330,
+      "sha256": "2a7395e959c06f656ad0f20b6072d3484858d21ccc1ac6010581b04271a4787a"
     },
     {
       "path": "pages/console/visualizations/resources.js",
-      "bytes": 2346,
-      "sha256": "1c466f7a4efb5e64473b3739e0433b5a0f02900866c9048b6566f936ae433315"
+      "bytes": 2403,
+      "sha256": "96b71659d33d30697a4fe9995cbfc8d224676db64eb47b7702b5be76e0778d2e"
     },
     {
       "path": "pages/console/visualizations/scene-path.js",
-      "bytes": 1930,
-      "sha256": "8a9f81d7137965aa964b017914239340bfb5c6db2f4cf92c31af585967cac0d9"
+      "bytes": 1972,
+      "sha256": "32292dba25f4774eaa1d4998691fc55515d1bd200d79cc6d1e819498840b9a75"
     },
     {
       "path": "pages/console/visualizations/status-effects.js",
-      "bytes": 2466,
-      "sha256": "11656bd45b8821d4a7699f52224f306ffca05f33d3806922fb737dab83475dbc"
+      "bytes": 2525,
+      "sha256": "294aed8fd6d25fce140aa11289b359bcd80c0703a1679c2b48a40ebe656c814a"
     },
     {
       "path": "pages/console/visualizations/timeline.js",
-      "bytes": 3813,
-      "sha256": "007f4050a7cd1c108a85335f151fd2cbf854c052252a089bb4d90396b464ff6d"
+      "bytes": 3899,
+      "sha256": "a4a588ce5c5fdd7627559342ef447dac4751076f9e7c540e031c4fcec4e78dce"
     },
     {
       "path": "pages/console/visualizations/world-lens.js",
-      "bytes": 6328,
-      "sha256": "932424f570a3ed1cb1c5289fc73ea4b182fe454ad3a56e0f2246679c9a64797d"
+      "bytes": 6488,
+      "sha256": "a20f6d67ca36a329d774cabff6c2a2e547f70da5342ff5faa53e323e30304c38"
     },
     {
       "path": "pages/console/visualizations/world-readme.js",
-      "bytes": 5303,
-      "sha256": "e60bbc63a8f95693274668c8c1e57080201a47e89c79e2f66b4ee14746d4c80e"
+      "bytes": 5454,
+      "sha256": "b06641608356c3e7886b38e66b82e412dded99c4e2131b02ab64adaa423948ea"
     },
     {
       "path": "pages/console/webui-build-manifest.json",
       "bytes": 39895,
-      "sha256": "8227103dce293d92a30acad203c7249a9f157b79b01c4fa99fb1c14519e94a8b"
+      "sha256": "1230a70ef1336cfb9fa5251645c81373620e752ac32e42b8258f328ad205e588"
     },
     {
       "path": "README.md",
-      "bytes": 10781,
-      "sha256": "1434c2cc07c70fb8b5e6b15176f4f0542cc6b5c790feca44dc1558991aac1b8a"
+      "bytes": 11337,
+      "sha256": "211a542cd372f2e5b58af19db63b57824f918f91f4dfd225577600566c1f9dc4"
     },
     {
       "path": "tavern/__init__.py",
-      "bytes": 1065,
-      "sha256": "efbec7ba48eaa8d1e66742b14448cc0d69971c4d496e2d488368619e50bb165b"
+      "bytes": 1103,
+      "sha256": "54f1707219ccc3e21b0b95cd77741d1c7c973f9bdef860249a62056bcd5888a8"
     },
     {
       "path": "tavern/ai_companions/__init__.py",
-      "bytes": 223,
-      "sha256": "fd8be6898582dfebb34dfc4e5558a0702e55824428f840f2c7830c5003126421"
+      "bytes": 231,
+      "sha256": "db71334911200ec0147a41fc7d4ea0df1a8e8675b311bc8512c7bd6391011fc5"
     },
     {
       "path": "tavern/ai_companions/runtime.py",
@@ -590,8 +590,8 @@
     },
     {
       "path": "tavern/api/__init__.py",
-      "bytes": 513,
-      "sha256": "1d3b27a43a49e0a4b30d203ccd845ac7f08459c71123b81642cbcf490cf3b03b"
+      "bytes": 532,
+      "sha256": "055e32aadb5e94c1f763df2fcbd776e5ebd97b901c04eb6f401f91c40ab5995f"
     },
     {
       "path": "tavern/api/hooks.py",
@@ -600,8 +600,8 @@
     },
     {
       "path": "tavern/api/public.py",
-      "bytes": 12329,
-      "sha256": "dd9fd4afe8d1be5b81835ab938fa97bda463584fe60a6d2888c2231794f9082e"
+      "bytes": 12385,
+      "sha256": "4206d08430fd1b8d2c29a095ff0c72b660165c0c5963135c04e3f335bf2d1932"
     },
     {
       "path": "tavern/api/registry.py",
@@ -610,63 +610,68 @@
     },
     {
       "path": "tavern/backup_service.py",
-      "bytes": 16107,
-      "sha256": "a13ea1f4c85dfb33d099eaa818a2be475ee47b458c20164d915ea16e5a304aa3"
+      "bytes": 16563,
+      "sha256": "8ed5ae41a15eaeee72213942e880c3cbb79063251573c4592bad336a9cb6ce74"
     },
     {
       "path": "tavern/belief_affinity.py",
-      "bytes": 4847,
-      "sha256": "ae6c515970f340fb156a8b253fe1db92199629c9c241574972d18eb1f30c0aee"
+      "bytes": 4998,
+      "sha256": "cf449cdcb6c6888938009f5728dd4a6a76def7a7120343dd0f909cde0e46773e"
     },
     {
       "path": "tavern/bootstrap.py",
-      "bytes": 2148,
-      "sha256": "993e2a2a53cdeed7ffb8d3fb60722f0b54b72d5545adbc57a43117f7465c4cbe"
+      "bytes": 2165,
+      "sha256": "668537fc928956309c1c549b147633a81e79a25507253905c9a669b1f4f5ea56"
     },
     {
       "path": "tavern/bot_result_renderer.py",
-      "bytes": 1556,
-      "sha256": "cdb0d41dbfad8cc4d1946c6d36a877425258d35b7f84eb02ad9fb83d983f27b5"
+      "bytes": 1602,
+      "sha256": "8206dcf347e5a4541c0f7f9c6b16a6c70c257aa290f71823e1060bb7d718bdc8"
     },
     {
       "path": "tavern/builtin_worlds.py",
-      "bytes": 13986,
-      "sha256": "1598e2b4a8dbbd55fbfc13237c48a09a009a03434a2eebb9f7025b506410a0de"
+      "bytes": 13991,
+      "sha256": "833499db530badc124427770e731ca7be67c2f7d611e7ca09f4dbf27d03a347d"
     },
     {
       "path": "tavern/candidates/__init__.py",
-      "bytes": 831,
-      "sha256": "1a1a2e9661f5714fb5ba1fbd32b9a995b2e004028522ce7c286587d34c3fda20"
+      "bytes": 832,
+      "sha256": "15cac67ac21488937dd9b724d03795658c2f5bf0559a4829b4082684fec87c24"
     },
     {
       "path": "tavern/candidates/common.py",
-      "bytes": 2192,
-      "sha256": "e8836fbb03bf381a3986771c8cd2429261eb6b0751f7453e3672ea8c149a4568"
+      "bytes": 2194,
+      "sha256": "663fb0b41ee8cda20ebda9a72669bfd05df45c9ea568bf518b9fa2169db09918"
     },
     {
       "path": "tavern/candidates/dependencies.py",
-      "bytes": 14473,
-      "sha256": "a5327058d1d37a7a76d26896b79e6ca22147f93a1ac2bda470645b8311fbb813"
+      "bytes": 14476,
+      "sha256": "4f282340d712e361bcf916571ad5aaf516587dbaae9b2a450c332c93479acd53"
     },
     {
       "path": "tavern/candidates/evaluation.py",
-      "bytes": 9978,
-      "sha256": "018d3269c57b6b4100aa9fb222ea7ecf4289e3e5194f652b21062c7de2d2bb18"
+      "bytes": 9980,
+      "sha256": "22e3b715f5e712b4bbf4cc160ccbf5634de084007451db9bdb1c3fab3eed8978"
     },
     {
       "path": "tavern/candidates/normalization.py",
-      "bytes": 9396,
-      "sha256": "d5b96c7bdc1f6b982b010a67249a546afad0210a98b48bfa8c66ab461b80f833"
+      "bytes": 9398,
+      "sha256": "96201b79ad462a1ff746a6a7181eb2d6195f4ccb61526617debd91027a2d3d2e"
     },
     {
       "path": "tavern/candidates/rules.py",
-      "bytes": 12879,
-      "sha256": "59f7dc057cdc4048bf9ad2396663a5cb7a09bd42a7af473dd12b16fccd92cd5d"
+      "bytes": 12881,
+      "sha256": "48652cd36cf431ff11478308a21f6e25b82642f5087c4cf8ad30358608c6f861"
     },
     {
       "path": "tavern/capability_service.py",
-      "bytes": 13014,
-      "sha256": "fc2f33069a4fab5ca9d0e2f98bf2a13bee484ba863320adf536166d481538345"
+      "bytes": 13143,
+      "sha256": "f6c18452735db122305bcd4c4f239d9cfb8d479d3e377decb89d17e5b5e3875e"
+    },
+    {
+      "path": "tavern/card_ai.py",
+      "bytes": 22957,
+      "sha256": "0e9da2d82b35e71ec7711e5043fe61cb38ee42b782630a8ddab22c91d930e0ce"
     },
     {
       "path": "tavern/card_delivery.py",
@@ -675,83 +680,88 @@
     },
     {
       "path": "tavern/card_lifecycle.py",
-      "bytes": 2918,
-      "sha256": "ff72e4e674a2754889f250c74445ffd70af5ba275b6b75af2ad7e5027e71fef4"
+      "bytes": 2998,
+      "sha256": "7eb64071e05aacbe8ae4a60c92c97b6ba3d6d1817a3b330c39671adb264adf3c"
     },
     {
       "path": "tavern/card_validation.py",
-      "bytes": 3859,
-      "sha256": "d0712de7362c40f3f18a9be0e0efc0db08f83f0fc3d4be34f56ae6848e1d4743"
+      "bytes": 3972,
+      "sha256": "8c10b04c586e704d6463a8a265404303420da6f3d53279fbd4c88f47e620bf81"
+    },
+    {
+      "path": "tavern/card_web_wizard.py",
+      "bytes": 42668,
+      "sha256": "acbbd69dbf80a5c39cf2a9ff2b0124a11b12e6867863fdee3f34cc9e2a7e07ba"
     },
     {
       "path": "tavern/card_wizard/__init__.py",
-      "bytes": 871,
-      "sha256": "e4befb6bed0c16bf98c0ea1f162db3652f2b872432b6d96cff3369ccb9036c23"
+      "bytes": 872,
+      "sha256": "5a05c51af5448d9930946019e5915000907902c50d7da82d82e92f264027787e"
     },
     {
       "path": "tavern/card_wizard/application.py",
-      "bytes": 7977,
-      "sha256": "ac0b87d048d376630ee0b6e71340e79a4c10293170dd4adb70f9e28f128120f8"
+      "bytes": 7981,
+      "sha256": "66ec3806bcf2259c973378722054fb881f4ba3a3c1d77565a31f37b3e327e0ec"
     },
     {
       "path": "tavern/card_wizard/common.py",
-      "bytes": 1838,
-      "sha256": "d9261bd0a360f77b8cdf634afa6ba0331e00018b3e4b7f089bc0f833c2576e3b"
+      "bytes": 1841,
+      "sha256": "f9de7795255e07b04b587e7aabc2146340ef725b40546f86db085c54ba52bc54"
     },
     {
       "path": "tavern/card_wizard/flow.py",
-      "bytes": 15949,
-      "sha256": "a507b79aa1e6959bac5cb1f4358c38378109402f5876ffc549c7c12b3ba92527"
+      "bytes": 15953,
+      "sha256": "f2f1bb4f3bd3f25379ad9c72d62348b73a2c36aeee659e0b4d3d1c1e000f2ea0"
     },
     {
       "path": "tavern/card_wizard/options.py",
-      "bytes": 15409,
-      "sha256": "5ec26e7491b0e72dc30fb74a2a585899f74609f57708c757cb0e6183efe2b3b8"
+      "bytes": 15411,
+      "sha256": "10707529764021f52b6fcdfc6e93f9cb6f02b095c720768cf14d74a3c0ec2e81"
     },
     {
       "path": "tavern/card_wizard/state.py",
-      "bytes": 14375,
-      "sha256": "24fbd95e1f009005f86a392ea50494a2fd61c28fd1d74a712297ac3033ebdfba"
+      "bytes": 14379,
+      "sha256": "f1dbe0e916ad7faf826114993fabcd05b6ca5563b6bae6c742c6ef007cbb3ad4"
     },
     {
       "path": "tavern/challenge_runtime.py",
-      "bytes": 14778,
-      "sha256": "c8c48d397bc2db9b2e4f3ad1f25f767cbad8027e073215d822c8c1c7225fc68d"
+      "bytes": 15128,
+      "sha256": "8762053c671817e6665897ebe91f139e0c84430127f3cc1d84000702bc41213e"
     },
     {
       "path": "tavern/chat_experience.py",
-      "bytes": 6197,
-      "sha256": "aaeeb5e5e307e20e7ce4064803393e74578378eb3d0dc876358408dd54659e68"
+      "bytes": 6365,
+      "sha256": "10f3b97c87703fc0f9571deb1ab580c96a8c8b1a1a80285be747cefe9caae797"
     },
     {
       "path": "tavern/choice_command.py",
-      "bytes": 396,
-      "sha256": "60292fde188c4f142b66b1e524832fe658fd4600cfbb8a39cd6502c71d95ed2e"
+      "bytes": 415,
+      "sha256": "d3a1405400d1dccd05a7a3c72dabf52de1a8a353b52926e4d5b8b131d63b82e6"
     },
     {
       "path": "tavern/commands/__init__.py",
-      "bytes": 986,
-      "sha256": "c136e6c7d0cc7874116079aa13aaecc804a3a31b1319682c4320b6e0c4ea130a"
+      "bytes": 1021,
+      "sha256": "a366e33e9f5382afb8eee047324bc6a045ddb01606ef004f3247fe2deea3f087"
     },
     {
       "path": "tavern/commands/admin_commands.py",
-      "bytes": 20221,
-      "sha256": "62fb32dde60b48ab680af55b0f5fea5d97cb6473b528f793aedb6c61d68acb17"
+      "bytes": 20761,
+      "sha256": "35727290fde6a2cc695a6cb99ebf29700fed206e5336bf5284f72a1b245c6c65"
     },
     {
       "path": "tavern/commands/card_commands.py",
-      "bytes": 31741,
-      "sha256": "f301943e598850aceed216f3e51bccb07fe9e71f80d03c781cde4776ba807f63"
+      "bytes": 39112,
+      "sha256": "4494b9b4ccdc9518df21b4a5b34616f7bc0ce5b5b357ecc24dcbfbc3e96016bf"
     },
     {
       "path": "tavern/commands/challenge_commands.py",
-      "bytes": 22921,
-      "sha256": "696518747c227dc9e507c4b2d198109651cda37db4f1d38aa873f20dbd7cc973"
+      "bytes": 23320,
+      "sha256": "c101fe3d36b6925b8165168f488f9cba424f2e079c7243263e456202a794118a"
     },
     {
       "path": "tavern/commands/dm_commands.py",
-      "bytes": 9877,
-      "sha256": "7671b7c9f94458da77aaad01f6b1726e6295ba972c8741a1d914fad3e36ac806"
+      "bytes": 9881,
+      "sha256": "6bdc958db6c28f7b5a3974287ed3c8ad975aa3ce4cdae7cd75aa836941d0b5a6"
     },
     {
       "path": "tavern/commands/dm_control.py",
@@ -760,8 +770,8 @@
     },
     {
       "path": "tavern/commands/dm_narrative.py",
-      "bytes": 16681,
-      "sha256": "2c6cec359ef1940b4b0c7710b4a7dffd2128ff8dce49efb1d0c499c10e9cd2c3"
+      "bytes": 16731,
+      "sha256": "fa8bc6927c8c0ff146e7bde9b664fe91953ba1a511089b7533a49d312c161235"
     },
     {
       "path": "tavern/commands/dm_participants.py",
@@ -770,28 +780,28 @@
     },
     {
       "path": "tavern/commands/dm_terminal.py",
-      "bytes": 13250,
-      "sha256": "f7f8fdc16eb64017904445a8a2da1ce49bfe16f5a2a441932b5bd9502216933b"
+      "bytes": 13273,
+      "sha256": "5aebb2d41634608be64126da33ffbf6d710fe2fe5079f423ca361e771f54cbd2"
     },
     {
       "path": "tavern/commands/growth_commands.py",
-      "bytes": 11020,
-      "sha256": "8412bab7b7993cc183724bb7c59b4d818f416dc668c839f5647e9794c5391a5a"
+      "bytes": 11293,
+      "sha256": "1577952eece5ada0e88d0a9d3c81b86ef666b0e8a594c0881c5dc9d0693ed0f0"
     },
     {
       "path": "tavern/commands/models.py",
-      "bytes": 3851,
-      "sha256": "514a9a91bc5d7d1d433a51168ba3e68e7a399ead5de3a433358824088f49956b"
+      "bytes": 3958,
+      "sha256": "5058c0c32a93519b5888f27b9a8b2ba1d6f618d25d804f7e22e45f93c37fa527"
     },
     {
       "path": "tavern/commands/presentation.py",
-      "bytes": 2772,
-      "sha256": "e25d8495b6300350ff576d3117778d07bb69d337a243d1371219bb5a70c5f285"
+      "bytes": 2857,
+      "sha256": "02efe2487d7e1fd143fc22ed5243a10c668cb0a6bb054813adc7a015d4e1c725"
     },
     {
       "path": "tavern/commands/session_commands.py",
-      "bytes": 18045,
-      "sha256": "1aee4fd0656ee9caefaee9d6b1152f7ecafe2fd99829b681f50aad60d9e986c0"
+      "bytes": 18049,
+      "sha256": "b3be03df29074347b01d55bad8cc803bb6f908e97269e407084cb9f9ff98042c"
     },
     {
       "path": "tavern/commands/session_generation.py",
@@ -800,8 +810,8 @@
     },
     {
       "path": "tavern/commands/session_lifecycle.py",
-      "bytes": 29809,
-      "sha256": "94d97cff19f4600a5029e3bc4de51236b2818ba25690fdf02ae0147dd8ab884f"
+      "bytes": 29819,
+      "sha256": "3c47dae74dc197f1d22e77a906b23f21bcba4f2fde7a830c68b20e7d365611b6"
     },
     {
       "path": "tavern/commands/session_participation.py",
@@ -815,78 +825,78 @@
     },
     {
       "path": "tavern/commands/tactical_commands.py",
-      "bytes": 31569,
-      "sha256": "51359932173fea63dc6ffcfca5fe59ad7f45f8354f0c94116e191b0b2a8c0fb3"
+      "bytes": 32184,
+      "sha256": "52bf2b652da2699d9be74cec09f2bb812dee89707cde343bf42e974e5349e188"
     },
     {
       "path": "tavern/commands/turn_commands.py",
-      "bytes": 30399,
-      "sha256": "11fc3edff3aef47441f288308b578ecf18e0e6a5d96da20d464cd0c028804b76"
+      "bytes": 31245,
+      "sha256": "66d47dd45839ead29a980de18f34cc2bef03d71b1119619b953522536e226453"
     },
     {
       "path": "tavern/commands/vote_commands.py",
-      "bytes": 8937,
-      "sha256": "62fa2ebd19cabbfee0d5237a8e3615ad961810cc59ce502b6c599ff44a757b06"
+      "bytes": 9179,
+      "sha256": "465d133b9337c930a1f03c1cffe1cbfa78bdb5a8f33888c97d64d866d05acc27"
     },
     {
       "path": "tavern/commands/world_commands.py",
-      "bytes": 12617,
-      "sha256": "385ac7f9012b4e73f437cd5e50a77fda69b6419c69ed5a045ab024bbd76eb1d5"
+      "bytes": 12932,
+      "sha256": "f1e0e18c1875afece59e6694f2d95ec41161ead714a6f5c37ca67c43d0d2f012"
     },
     {
       "path": "tavern/condition_engine.py",
-      "bytes": 26042,
-      "sha256": "8f7cdee2f986c2c5483fcca3890221c5dafd664847f62f76b051cbe110bf1c12"
+      "bytes": 26710,
+      "sha256": "985ce702c7f8a1975d4e1d4b1891301744c06550aca49e8e441dca7574e917c0"
     },
     {
       "path": "tavern/config.py",
-      "bytes": 32191,
-      "sha256": "8a0f543025c6cba66d5f1489dbc1305857e8fa6bc6525d1b111fe40fcfbbb8b3"
+      "bytes": 33201,
+      "sha256": "92750518991818901f03f27e766ac190a962f34142cdac267f537b34d1394097"
     },
     {
       "path": "tavern/constants.py",
-      "bytes": 8812,
-      "sha256": "e6660c7341b86449f72818df1115818284576dbec9c10b05c13c64cf1e7f986b"
+      "bytes": 9212,
+      "sha256": "cf257c3116ef5baf397a487a65067f8f0eada4ccf900b7ec5d07a2a6affce11c"
     },
     {
       "path": "tavern/context/__init__.py",
-      "bytes": 168,
-      "sha256": "bd799e66c78e14bb80b26eb67577255c52a9094a97aeb8fb9147b19ca95da27a"
+      "bytes": 173,
+      "sha256": "10876e72ed1d5fe0c751394a11d0d5adde168e3f727f33eea795ebed1a2c0177"
     },
     {
       "path": "tavern/context/compiler.py",
-      "bytes": 10568,
-      "sha256": "378014b647bd992cc5843785ee9c09e135111e5c36f94e219008402a2fcca7d2"
+      "bytes": 10905,
+      "sha256": "7b408b1f529c5e416a9d48c839b0afc65a5ea94af152afcf3248681520a7f603"
     },
     {
       "path": "tavern/context_budget.py",
-      "bytes": 2789,
-      "sha256": "660400dce9b10bacc5e6bf78acf3a14ec682669fa6a556cc53fdcf61c0147d59"
+      "bytes": 2874,
+      "sha256": "fd846b1e3b586fed827fd903ffa6b86ad58cc42231b4fb69143f2b61d815a830"
     },
     {
       "path": "tavern/contracts/__init__.py",
-      "bytes": 2443,
-      "sha256": "b0f4fccec180d1f54b202ded75b86bf09c4fefbe583b5469227f83944a8ee3d1"
+      "bytes": 2523,
+      "sha256": "8f3384cc60ac4d9e85d5761710b14586e34a2569a0ec877729f3f5b78f9b6ca5"
     },
     {
       "path": "tavern/contracts/actor_fate.py",
-      "bytes": 25467,
-      "sha256": "1fc46a1e102598a181a928bd785988386a51aea0a47fcc305a1ad02a8d56a715"
+      "bytes": 25500,
+      "sha256": "5462d12234df4f56d7cb71c75ae571b498f370c581e7e2679d5ca91b2828653d"
     },
     {
       "path": "tavern/contracts/common.py",
-      "bytes": 3082,
-      "sha256": "c8fc270b17840106ccb799301dce8b543be09c8d1c89f1b14101661da83435c1"
+      "bytes": 3191,
+      "sha256": "eeeb44a812d96dbd65cd6fda1580ed2aa7d21b5894a934cf0d6abd0c1d36a6da"
     },
     {
       "path": "tavern/contracts/narrative_document.py",
-      "bytes": 40933,
-      "sha256": "ce6cd2ee48e7104e4cae4f3149cd7b08025bd340c36b7073e2bce3959e8fffa5"
+      "bytes": 41787,
+      "sha256": "6ea2c5b8c16dacd141e3beeeddb253f3adb633b68dbfb94bb940ecee8b4bfaa8"
     },
     {
       "path": "tavern/contracts/web_views/__init__.py",
-      "bytes": 1394,
-      "sha256": "73c35aa0501aeb3c4c220434b67bfd4f3511004f1276d336f6ad86f12d3a30f7"
+      "bytes": 1448,
+      "sha256": "d08cc1cde044487e4495e1fdcd554445c3964ab714a2a30dda608ebdf9221ed8"
     },
     {
       "path": "tavern/contracts/web_views/actor_fate.py",
@@ -900,8 +910,8 @@
     },
     {
       "path": "tavern/contracts/web_views/growth.py",
-      "bytes": 6840,
-      "sha256": "674f9ecb8c191d84af77add86881422d0ecbbf66001392ad197fe5c4cce0aabd"
+      "bytes": 7055,
+      "sha256": "52d9a69b3bf85468f0b03534c2ba32b20af7e35121eb5d94ed68fe1075528b51"
     },
     {
       "path": "tavern/contracts/web_views/message.py",
@@ -920,8 +930,8 @@
     },
     {
       "path": "tavern/contracts/web_views/player_choice.py",
-      "bytes": 14140,
-      "sha256": "93c8d2e780db944e33c285225ee00ed8da376617e2ca86dd812ef32384986273"
+      "bytes": 14559,
+      "sha256": "912eb776d4b19958df1302c922901d97bda2acde9cb755009b74a9dac9802f2b"
     },
     {
       "path": "tavern/contracts/web_views/world_summary.py",
@@ -930,98 +940,98 @@
     },
     {
       "path": "tavern/copy/__init__.py",
-      "bytes": 1258,
-      "sha256": "3559111f52f79b67b261da65c7629b96fb7a9c76473e825ef6e3732558983723"
+      "bytes": 1310,
+      "sha256": "2e0b28c703b0b1b4e104b04a5bf7684d71a800abd7dc4af78ee9755ef5f4b354"
     },
     {
       "path": "tavern/copy/candidate.py",
-      "bytes": 17601,
-      "sha256": "775cee15ea1eb7cfa9b770ab071df7e5ad906a758df0425fa764c175fe437b1c"
+      "bytes": 18140,
+      "sha256": "dde03225107bf4c2805a559c1f16c1bcd4b4dcf8f639866708a2cfc43ab551fe"
     },
     {
       "path": "tavern/copy/document.py",
-      "bytes": 898,
-      "sha256": "9630798497d0bdda7f3498c005079efa7f92080484c7fa7777b01f1d34a79b09"
+      "bytes": 935,
+      "sha256": "006bba89b31dd3214603043953bf247fb288fa43aa40211bc129db41bad54ce6"
     },
     {
       "path": "tavern/copy/entities.py",
-      "bytes": 1086,
-      "sha256": "a83a82e977fd6b85d7dff0f5707af1ee14b7e3e139d6f9022258d6e660c6151f"
+      "bytes": 1129,
+      "sha256": "9d8c2dac7151279114b5785afd35b320d89b707680d27316d371ab2ee8142ece"
     },
     {
       "path": "tavern/copy/pagination.py",
-      "bytes": 2177,
-      "sha256": "83028b4662a05d8af54532f2ec518be5c46c0739440b5ebdfaf2534d406fc54d"
+      "bytes": 2255,
+      "sha256": "ba914f716afaac8f4682cae37fa179b5232d08b66df5f5b530ec5742dfece6cf"
     },
     {
       "path": "tavern/copy/render.py",
-      "bytes": 2047,
-      "sha256": "dacf815fc772b82565e9e33c83267cc6802640afa25e8e98aa7ead5d5a41eaee"
+      "bytes": 2113,
+      "sha256": "1ed7c68670d56ba98781d1762c9a7eb2131a03528459436e7908243046f26b62"
     },
     {
       "path": "tavern/copy/story_entities.py",
-      "bytes": 6447,
-      "sha256": "0d549304b761bc74a1b13422d15fd24c1335bca539054dd86a32f9a77d8b0527"
+      "bytes": 6641,
+      "sha256": "f8c8ab6566a6dbb234b341aed126340f4f2e59e49a996759f6853a90bee75e28"
     },
     {
       "path": "tavern/database/__init__.py",
-      "bytes": 857,
-      "sha256": "d7ade3d8a01c9df49998a2965b70554ae9a4a9f800f9120e2d401c1d176e3d20"
+      "bytes": 889,
+      "sha256": "01e02ffbc3c0f1a1c4294494c4112f63126737cbb6c02821ed35c717f2d8064d"
     },
     {
       "path": "tavern/database/actor_state.py",
-      "bytes": 27280,
-      "sha256": "dd631f5cf043c5ed49cb712ee9783597abe1f7cc08f4f82f70e703d568d89743"
+      "bytes": 28015,
+      "sha256": "43bac130afd8bd2756c7e56ef590a1999db968761c3f67065eae7a1531432749"
     },
     {
       "path": "tavern/database/common.py",
-      "bytes": 4700,
-      "sha256": "d3e25f422c94a19a4890aff4841716280cc7619b32ec0f9dc218150799843bcd"
+      "bytes": 4831,
+      "sha256": "bd486c2c9b371ba14d9b545a1803ead1c0c1f18a4d3f87fa994cb92830268dd4"
     },
     {
       "path": "tavern/database/core.py",
-      "bytes": 8483,
-      "sha256": "92e3903d2ee0c097e25da94b898f38de9d72a9a4052946d425fc001ac03f436b"
+      "bytes": 8706,
+      "sha256": "bdaf0fce7a05ad77da04f3d73722a22224a5e54844c9d349a78cd345fc98d8bb"
     },
     {
       "path": "tavern/database/events.py",
-      "bytes": 19735,
-      "sha256": "dd56476ca7d79486f96867446a48169516eb5c1b1000b02d60f9739c993ba8d4"
+      "bytes": 20253,
+      "sha256": "b63acb7bbcccc80faa3e426455f2f40b4f6bcc8b47853dc9f204698c90f4ee05"
     },
     {
       "path": "tavern/database/finalization.py",
-      "bytes": 27636,
-      "sha256": "84e83a78b87876240dcd279f1d354860ac1bac684db27c64abe0e594c36edc85"
+      "bytes": 28398,
+      "sha256": "0a8dd4d6a2f8a9e7d5cf9d485633094140136a6ed054bf50063389c52d00148d"
     },
     {
       "path": "tavern/database/maintenance.py",
-      "bytes": 16898,
-      "sha256": "d90b14fb92d9b78811c15a789287343acd7906e5c5963bbabae1527b6829c9f6"
+      "bytes": 17316,
+      "sha256": "d73738aa11b00e237a748e02f1845f627f1dcef8ecc4c3e25c33533fa8cd46d2"
     },
     {
       "path": "tavern/database/rows.py",
-      "bytes": 16263,
-      "sha256": "4710b1c5e2df292c15ff406d9dc4e97d1669d58eab11cca560ed87355d829b7d"
+      "bytes": 16665,
+      "sha256": "ef8ed03aa429b76cb439b31cd067384e0d4c520d560b7a86416024b020015f1c"
     },
     {
       "path": "tavern/database/schema.py",
-      "bytes": 2350,
-      "sha256": "50afebbe38c0a90785a2018694737bd3d9a36c1601b1c243ebde1d3488c87f7e"
+      "bytes": 2409,
+      "sha256": "f379118642c11b0092f437f7d8b7cf4765dc39183a5014c4fefce2f4fc034f28"
     },
     {
       "path": "tavern/database/schema_analysis.py",
-      "bytes": 9564,
-      "sha256": "b19deb1029a715e49f26aa251a76a350267888e11e3ea0e0adf981331417bd67"
+      "bytes": 9744,
+      "sha256": "0feb9e2e7417664491768882ca3b1cfcfb78ced2799a6b16e8572fb8e32c4469"
     },
     {
       "path": "tavern/database/schema_catalog.py",
-      "bytes": 41914,
-      "sha256": "a51ea2c87423d8f85993924be0094995053b41b29cdc6d633718e4b56046b609"
+      "bytes": 42660,
+      "sha256": "10872ad0512e615b43fded0a16c878371bd17a056e14d92e114ae1fd8ee474bb"
     },
     {
       "path": "tavern/database/schema_extensions.py",
-      "bytes": 2937,
-      "sha256": "51f70bea0d70697354934d291033c14bb0272e7a93ef8a7eb094437bf9f664e7"
+      "bytes": 2990,
+      "sha256": "4509b6e0e7aad4f77488e85af87c572b2324646f7fa7ded6ed81dc7631687a0f"
     },
     {
       "path": "tavern/database/schema_identity.py",
@@ -1030,73 +1040,73 @@
     },
     {
       "path": "tavern/database/schema_operations.py",
-      "bytes": 48932,
-      "sha256": "bafb8816594f2d523b4fe25d5fbd5b95bb84a1f8f90159275c8bc4231dcc8340"
+      "bytes": 49748,
+      "sha256": "b9d8243560e00655fb9872dfefc05165ad14750754ed083473d9dff9c8e0edb7"
     },
     {
       "path": "tavern/database/schema_rc10.py",
-      "bytes": 14527,
-      "sha256": "8de194120a5f7b1e805de5681c5762b11f99d57bc4f5f7b1f18862492e4d1a95"
+      "bytes": 14860,
+      "sha256": "1d41a3a1db22c404f5626e2711a43ceb8438b9e0c6aaddc1e58ae439a2b32afc"
     },
     {
       "path": "tavern/database_support.py",
-      "bytes": 18583,
-      "sha256": "fe2b1fc92b640fbcd139e6c411e07d86c3efd5ce1b25828e03a69f892530be5a"
+      "bytes": 18991,
+      "sha256": "2e4f431cc313bb5a0b2ffca8c81876451d5222def5a0d8e2c69eb1c4d5209b26"
     },
     {
       "path": "tavern/delivery/__init__.py",
-      "bytes": 2513,
-      "sha256": "525ed802d97b111b9e43d04038798bcc5127a4d893f299f843314694ac7d1efb"
+      "bytes": 2613,
+      "sha256": "aa108b4d12bd5039d2a7eb44a83857eabdf09ed2d8b664bbf9444f0f923da35d"
     },
     {
       "path": "tavern/delivery/adapter.py",
-      "bytes": 11521,
-      "sha256": "6f018e2353c65c7c29416d66d17c981b1df87caecbecfd2fe542f23ba8238b26"
+      "bytes": 11838,
+      "sha256": "bc8d7ea1be784386f12cac3bffe4d427d2ccd43bda8fd04b49525e8f4a97fb34"
     },
     {
       "path": "tavern/delivery/outbox_worker.py",
-      "bytes": 7678,
-      "sha256": "eeb0f967a2642594c7ec1e0214f5c9d42edbfb0cd53e4841d20b7cb59d9af88a"
+      "bytes": 7896,
+      "sha256": "3d47f2af7163b6916dcc2c220ac6d1db32f9f7c98b700c86a7e83cfa61306fa2"
     },
     {
       "path": "tavern/delivery/privacy.py",
-      "bytes": 7637,
-      "sha256": "8deb96beef0673346394a98cf965c092c22f3b0f75164244d55819cccd5504ab"
+      "bytes": 7885,
+      "sha256": "2d5fb532059c61ce8d3bedd1078f762aef7f8a40b5776f3108e32590300c59ab"
     },
     {
       "path": "tavern/delivery/retry_policy.py",
-      "bytes": 2825,
-      "sha256": "902536da6730ca1e3b0e3464c2b24f6f724a067edf3eae5334f3ce79d17444b0"
+      "bytes": 2912,
+      "sha256": "5418316a5d2b1ded2b209928fc1809528682164f26f1265390c08a36edd1047b"
     },
     {
       "path": "tavern/delivery/service.py",
-      "bytes": 31657,
-      "sha256": "7202ed15444c176e08cdb8285659ad28c84f0a58338c7d04323853357cc4fe0a"
+      "bytes": 32530,
+      "sha256": "52c736e405c399f642049921a07b6f1e8c1ac8d6d54d62c41eb0c2fd699029cf"
     },
     {
       "path": "tavern/delivery/session_factory.py",
-      "bytes": 8001,
-      "sha256": "a3c115329d78744fad256b3b1732051e77779b195120b6987c826e3676d1202a"
+      "bytes": 8237,
+      "sha256": "b749d410d71db87b8b8503ff06d302619e2471630c523951344959a47f804bb3"
     },
     {
       "path": "tavern/delivery/target.py",
-      "bytes": 8575,
-      "sha256": "def3ea7dcb51ecf9c7d08ebcad32a5bd0983f8640ffe4d350273673dd831687f"
+      "bytes": 8820,
+      "sha256": "50749c622111fd9ba35d5c1ae88a3b8b313fa11009922a006adc49630df08a29"
     },
     {
       "path": "tavern/diagnostics.py",
-      "bytes": 9909,
-      "sha256": "434d9c5b93e093e152690f98e4f34404f342b5ba8fb0260dd639a901feda049e"
+      "bytes": 10228,
+      "sha256": "fae117f3b09cce04a56c676696a1350b7df74b801c08619b284ca2e534b373ba"
     },
     {
       "path": "tavern/display/__init__.py",
-      "bytes": 165,
-      "sha256": "4c3dd4052a5ff03e06ab44be83755c03d12eba0114b696a86292abc8794ccb36"
+      "bytes": 170,
+      "sha256": "b29c8daaca7d07923b3552f9c2227e93f56c2964d35010e98d0bfd1f48cfc124"
     },
     {
       "path": "tavern/display/currency.py",
-      "bytes": 2139,
-      "sha256": "4190ee16f75a74a1e43c3e696ae31be44665217811562b8babda0b6eace158ad"
+      "bytes": 2227,
+      "sha256": "c22dbaf3bf57b63fcfd249f529a0052b48dc35e5b4feb4e2b11d5d557b11fff9"
     },
     {
       "path": "tavern/elemental.py",
@@ -1105,13 +1115,13 @@
     },
     {
       "path": "tavern/emergency.py",
-      "bytes": 2386,
-      "sha256": "809022cd5ca8be74390c147cc7246284d6b51915996b6697b317c16eea7fac6a"
+      "bytes": 2450,
+      "sha256": "2fc4d0b0ab0adc498252b80b5116f006e010adf48d9bed80f92e2ad9ecc1c55d"
     },
     {
       "path": "tavern/engine/__init__.py",
-      "bytes": 1522,
-      "sha256": "4b05d6c90a3fa935042e7cc349bdc2c715801ab83a530f8508dac8677cc3e80c"
+      "bytes": 1580,
+      "sha256": "6e89645e2927715b6f3fde5562421b91b279473f07ae5928dfa81d13801d8624"
     },
     {
       "path": "tavern/engine/assets.py",
@@ -1120,88 +1130,88 @@
     },
     {
       "path": "tavern/engine/core.py",
-      "bytes": 34998,
-      "sha256": "b3d4568440326b031e28208502c52fa6ad344f473f0337027440853b43f54ab4"
+      "bytes": 35932,
+      "sha256": "5cee5eb9462e60100ba13eca2391aab78aaa100bdbb1a07492dc6fe077a3c26c"
     },
     {
       "path": "tavern/engine/directing.py",
-      "bytes": 18703,
-      "sha256": "bacb422e4e8ef3702217fddc55f7655cea86743c8f806c82e2418d94662d6c22"
+      "bytes": 19147,
+      "sha256": "26e3d9fbdbf3368165551d3cdff6a862baea6f1047a93878afcddfac3fc68796"
     },
     {
       "path": "tavern/engine/errors.py",
-      "bytes": 4300,
-      "sha256": "6900c04597a26cd2823cf87dfe0d7815eba1c5c3740da6d8bd23112252f01fe1"
+      "bytes": 4439,
+      "sha256": "09f50159f9bafe32fc0d91527ecaf46dde0239bc5efdc2f971c291756ff38395"
     },
     {
       "path": "tavern/engine/generation.py",
-      "bytes": 32893,
-      "sha256": "4e2c6be6e3bfae4bf57558d86fece4a346ffb68ca0dc43793c910be6729f2bd7"
+      "bytes": 32904,
+      "sha256": "87aa6d51a69e5e253cb5800ae2b0a0295ad1ef420186da31bdd4d89a1568847a"
     },
     {
       "path": "tavern/engine/participation.py",
-      "bytes": 10525,
-      "sha256": "a3878a7718861c19f2a15b4280429bdea80ee2eb27953d66da4bb6ce148acade"
+      "bytes": 10792,
+      "sha256": "f12821e113b762759b84b8b924fdb018d6173ad15e570d18e0421b5db3f0bfcf"
     },
     {
       "path": "tavern/engine/shared.py",
-      "bytes": 6321,
-      "sha256": "71f939afde3b198e7244a9f99461bdd92b84014c71fdaa0ac48f1413d88a0b05"
+      "bytes": 6529,
+      "sha256": "3adbcb49b87d008bc57bf2c4ad9ddcf47232ec9df631fc720adcca72ac9faff9"
     },
     {
       "path": "tavern/engine/turn_commit.py",
-      "bytes": 5336,
-      "sha256": "48713ce7ae460fbdb4e1f77727150051a0c857b778e434553777c0c77d9d4526"
+      "bytes": 5463,
+      "sha256": "180b44ce37101774121c04a8e463dcdcd5121a22c3ce0164c603b5be1b654761"
     },
     {
       "path": "tavern/engine/turn_context.py",
-      "bytes": 19562,
-      "sha256": "7c02d27510791d38e6f2e038dbfbec3284d2ca1fcf8713dceaa6e1704797d194"
+      "bytes": 20078,
+      "sha256": "1843108a76cbf0fcc6c40ac38a589d7ef1e72480f9127fa8957bd2222c388e4b"
     },
     {
       "path": "tavern/engine/turn_delivery.py",
-      "bytes": 13485,
-      "sha256": "07d3888e903af2ce419c18c08f3ee26a4a3eb2aa00c3750c48bc2978fbf2adfe"
+      "bytes": 13830,
+      "sha256": "d85a906d9460f23194ea5de3047cbb81ef7135845fec10caa39ed249ab32d501"
     },
     {
       "path": "tavern/engine/turn_generation.py",
-      "bytes": 20480,
-      "sha256": "c5dada3eee4d971a641f457d0040e806e85cf11684357d774e8d18b867b5d957"
+      "bytes": 20979,
+      "sha256": "63a64a79e7c8c17d84f03eb982536213575111af963059c1b6ed7fa00d36b26d"
     },
     {
       "path": "tavern/engine/turn_orchestrator.py",
-      "bytes": 3353,
-      "sha256": "1d27891b60e248459b5b5de27ec14d91ac1d731e152f8a2b8ac8550fc2714257"
+      "bytes": 3439,
+      "sha256": "985822c512dd9262c728367a9aa603205988663c558dd5e2ad7c387640e68f61"
     },
     {
       "path": "tavern/engine/turn_state.py",
-      "bytes": 2331,
-      "sha256": "8976e4b90fb40066fa32058a6d56429a324732e521bf2397619bab63620821e4"
+      "bytes": 2391,
+      "sha256": "5f88c247ddfdd4f58c68fa92a784fbce9f6fda9f8f6832f4f4f4979bf05e87a3"
     },
     {
       "path": "tavern/engine/turn_validation.py",
-      "bytes": 11950,
-      "sha256": "1a1084325b3f797a3f6ff11fdd7f1509d2b5bde3a5f9f59da52336547a89c87f"
+      "bytes": 12262,
+      "sha256": "d1cd07d7463ab502875a37a5d538154f6179201ad37e7ee2ce62377591afff52"
     },
     {
       "path": "tavern/engine/voting.py",
-      "bytes": 36668,
-      "sha256": "2cefc7d0a85b86ab27f4660b536f8b7efbcc57c7829920a08fcaf84dbf1cdb99"
+      "bytes": 37537,
+      "sha256": "6cb23e8b401ada03ec944d039ce6167d77136eda148b26afe636054c95d62da6"
     },
     {
       "path": "tavern/entity_registry.py",
-      "bytes": 7136,
-      "sha256": "a678bccc3123e7449e324617eb3197e972ef06d46ecd29d61b16b44c91b6ac76"
+      "bytes": 7330,
+      "sha256": "cd4e278932f755df580ef5a2bca0cb019f4c080a07f4bdfa13bc57251f5c299a"
     },
     {
       "path": "tavern/entity_resolver.py",
-      "bytes": 10183,
-      "sha256": "ca4ca177f3702221b3cd597dcb3e50b0309b77fbb835fe425587491054249fee"
+      "bytes": 10196,
+      "sha256": "25caaab4063c5fd75646dc894d9b178a8d25c887b2f6dbab7e6886754e31f3a0"
     },
     {
       "path": "tavern/entry/__init__.py",
-      "bytes": 447,
-      "sha256": "b85121a1fcb730c8aded6c59380dfcd33979d171d2497ff441e1833cd6c307e3"
+      "bytes": 458,
+      "sha256": "45396949d6b9a5da6a78dc57a6533a6effef573a744c250e5c5c77b1adff0207"
     },
     {
       "path": "tavern/entry/background_jobs.py",
@@ -1210,133 +1220,133 @@
     },
     {
       "path": "tavern/entry/commands.py",
-      "bytes": 34716,
-      "sha256": "39b85e3ebde2b34ecb6946845f53a4a49d1a19eb4be1da1f9dd697ffbe5bce11"
+      "bytes": 36472,
+      "sha256": "267141178ab0a74e7a218bf7c39d00ca22113feaebafbc6ac963e950db3ed78c"
     },
     {
       "path": "tavern/entry/delivery.py",
-      "bytes": 260,
-      "sha256": "d4ac8571ff5ef9a65ff13cb5448bf9b04368f61f0da8501b6292ddfc6f1e6981"
+      "bytes": 262,
+      "sha256": "2931a7cf5e2922ee467b02f70445412ac393116ffb491cd853111f82e4f92901"
     },
     {
       "path": "tavern/entry/delivery_prepare.py",
-      "bytes": 25290,
-      "sha256": "04e32f2f8c7ee6e77451d6f83e3da4ce1c307fe528f7f30c4f56d175e9e8e6a9"
+      "bytes": 25378,
+      "sha256": "4eaab30816ef850cf99d9b97529c1ac00e29e10af131be6208ef2d8144a76a0a"
     },
     {
       "path": "tavern/entry/delivery_transport.py",
-      "bytes": 21489,
-      "sha256": "378e71f3a7e1dfcf2782e54a015af6e5b316e40c27207ad2a0575b569dc59411"
+      "bytes": 21582,
+      "sha256": "80ea1bf8adc60db59dc21a3bb168e0d236d4a6585642c9e5ee6e987408cd31fe"
     },
     {
       "path": "tavern/entry/event_context.py",
-      "bytes": 8498,
-      "sha256": "71726ce49fa2665d9b3f27e3c3030e074d72628d45febca0110794b37dde4813"
+      "bytes": 8790,
+      "sha256": "975020bdc68358442bd4621ec18b66ad4f371cbf2219edbb8eb42290a483ff66"
     },
     {
       "path": "tavern/entry/group_messages.py",
-      "bytes": 24295,
-      "sha256": "b7adfa7c74a858165daad75948156f6db47f4336301c9f38bca848e356b1fd9c"
+      "bytes": 24425,
+      "sha256": "67894dc72e64f446e744973902e16fc5f07b57c232a657aa8eee5d69ad45f691"
     },
     {
       "path": "tavern/entry/legacy_commands.py",
-      "bytes": 39195,
-      "sha256": "fe9edc84d4b3d13b2f6b870afd7c59eb8ad14f266991b4d21cc73960539164cf"
+      "bytes": 39431,
+      "sha256": "c1142b2221e0d7d86d8ab94a628503a078a561194abbfa0f9e33f30afce3cfaa"
     },
     {
       "path": "tavern/entry/messages.py",
-      "bytes": 22215,
-      "sha256": "250054545406de4a278eb87a116c02ae58c1d0867fdd3ae613219ffec948c7de"
+      "bytes": 22289,
+      "sha256": "e52977cd687619dbdd6761af8c841ac0f368f6a59319531a5d5ff1df33481975"
     },
     {
       "path": "tavern/entry/plugin_lifecycle.py",
-      "bytes": 2352,
-      "sha256": "5c47f91873b6ba87a24ae96546077a3257c44c63836dd6c766227bc8b76f5b63"
+      "bytes": 2387,
+      "sha256": "b0827c4983621eceaf89765f5d44c5983962c0980c7fbc136ff1d3c0ac700445"
     },
     {
       "path": "tavern/entry/plugin_shared.py",
-      "bytes": 19684,
-      "sha256": "6e1f3db5d8573fa6195443dcadeb268b2aa88b6e37c4f38e611dad06c4229673"
+      "bytes": 19889,
+      "sha256": "b655c328a6a89620e11c6ba4330ae6246926ef39e5e48db6a1b0700e36eac2c3"
     },
     {
       "path": "tavern/entry/private_messages.py",
-      "bytes": 17382,
-      "sha256": "c62fb5e2e3828e39e228ad8686b2e65c8cd582cc1189a9be7d472474851ac48f"
+      "bytes": 19978,
+      "sha256": "61380b27e0f158f7fe94d6cf79859a2949d841f967b6acc987350c46e6385f76"
     },
     {
       "path": "tavern/entry/shutdown.py",
-      "bytes": 8604,
-      "sha256": "5f01476de55191ba868193b9dc515b94f81a390d4be6edad4c312d1932f3fc2e"
+      "bytes": 8606,
+      "sha256": "59784081c7856ee9560338401e655a733537c233388af409d7483ef7a17ea1c8"
     },
     {
       "path": "tavern/entry/startup.py",
-      "bytes": 35856,
-      "sha256": "64a110413fb89a74183eada53d5bcb17c1f5ed9173b481ddd1970441ed876aa5"
+      "bytes": 35966,
+      "sha256": "443f0acf8b05120bd7daa4a43d9f32a7e36a024fa0eee40c4cc05d906d21dc66"
     },
     {
       "path": "tavern/entry/webhooks.py",
-      "bytes": 37827,
-      "sha256": "f8a8f81d3bd73935c81c2564163051ce622c29ddd3bae14aa8ec761e3ab26fcc"
+      "bytes": 37923,
+      "sha256": "53d5243f1c3ce25a170444947c5e290f996980da99e53adb60f05918e4663039"
     },
     {
       "path": "tavern/errors.py",
-      "bytes": 4825,
-      "sha256": "d210e689634cdacda95ce45d8aa6ecdf20b9eb8e9861f00ef36250202a13396b"
+      "bytes": 4963,
+      "sha256": "6ea2d45ff76c6eeabc21182425c3ad0822a0f0c897200c933f00cb2b76d59dbe"
     },
     {
       "path": "tavern/event_pipeline.py",
-      "bytes": 9273,
-      "sha256": "4c28fc89fb14e169682e5f7f6723fe950c7d7f40cf3e9a564cc3956ecec0fae8"
+      "bytes": 9491,
+      "sha256": "a1c96611fe47260b1bd0224167e2aa76d4ecfc9565831562081146d4caabfae6"
     },
     {
       "path": "tavern/events.py",
-      "bytes": 4742,
-      "sha256": "ca58e381f4cefb43281d0ec3315d9f8ca5285cdde65922f03c6f5ac0cfc2d9b6"
+      "bytes": 4869,
+      "sha256": "de461a5437436a63866e66080e2a53c23df1fee0bc3fac3652eda0aac25963eb"
     },
     {
       "path": "tavern/field_accounting.py",
-      "bytes": 5364,
-      "sha256": "9bd31730597f968e712a0b4ae23b33d82a42ed18d0b2b4689c25a81ee7080d65"
+      "bytes": 5520,
+      "sha256": "984d012c8f5ea7529f56bddcf913e3f87ef04846d613c2032ce28392e1826a2b"
     },
     {
       "path": "tavern/gameplay_runtime.py",
-      "bytes": 19485,
-      "sha256": "0a7f810f2bcd8c8642b2d9f3e166603a5f41c0bb18a58175b85d11d9c8d6a38a"
+      "bytes": 19938,
+      "sha256": "5bcf7e06d8b45b1752d18092829a49ef662a3680c1afa1ee8b3b8162a9734b52"
     },
     {
       "path": "tavern/generation_reminders.py",
-      "bytes": 24098,
-      "sha256": "5b4cc1eaef21a620e52709ddb320bd80190f9c8c6d519211da7895d37bcd4a5d"
+      "bytes": 24812,
+      "sha256": "aa511a5d461c7ef293f0a76da1f4305dfe460324c42ae9259c8733f7c0a70265"
     },
     {
       "path": "tavern/github_worlds.py",
-      "bytes": 6082,
-      "sha256": "86ac2da8d84af2507a87d177feca8d72afed9cf07638e10e4aca12ee681d9f63"
+      "bytes": 6267,
+      "sha256": "c2619ecf4d4143a4ff5e843c5022984b83f1f7a07489705942dae9804f334b74"
     },
     {
       "path": "tavern/health_policy.py",
-      "bytes": 4017,
-      "sha256": "60d82f5f3197c94741b83ed1a4ed8b874ad4f147bd7d224a332365fbe550cb29"
+      "bytes": 4148,
+      "sha256": "357e6e9b78302a89658874aafa351b494d6aa5f8cfa27f759133155426b3ba31"
     },
     {
       "path": "tavern/help_topics.py",
-      "bytes": 3310,
-      "sha256": "7006190e2b21195f26eff9d3fc190e4d60c233782a421d00b984f0e58331f4c1"
+      "bytes": 3647,
+      "sha256": "18a4fbbf706d1b78c500a046f6f56992771fdf82bdc8c49f32ecb6f6fb98dd8a"
     },
     {
       "path": "tavern/host_lifecycle.py",
-      "bytes": 6723,
-      "sha256": "12f2894f01b2aa3ccc32fee835164aa2c601476ea1eef738b2272c8043a4a329"
+      "bytes": 6896,
+      "sha256": "804cf2dccc268dd560fd3b2e9b9822094b2357f63d72b291d132302d720205ae"
     },
     {
       "path": "tavern/idempotency.py",
-      "bytes": 1823,
-      "sha256": "66b619f21c46ed677b248738df3f7526a27e85d744ab873211e0ffa0c3215d91"
+      "bytes": 1882,
+      "sha256": "2e92bd57727120e67abaaf2d545112325860c8a00cc3e1b6b88c82501f766211"
     },
     {
       "path": "tavern/interaction_prompt.py",
-      "bytes": 3946,
-      "sha256": "ac5fd15f3d248df4568d8a2345ca2f1c42702d23e7183e25c19e4c650372d75a"
+      "bytes": 4058,
+      "sha256": "fa3e22ad2cbebf962f0fe71797b515fbbe61aec1d0ef4f8d6f66a7afef2eeca9"
     },
     {
       "path": "tavern/item_catalog.py",
@@ -1345,28 +1355,28 @@
     },
     {
       "path": "tavern/legacy_reset.py",
-      "bytes": 8324,
-      "sha256": "e581c1ca58a6de9dd6515b9e5c2b33fb5125de8847a4d4e959b1a9e9b5bbec6c"
+      "bytes": 8539,
+      "sha256": "8e17ad2ec8dcf06c0c3cadf39d169f8d2eeed72a1f3b91ad81c484c9b4528c21"
     },
     {
       "path": "tavern/lifecycle/__init__.py",
-      "bytes": 2278,
-      "sha256": "5febf6f52d0ac967de68f52632d93e5322d913e85559b1f6c3d951986d1e208e"
+      "bytes": 2286,
+      "sha256": "ab466735900cc0da81b59cddc993c64f075b8f2d3c93707345eff006a9733905"
     },
     {
       "path": "tavern/lifecycle/character_creation.py",
-      "bytes": 36875,
-      "sha256": "8809fabb3d54b82e565f8e6ae88e258de76c537d98a5148393392f08ab8df3dc"
+      "bytes": 36894,
+      "sha256": "541c4b818023579d354eafaaee7d8dc6c9c5969346d224002676caed91f8f70c"
     },
     {
       "path": "tavern/lifecycle/risk_resolution.py",
-      "bytes": 12101,
-      "sha256": "c74cf25e429c466785d1c361cc5b962161e1ad1c3effad8cafa78300ebc58169"
+      "bytes": 12112,
+      "sha256": "fe47731a0af71094cf62198fee4705eb4ac82794c4d63572f20a4f95cb13a8d0"
     },
     {
       "path": "tavern/lifecycle/state_transitions.py",
-      "bytes": 5272,
-      "sha256": "9c8fc9027d3da0abb0925c578e7a98b4cfae91de3177ce150cd8f0446298aebc"
+      "bytes": 5274,
+      "sha256": "7afadaad5b8ed4b41ad43ccaaec0403d1b5980cb4e8e82f9c3ca6c6461aa85e3"
     },
     {
       "path": "tavern/lifecycle/validation.py",
@@ -1375,8 +1385,8 @@
     },
     {
       "path": "tavern/lifecycle/world_time.py",
-      "bytes": 22542,
-      "sha256": "73930d72157ba707d8fe2a82209feb6c110d8504e0d6267812eb17beaf2c12ec"
+      "bytes": 22581,
+      "sha256": "0703493e1eaacff8c1eefd5bb90715cd10189ee28d60435c2662b9c74f69b3b1"
     },
     {
       "path": "tavern/market_projection.py",
@@ -1385,33 +1395,33 @@
     },
     {
       "path": "tavern/messaging/__init__.py",
-      "bytes": 1766,
-      "sha256": "108fc578cf90b34cadb448a4dd0a64722e94159e9ee85b88b9fb140dbcb6e32f"
+      "bytes": 1837,
+      "sha256": "e015499856030a1a301ec7c2526c0a4258269c9ca6ee1e56d5376789ea64be85"
     },
     {
       "path": "tavern/messaging/catalog_gameplay.py",
-      "bytes": 15805,
-      "sha256": "982d7fc49fb60b494773738a0b2582bdb638cfcb0d4ed19ca09c6f475f7dd08b"
+      "bytes": 15806,
+      "sha256": "76cae7d5db505f9826613020f869a2791682d051f8c3d12b283094a755da813b"
     },
     {
       "path": "tavern/messaging/catalog_system.py",
-      "bytes": 14532,
-      "sha256": "1f810f9b548e630b3a868efa8063f14d2d5ca6b5371ea27990376821a3c227c4"
+      "bytes": 14533,
+      "sha256": "ed6703046cbc81e73d1a34a7acbba18aba1085620e7513b2a9c74a2518af5476"
     },
     {
       "path": "tavern/messaging/delivery_parts.py",
-      "bytes": 2411,
-      "sha256": "97137f747566d05809ab6c1b47219981661f67c76011e5d6cfca84cad521a6ea"
+      "bytes": 2478,
+      "sha256": "533641f2e5af24ca288874df9986d6aec75b0a4b1f58f7f74325bb7cf842443d"
     },
     {
       "path": "tavern/messaging/player.py",
-      "bytes": 17499,
-      "sha256": "51acae0f74e4d04295201cb298ce3f361354d6148b69db434ef580ffa343889c"
+      "bytes": 17996,
+      "sha256": "1b91ea85b590301d19cc75259c4baeaa20c643b9198c192096b7694c3580d1aa"
     },
     {
       "path": "tavern/messaging/projection.py",
-      "bytes": 8717,
-      "sha256": "b9f43af140a40f311599af3cdc287fbadc59cc974e15f1746a16c94054d74f71"
+      "bytes": 8978,
+      "sha256": "cf1413c72915a5f437d331b737ed20fd0edeacd2054af9b1ac060cab75e7daf7"
     },
     {
       "path": "tavern/messaging/registry.py",
@@ -1420,18 +1430,18 @@
     },
     {
       "path": "tavern/messaging/render.py",
-      "bytes": 2286,
-      "sha256": "e7dc0ca3e08a2395e27d0e9f18a7c9f05d5ca8b808b030050f88f2c7c19c78ef"
+      "bytes": 2360,
+      "sha256": "16652f66cf854f850b68eafffb356132c58eee0585c653c4b4fbbd1c931a7c87"
     },
     {
       "path": "tavern/messaging/turn_bundle.py",
-      "bytes": 9743,
-      "sha256": "52ecc3cbea14012f7fe1a59c99b7c24408c74950637edf8c81ef1b902568c018"
+      "bytes": 10031,
+      "sha256": "64c314b5d1748753de1ea56f0bdb296fe7d6cfd1ab2fad41e88a942f463af88c"
     },
     {
       "path": "tavern/miniprogram/__init__.py",
-      "bytes": 318,
-      "sha256": "a77098542d4753900fccb68c7f20a2757e1aae1397f6e71738f6bdf29f815289"
+      "bytes": 330,
+      "sha256": "6a2d059d17a6473b4e4db6f4a3f1095d8c4e3c87ff3e287808a003abb427f8b4"
     },
     {
       "path": "tavern/miniprogram/auth.py",
@@ -1445,28 +1455,28 @@
     },
     {
       "path": "tavern/miniprogram/provider_stub.py",
-      "bytes": 1129,
-      "sha256": "e1837deea18cef345d2d4c016bbed13b2c7880ef3c26d3cecf8df80ef16d1358"
+      "bytes": 1161,
+      "sha256": "966be66b332cc389bfb3af85d605c45a8c4a9c2060e1a41cae503b02fd19d06e"
     },
     {
       "path": "tavern/modules/__init__.py",
-      "bytes": 282,
-      "sha256": "2483564a085473ca077f90bdf7f86db79944e233d3fe196e132628e1e5baebc9"
+      "bytes": 293,
+      "sha256": "66a1279bcb687559d45bdc0d17a990dfcedbf4b6e3e1bf55a3d1d591a18f419d"
     },
     {
       "path": "tavern/modules/catalog.py",
-      "bytes": 5867,
-      "sha256": "2173e513077b468bdec4bd2938479f040a4437f0bbc9db36050c314416025900"
+      "bytes": 5950,
+      "sha256": "6fd13a919682cd480b876f616d8ef75a5a0f1e19fa255d0618e49b9e7651a15d"
     },
     {
       "path": "tavern/modules/manager.py",
-      "bytes": 8015,
-      "sha256": "78ba0968cba06a6678cd895a7e084a0ec88dd53feff92c094de0076f81f60a11"
+      "bytes": 8234,
+      "sha256": "b86143dd8a88c42a9d6597238b21a302efdded3b0a2a2f6fbadf65b1e6cef294"
     },
     {
       "path": "tavern/narrative_modes.py",
-      "bytes": 5694,
-      "sha256": "ac97197960fe007cd066b3b49ec16f9539d186b980de848f405ae74df7b124dd"
+      "bytes": 5862,
+      "sha256": "ccaadf88c6265f62567189c46713d8164ff64b136f87fcb05cf8c3a381c9a825"
     },
     {
       "path": "tavern/narrative_styles.py",
@@ -1475,8 +1485,8 @@
     },
     {
       "path": "tavern/opening_contract.py",
-      "bytes": 9911,
-      "sha256": "c8563695219d036916a9048c05758755ec297fa465b6f3a3c4a8d8341d85d504"
+      "bytes": 10191,
+      "sha256": "7ab71b769be7b9278514070f3fa85e357b87b57d4d1df3c6c97915925986c242"
     },
     {
       "path": "tavern/operation_engine.py",
@@ -1485,13 +1495,13 @@
     },
     {
       "path": "tavern/operation_state.py",
-      "bytes": 3265,
-      "sha256": "f5eba5c7baa88756a4326940c94568f585e943af6d75ff28b1b8e620c6a1f028"
+      "bytes": 3392,
+      "sha256": "c91b271a7ec8295cfc8ec0441681df03297e6e8616c199262aae0b6dba17b203"
     },
     {
       "path": "tavern/operations.py",
-      "bytes": 2743,
-      "sha256": "13b7a0055718c828da5685b7b548504b66c7946ad10e8bfb16e20301acb4a482"
+      "bytes": 2834,
+      "sha256": "4779ddb44fca22591873a7e1295cf9eeb0136aed3458c85ea14d99fd6210285b"
     },
     {
       "path": "tavern/performance.py",
@@ -1505,48 +1515,48 @@
     },
     {
       "path": "tavern/platform_delivery.py",
-      "bytes": 5526,
-      "sha256": "518996aa57a336d0005fda19240f6c571afadf1c3eec19d89a7178822d8903e1"
+      "bytes": 5685,
+      "sha256": "4de1bbf6441ae83711408171ced5744e04ba4adef96c0b0d1b4aa38d1004b285"
     },
     {
       "path": "tavern/presentation/__init__.py",
-      "bytes": 710,
-      "sha256": "3128e3cbd51c62c4adbcb6455e0099224e1f80ce335fe8a32c55d297eadf018b"
+      "bytes": 711,
+      "sha256": "4f8582f25073f7969b106194a06e586d1047d93b7ac2a31d2710e7f1fa55cc2a"
     },
     {
       "path": "tavern/presentation/characters.py",
-      "bytes": 18897,
-      "sha256": "59ef0477bc5192a616344f933b7eca8eb23dc41d2444ef011abcfca55178b7f0"
+      "bytes": 18899,
+      "sha256": "079c5eb90d7a2acb91cc4b6b5d8cb996584ceab7da38e113f24a1ff9a70255d6"
     },
     {
       "path": "tavern/presentation/common.py",
-      "bytes": 2521,
-      "sha256": "1836e5678be4fee93ddc6861ed50df0945cb7b4bf318ed2ad7f84e35b14efb6d"
+      "bytes": 2523,
+      "sha256": "99ce0d232a31ff5503c6b1a9d170edbc6ef935662df41ce8c15a4b6be83febb0"
     },
     {
       "path": "tavern/presentation/errors.py",
-      "bytes": 1389,
-      "sha256": "1721ef1f0c4e003f287eee19245ea1bfcf5f444b1285d948c50dcd16753430cf"
+      "bytes": 1391,
+      "sha256": "dcaf1e04aaeb0d092b78dfadc7327eb5d19b5506bab783eb9267989752ce2f16"
     },
     {
       "path": "tavern/presentation/reviews.py",
-      "bytes": 11429,
-      "sha256": "bfa3da8ae09e8d53bd6583d778c42bf6c010582eca84f254dad3f203e8f6f84a"
+      "bytes": 11431,
+      "sha256": "f9d4a2f9a9d82e894e9f65eb2a56660861ebb0876fc5d1304b8d29e8fd6ae414"
     },
     {
       "path": "tavern/presentation/sessions.py",
-      "bytes": 11759,
-      "sha256": "8145ad1aaaf939310d9d7ec36602f63cf53a7017f7a666603bddcff90ceff276"
+      "bytes": 11761,
+      "sha256": "f9059feb4ab4c1f2df28e098a157dfc75876c2d866e8f0cd988e66dcf9a07738"
     },
     {
       "path": "tavern/presentation/story.py",
-      "bytes": 11426,
-      "sha256": "63d55880c7f53435c5254c0466826c5311d29e484052ec72a94d8fb3a6b5d518"
+      "bytes": 11428,
+      "sha256": "26d2d460aa2fbb409116de25a0f13b72b96b32d9906bef460c84bdd35d0aacc0"
     },
     {
       "path": "tavern/presentation/turns.py",
-      "bytes": 2224,
-      "sha256": "ca0e0ac26079ccf4af1c5d105c8600c7b8f5b9a4cab21a8cb7fb9ba3db396dee"
+      "bytes": 2290,
+      "sha256": "15967e1c6574c99de4f46a757fdf7a6baa2e672a6aea56cc5b0847c01c28222b"
     },
     {
       "path": "tavern/presets.py",
@@ -1565,8 +1575,8 @@
     },
     {
       "path": "tavern/projections/common.py",
-      "bytes": 1603,
-      "sha256": "04e9bcd53f2be268211a4df967f684c40b7f7a1ab0e9da6e005bbddbaca6fe59"
+      "bytes": 1605,
+      "sha256": "f935524a5310dd9a51e2f454abacca76bf9918255654d8caae2235a7bf314d9f"
     },
     {
       "path": "tavern/projections/dashboard.py",
@@ -1585,13 +1595,13 @@
     },
     {
       "path": "tavern/projections/session_dashboard.py",
-      "bytes": 17349,
-      "sha256": "49e320e9ff5a615287905788016a88addecd5a1f44fb8f7b6eae798afc92cca3"
+      "bytes": 17353,
+      "sha256": "094ee6af42c7fd40391a3a9d25c90b0e9b758f5f772c328988028d8660ea4418"
     },
     {
       "path": "tavern/projections/session_details.py",
-      "bytes": 1824,
-      "sha256": "547a895eb2124044fdfdab0dcce42ad1561cf24a7e219344807c228f4b37a3a2"
+      "bytes": 1826,
+      "sha256": "762ceaeadbd2bfd020d6a570fa2de2013fe402a1f5e80d980255bb3d6475d947"
     },
     {
       "path": "tavern/projections/session_timeline.py",
@@ -1605,63 +1615,63 @@
     },
     {
       "path": "tavern/prompts/__init__.py",
-      "bytes": 599,
-      "sha256": "6f84923586ef0dd89073c8e1c4074387fa59b8249d1b2e3f1f0f52be78f135ba"
+      "bytes": 601,
+      "sha256": "1fa6985f9b4ab664bb52c49b192b4647e18efdfabbb52a8fb2f00b174963c097"
     },
     {
       "path": "tavern/prompts/choices.py",
-      "bytes": 5280,
-      "sha256": "8a1d8ff0d975f6b054496d2f6312eec6bf869a6db7a8fa845bde550208f9608d"
+      "bytes": 5282,
+      "sha256": "7e956581c6fd40d9f6954079b42c70a555f2ed4a933aeed7536d1af61a425fe9"
     },
     {
       "path": "tavern/prompts/common.py",
-      "bytes": 12217,
-      "sha256": "872de62cab36b1dcdff96ae4c4a66f2659d8a45fd7a538662802f922d7cc232c"
+      "bytes": 12229,
+      "sha256": "7e732dd3eca84ad050fd50127e64388fdf44beb980674d0c641f3fe4112c0020"
     },
     {
       "path": "tavern/prompts/context.py",
-      "bytes": 6999,
-      "sha256": "eee6190e4d386e5061f54ff78c09bf9a7b2136a4054680f73c1ad7892b10cd48"
+      "bytes": 7001,
+      "sha256": "24b55b2504066dbe7f387ade358d04f4805d414f9d15acf44cea8e80004e7db7"
     },
     {
       "path": "tavern/prompts/planning.py",
-      "bytes": 6055,
-      "sha256": "892cd3c1ecdd0918f59d12147b37d05997d4568c6ea4351d3f27b122a9047167"
+      "bytes": 6058,
+      "sha256": "d4bc9abcc9c17f7b6257fc12b2be2dcef25d1607fb750f25158751cf61e3feb1"
     },
     {
       "path": "tavern/prompts/repair.py",
-      "bytes": 2738,
-      "sha256": "c17d5722c2fa5763e7e5c209867871a7bd5fa9a4a253af1d653debc5f1908361"
+      "bytes": 2807,
+      "sha256": "a8968d9e99a0862ae1651e226510fce586358b8ba6fa13155c5f35510b98fe79"
     },
     {
       "path": "tavern/prompts/resolution.py",
-      "bytes": 9831,
-      "sha256": "11873a7f1153aafa934e6691b04607681aeb174606b41eed8bfb5a1bfa33bca2"
+      "bytes": 9841,
+      "sha256": "2ea4b71a5f0564c87d03e3e9501168ce05317877f3fc0e0ea37ba2e14fcbf084"
     },
     {
       "path": "tavern/prompts/system.py",
-      "bytes": 6328,
-      "sha256": "34a0b60db8802c338a45f603dde16b3d0b01db3a276324919a0e129604dbe0de"
+      "bytes": 6330,
+      "sha256": "9581d39b307e968146a1954f9dc2e8a0453be6043901de1d879a67c546e495c7"
     },
     {
       "path": "tavern/protocol/__init__.py",
-      "bytes": 1645,
-      "sha256": "77ce684752d4c6d43782aade55459cfad04cdbad5170fdf480e4480d12a201d6"
+      "bytes": 1701,
+      "sha256": "e3f479a1ad12877e45966f675e745a59a41cb9cc3e61e0b8809292950ef89bb3"
     },
     {
       "path": "tavern/protocol/archive_reader.py",
-      "bytes": 9269,
-      "sha256": "32b32ac9badc9afe997861a36220372b55462604ccd44a035f28f89c532f9d6a"
+      "bytes": 9271,
+      "sha256": "21a6e5ee60de0b6136a9f6977f41874972d36bb0dc36c55548ae7e3949ae7553"
     },
     {
       "path": "tavern/protocol/commands.py",
-      "bytes": 11083,
-      "sha256": "ca76bc74d5e8ba019f5ee02fef6ba3744408cdd79a4ebc22f2bef42613bd6e9b"
+      "bytes": 11399,
+      "sha256": "27384702b48911770a4b0da45ea66d1ddf85f7eb574ea37d2efe760cb8510d93"
     },
     {
       "path": "tavern/protocol/common.py",
-      "bytes": 3136,
-      "sha256": "e600b03f58fec515b979662fd3d4fed518ad30b92c7ed1a648a1550ef2b09c87"
+      "bytes": 3140,
+      "sha256": "18ca96fad64fd490fada2485e2fbaf517f170a428520c85ad25abce0f3b92820"
     },
     {
       "path": "tavern/protocol/constants.py",
@@ -1670,113 +1680,113 @@
     },
     {
       "path": "tavern/protocol/dependencies.py",
-      "bytes": 13303,
-      "sha256": "790d48ddff2ec1103695177818372cc771e1fe18165912dad1e18b529c0e52be"
+      "bytes": 13335,
+      "sha256": "1b345a308e3a036543bfcd6d20f525e7339383f05816dcf53cc476dd8ffd38be"
     },
     {
       "path": "tavern/protocol/errors.py",
-      "bytes": 721,
-      "sha256": "b73021fdb416a453694c381fdb795e905aa4ffacbcb25f7e5cd285d502ff78a3"
+      "bytes": 751,
+      "sha256": "94739d9b38ceeccc38d3c304225a68e3c29c81b8ea86a245628c470c0f90b31f"
     },
     {
       "path": "tavern/protocol/extensions.py",
-      "bytes": 46078,
-      "sha256": "5dfafbff9dad96836fd3194165f6e6cff6b2ae9ff7d25dcd7f3dda3321474a2d"
+      "bytes": 46218,
+      "sha256": "c8b7832d5ef727d93a9a92b7eb29ced11895d9088baba175947cbb5a89e2d58e"
     },
     {
       "path": "tavern/protocol/legacy_worlds.py",
-      "bytes": 17880,
-      "sha256": "aa80dfa1f6518118efdb91c380d78584815489b53de97b0f468222f766111467"
+      "bytes": 18348,
+      "sha256": "932f02d5413299d40be6800687b60d3afd9d1dd15ede00b064131b20d0507a8b"
     },
     {
       "path": "tavern/protocol/localization.py",
-      "bytes": 19885,
-      "sha256": "ceca591c6f379955c402b5cce201d2edb84cb7b5e3de622d2e9d288fc71dfb22"
+      "bytes": 20436,
+      "sha256": "d433f9d73523be8b6df5a2403d9687524f6ed0fb843745706679bf778c494c6d"
     },
     {
       "path": "tavern/protocol/manifest.py",
-      "bytes": 14411,
-      "sha256": "7091f37566c526b1c5e81dfb3325bf45d7e99309f4a677c234ab047d0a890723"
+      "bytes": 14782,
+      "sha256": "04c6457d32eb9d809efc323f378a834ffb2d726c7f99a24681ad9bed910f3a57"
     },
     {
       "path": "tavern/protocol/models.py",
-      "bytes": 5378,
-      "sha256": "ab5a8ca1a13ddf598206a670bed8596ceca28ec8f018d7208982ad5e7b64e761"
+      "bytes": 5576,
+      "sha256": "8887e47fc42e6777d3a8cea484a06d550c17ec7e0d0f3e452d78d98fa0f71978"
     },
     {
       "path": "tavern/protocol/projections.py",
-      "bytes": 4256,
-      "sha256": "63a41236545c1a52c5b2e716d5e215668f292cdf6b9c4d56098a6a5065104a17"
+      "bytes": 4396,
+      "sha256": "e2a11a3e2e579eea8c92e745527ceb5f8012119870cc154ed3f9e16684398e4a"
     },
     {
       "path": "tavern/protocol/references.py",
-      "bytes": 49500,
-      "sha256": "22dfea3075abf3b41530e9972815f1b43398b5e11c9233a0d43ffd71fa00ba2b"
+      "bytes": 49644,
+      "sha256": "490a7f8d34c866d009a910377181130801bf855aa59ba60af730f07d71a0f404"
     },
     {
       "path": "tavern/protocol/runtime.py",
-      "bytes": 7208,
-      "sha256": "4cb5ccb3694d4d30f65c5f84d3d1b19c3d737bf105013059a6f295bf1d08e901"
+      "bytes": 7417,
+      "sha256": "1033c471ece6d8e0b86ef6b35ab41708d6cbc3ffffaa5749b73a47101d754ce4"
     },
     {
       "path": "tavern/protocol/service.py",
-      "bytes": 40033,
-      "sha256": "c3c1bc7ef586d533c95fa28095ce52377abaf2cf117eed4cc5c55a9fabee5c1d"
+      "bytes": 40091,
+      "sha256": "525ad37698733f1a31830cce573326aaef79a607b3f6f13996cbd7ebb71ace39"
     },
     {
       "path": "tavern/provider_health_service.py",
-      "bytes": 12858,
-      "sha256": "493538d3a69a75520c0a9f298666a3f5a269a572b3d4d549aa72ade638be752a"
+      "bytes": 13199,
+      "sha256": "a53ee3e4ac8082bc6bf6730cdc3c84f2dade6c75637a4ec931b59d279bbd58e0"
     },
     {
       "path": "tavern/recaps.py",
-      "bytes": 4323,
-      "sha256": "35c8bf5c01325191fcd7d5a1cc2a152c4e9dc518b50e75930d01e2d092373922"
+      "bytes": 4441,
+      "sha256": "377aea59542d7ebabac116738d810574571a6ef2e77a2b6c6accf597899e95de"
     },
     {
       "path": "tavern/recovery_ranges.py",
-      "bytes": 2236,
-      "sha256": "985baddb42dba6d1a5f9698695e43da52f4d70936447afc954967655b914de8a"
+      "bytes": 2316,
+      "sha256": "a2d6a86d6d331b617424c40dc82654b6694be8515ff4047cc1167409eafb5958"
     },
     {
       "path": "tavern/remote_panel/__init__.py",
-      "bytes": 24853,
-      "sha256": "f0357821de6d7a9b3dd3fc7c59cf0f6c5453add65555412d035cab7761da8a9e"
+      "bytes": 25120,
+      "sha256": "fe9322679fe35c0ddf2c8c06dee42b4a21717402d40c33b49550e90e864f0b68"
     },
     {
       "path": "tavern/remote_panel/api.py",
-      "bytes": 19340,
-      "sha256": "4c56a664b50858bd4ef280a13f6ffc529a5c8b16e024fa3f66d9e9d484a704d3"
+      "bytes": 19349,
+      "sha256": "70326ebf0d68e72e10c1a292b3ebd992261b7d809191683e94d743452ea0529b"
     },
     {
       "path": "tavern/remote_panel/assets.py",
-      "bytes": 25699,
-      "sha256": "87105444e8ccbece27ab2b6f5462d7ee765e726c6ef0d41a97889c5a723b7208"
+      "bytes": 26036,
+      "sha256": "3114214f81caa47089a940dafa600c10726d59a661eec030cf1e42faabe83851"
     },
     {
       "path": "tavern/remote_panel/auth.py",
-      "bytes": 24554,
-      "sha256": "bed7b0d887bc3c6bfee4d632c82cf416b35052ec966cec4f575081da24d1e3d3"
+      "bytes": 24627,
+      "sha256": "c3fd4cc2901b03a7ae0515ae21a1556e624f0aa6852527fd777c9a38dd79bddc"
     },
     {
       "path": "tavern/remote_panel/http.py",
-      "bytes": 28376,
-      "sha256": "4760043929a64c522553068697c926b5ddb3474d82e1eab41888c41ff87dc3f5"
+      "bytes": 28511,
+      "sha256": "b347a18d04c31e241d38811728624bfb90362c1e8ea76e8f2264523cf609f0db"
     },
     {
       "path": "tavern/repositories/__init__.py",
-      "bytes": 12916,
-      "sha256": "b0414dd3de480003fe1f2e9c337227f383b44d8a227619e9acb4abe8b36457ba"
+      "bytes": 13318,
+      "sha256": "23a576c7385b7d90bc4a9db6390bed02bb4fd1e9cb2e4b68d0192bb1caf75689"
     },
     {
       "path": "tavern/repositories/_split_manifest.json",
-      "bytes": 8342,
-      "sha256": "ee7c04c6f4965ca33ed15ffab7cbd70a31e86c1226a5fcaf4774861523019d7d"
+      "bytes": 8682,
+      "sha256": "626ee91f8a233fad56585783b3911b1f88e8ea4b0a6295d4952a12ee7e5457e2"
     },
     {
       "path": "tavern/repositories/admin_overview.py",
-      "bytes": 8598,
-      "sha256": "967a13568081eef7aba4dc5595c4d199165ae7e3f29ac953db12dc20d7aebf32"
+      "bytes": 8822,
+      "sha256": "be2e3f93fc626de2c630a8692a4983016d8e2814b39da6ca24e934945bd23fe0"
     },
     {
       "path": "tavern/repositories/ai_companions.py",
@@ -1790,23 +1800,23 @@
     },
     {
       "path": "tavern/repositories/ai_turns.py",
-      "bytes": 33019,
-      "sha256": "47480293ae07f2b217d372fdbf6e76f554e1e8e620abe4532dc85a897b438f07"
+      "bytes": 33956,
+      "sha256": "81ad85237f99baa52126ea7fe46732f8a9de5dcafe0ca45970f04bf5cce88cee"
     },
     {
       "path": "tavern/repositories/ai_turns_queries.py",
-      "bytes": 10136,
-      "sha256": "45cc567f6209f73a01d786d8488829e9480a832da2508ebf804779dbc046a4a2"
+      "bytes": 10395,
+      "sha256": "4a1d2883afe6ed60d74f759ac3859978e8110fca002e07361cda702beb0a182e"
     },
     {
       "path": "tavern/repositories/atomic_purchase.py",
-      "bytes": 18583,
-      "sha256": "5829036e0fd0348bed58b1b172e7fd694296551ac65a2711d6fa7f8a03e03c5c"
+      "bytes": 19044,
+      "sha256": "7611db4c5ee161bdc844a441d1f821a133d8881f0a89bb2ec449269af3ea9863"
     },
     {
       "path": "tavern/repositories/audit.py",
-      "bytes": 3166,
-      "sha256": "b234b6885ec0526f4390fd2061037eebb106b6a54a04edddadde1bc7c940eab3"
+      "bytes": 3284,
+      "sha256": "0643f23ea09fdfc395f97273dd552f5b4457fc76ac413a74b30903ba5b9eb1a9"
     },
     {
       "path": "tavern/repositories/author_job_receipts.py",
@@ -1825,63 +1835,68 @@
     },
     {
       "path": "tavern/repositories/backup_actor_fate.py",
-      "bytes": 11264,
-      "sha256": "86f26812ec98b521efc501e6f9cabfe4e88490fe9ab74d14545e9f933510079a"
+      "bytes": 11555,
+      "sha256": "ed7b22d4a9b7ecdf91ee98732bd00a8c13107940b880251716f16824e368535e"
     },
     {
       "path": "tavern/repositories/backup_import.py",
-      "bytes": 52932,
-      "sha256": "45316fbe8b483ac2125da08a92b13b0966816125bd84d8d06bef45d97e11ae91"
+      "bytes": 53892,
+      "sha256": "4e3fc9e7fe033d30fbc52ca039384ce3635ae9be1682a6b64ba56be6c11b7d0a"
     },
     {
       "path": "tavern/repositories/character_assets.py",
-      "bytes": 8657,
-      "sha256": "8a38d726409524345bad3fd126d04db998bc6e3edcbe1b8c93ead95d44eb60b8"
+      "bytes": 8872,
+      "sha256": "ef64dee9151ec3c96639fea8a9a8b1b54d546cd41e7a5e15bf972b5d126ee407"
     },
     {
       "path": "tavern/repositories/character_cards.py",
-      "bytes": 23657,
-      "sha256": "7666c9fe069644ef72bc6bd89c17599114580af70b710e4979d464b46f83fcc4"
+      "bytes": 24264,
+      "sha256": "17931a5f890f3c03d2e2b58ed434318c1c0761188370e8f68a873ac22422079c"
     },
     {
       "path": "tavern/repositories/character_cards_mutations.py",
-      "bytes": 41632,
-      "sha256": "fd86207b46a3ad9996fd6cfb5dda025b9e822aac4ee92c865256d6834f05e1b9"
+      "bytes": 42551,
+      "sha256": "0a7911233b60af1e0c4f4cc6e6a4345c0ce0d51a914df90f3b2f122d40958634"
     },
     {
       "path": "tavern/repositories/character_cards_queries.py",
-      "bytes": 45037,
-      "sha256": "b896aa50a4aaf93bcd36bcb253e939303409d657cd2ec5c5520af765bac63df8"
+      "bytes": 45976,
+      "sha256": "8a31d8ace6d825e292d145c2676be0c11558470f0edec2018f37216aeaab7bcd"
     },
     {
       "path": "tavern/repositories/character_cards_transactions.py",
-      "bytes": 6484,
-      "sha256": "c0df36f8209c7587deda0fa74ff8481137792fdf36c96a0d69ca43604648ca82"
+      "bytes": 6639,
+      "sha256": "a7b4fad713d0054d6cf5dcc22bf91ee7e6c60d138db53f7e9eb22acb227e3747"
     },
     {
       "path": "tavern/repositories/character_reviews.py",
-      "bytes": 37387,
-      "sha256": "e315b8ad7ccefc1c844760f2a8b71690f1a11422e8f7eccd0a8e5232591ab8ba"
+      "bytes": 38282,
+      "sha256": "2994a83a62013f1ab16e5c9adac43c1c651d83db6eeaa55e2a71a917d1269a4b"
     },
     {
       "path": "tavern/repositories/character_runtime.py",
-      "bytes": 36596,
-      "sha256": "e1e5afeb4f98474ff94788823cbdc59018654a722e5075315197eca250c42f81"
+      "bytes": 37478,
+      "sha256": "3fe369dd7967975984e53f2b3e1e118335f1fdf8765c1892049219cd356043a7"
     },
     {
       "path": "tavern/repositories/character_runtime_queries.py",
-      "bytes": 13702,
-      "sha256": "1b17c4e7e164139dd5f642cc75dea9716d0bb4c2bf0526b5bf29505bc9215db6"
+      "bytes": 14045,
+      "sha256": "8550f239b7bc84fb9042b2b8f766888bc59c9c6bc9829c7b197bf5368dc78048"
+    },
+    {
+      "path": "tavern/repositories/character_web_state.py",
+      "bytes": 3660,
+      "sha256": "50ee013dbe47d757182ec754fb92dda9bfcf5fcf0e64844880b8bcde93da4e6e"
     },
     {
       "path": "tavern/repositories/characters_support.py",
-      "bytes": 7217,
-      "sha256": "8553c9bf48618266846573a3785b7f723be5ff4a339e6c7302ea879b8ef11b94"
+      "bytes": 7447,
+      "sha256": "7d153d764cb03118d27fdf579fe099b32a27ca9dc74f407d208c77b8e0b3aca9"
     },
     {
       "path": "tavern/repositories/choice_narratives.py",
-      "bytes": 7819,
-      "sha256": "fc6ad0a272a32223d94fef82b8dd321a095ee87e0b43d15e9af560e1e770615b"
+      "bytes": 8031,
+      "sha256": "4666d5930b85b72c106702208294edbe6422ab1f2ff8bbe17f5945bceb928800"
     },
     {
       "path": "tavern/repositories/choice_recovery.py",
@@ -1895,63 +1910,63 @@
     },
     {
       "path": "tavern/repositories/choices_queries.py",
-      "bytes": 6052,
-      "sha256": "51ebf5e2f7688d5c0aaf2a1f27987e1e0d2cd9d864675e4d2d95c105cb08dade"
+      "bytes": 6215,
+      "sha256": "b3795e76bd82a5f2bd2e7921bc576e22343c1ef771dd1d1a2b5873199ea29a11"
     },
     {
       "path": "tavern/repositories/conditions.py",
-      "bytes": 27052,
-      "sha256": "c5827283bd18aee9dab8d6e724b5d355f64c89afd9339d151d37a76ff7db1f0f"
+      "bytes": 27687,
+      "sha256": "68871c9b3e2d42a8875eaa8c36754852f5e260a1385d04cc15278d7105d2dd17"
     },
     {
       "path": "tavern/repositories/configuration_revision_security.py",
-      "bytes": 4970,
-      "sha256": "d1ebdeed72281aff191949331dbcc8c5d88e6643d808deade487ea06aee725bb"
+      "bytes": 5120,
+      "sha256": "4ab3c6019a98f31ad7d040d7c7596a6068c11606ec83fbb0f1f84a323e4e88b0"
     },
     {
       "path": "tavern/repositories/control.py",
-      "bytes": 39297,
-      "sha256": "5930e8a4f1f70695a3ec461662f08fe2ec4da4c4cebaa3dac55abafef6972fcc"
+      "bytes": 40222,
+      "sha256": "6d7ea2e13fde65ea24eb7c6c6ccd71628550029efc2daa1e40d49d5bd279e553"
     },
     {
       "path": "tavern/repositories/currency_exchange.py",
-      "bytes": 6017,
-      "sha256": "dc57ca56299fb53a3693cc950963370b620fcbdb96a9f21caaac445c944cd993"
+      "bytes": 6175,
+      "sha256": "7696b7006a3d6250eb501b6dbb738a9b68a772e240d1f4f67ecfdc846ab103ee"
     },
     {
       "path": "tavern/repositories/current_state.py",
-      "bytes": 12887,
-      "sha256": "04c8f31b6d5e81f961ad40cac04247bb3d0de91a5e4953e5a7510f7f50896266"
+      "bytes": 13185,
+      "sha256": "7b5f3ac545dc10281d76846487bae511e0a7055c3277afaac6be851c9b263320"
     },
     {
       "path": "tavern/repositories/delegations.py",
-      "bytes": 16660,
-      "sha256": "8ec93a391f699a50f05c847db4747c3bf0d3fc930045676e471950cc3c200b4f"
+      "bytes": 17094,
+      "sha256": "323e280ef8e4710ea9ab6095522ac47b0c894e3e871aba25f4896441d4083bd2"
     },
     {
       "path": "tavern/repositories/delivery_leases.py",
-      "bytes": 9557,
-      "sha256": "7e1bb393cd093752f4ea24f25beda791b7e24eb7e828ec8b694db21d31116b86"
+      "bytes": 9827,
+      "sha256": "e54ef3f2733240d729f3fdec5bacdf0172fb4aba741c1bb0400714f05cb58735"
     },
     {
       "path": "tavern/repositories/delivery_queue.py",
-      "bytes": 24380,
-      "sha256": "669ee4b99c26b50b0fef6c6e6bf6f8ffd87c9c4bd66c863cdb8bccd0d71c0001"
+      "bytes": 25012,
+      "sha256": "6bb332735f5386efe13cacb67cb360aa1afce6757847545a40b26b0edd9ab357"
     },
     {
       "path": "tavern/repositories/delivery_results.py",
-      "bytes": 20455,
-      "sha256": "3bc21876eb7117ad32a8f85a438cda3ce114ddd182c24af2c928b8577eb69987"
+      "bytes": 21060,
+      "sha256": "9bc88bff9999ca0d928ac83821b99cff54a990346dd8c039c80aa7d7215ef84f"
     },
     {
       "path": "tavern/repositories/delivery_support.py",
-      "bytes": 5187,
-      "sha256": "f0913e5d114f7cfd1bf3aa962d709bb8dfe8944487016d87df6478583d15b23f"
+      "bytes": 5319,
+      "sha256": "302f59d3b93e25fe5fee9e2dc8218cd16338e4f54b9562962caff69960fd8277"
     },
     {
       "path": "tavern/repositories/dm.py",
-      "bytes": 27799,
-      "sha256": "b6806c66d12f6cd538ecf37c7f1eac23bbd81e53612b96003d8af492719fe19c"
+      "bytes": 28052,
+      "sha256": "b192488cb9d4ba1d13a209fe02eb6f44c3b428d1e2c70a673a989fd9cc602d67"
     },
     {
       "path": "tavern/repositories/economy_bootstrap.py",
@@ -1960,58 +1975,58 @@
     },
     {
       "path": "tavern/repositories/economy_support.py",
-      "bytes": 2084,
-      "sha256": "6e6b5239323c37860456c49c330ab4b97f77f59637c94b474ba1b4c00488e89e"
+      "bytes": 2136,
+      "sha256": "891aa50371e68976dd101daf5cb8bd14582bc6e5c451561ef7dd8af5274cf289"
     },
     {
       "path": "tavern/repositories/economy_transactions.py",
-      "bytes": 11910,
-      "sha256": "46407665cf4116467bdb823a7b6158544d77d4d021238020bd980d1aafbe57c4"
+      "bytes": 12248,
+      "sha256": "a3fe466702226bdd4a54c4b2010107bd7c763f3cd25678ec7822c14652ab803f"
     },
     {
       "path": "tavern/repositories/events.py",
-      "bytes": 8475,
-      "sha256": "1c2fa244c4b34bbfa9157db943f81bdffe25faada082bcba6d2954ba3182cbe9"
+      "bytes": 8727,
+      "sha256": "95d5dc88022c9debeb5ad36ad929de3ee988be4ed69d958d26937ef28a869789"
     },
     {
       "path": "tavern/repositories/fate_consequence_commit.py",
-      "bytes": 20121,
-      "sha256": "390a4e97ddd6b7d388c76626a4d625e24eae24d869a2335f5146f0667d4f185e"
+      "bytes": 20599,
+      "sha256": "332495d551da43b565d80b0285ef9418892a21f07024a9a46b31baa8edca7db7"
     },
     {
       "path": "tavern/repositories/fate_state.py",
-      "bytes": 38861,
-      "sha256": "8e4d2ea6493d6c49e95093ce81dcb4bf59dfba0fbd4b5e418b2a565ffcf11d49"
+      "bytes": 39823,
+      "sha256": "ef046ba3fb65ba4889c2ba61ac66bc43cee450ae54afc071488180df4397aa0e"
     },
     {
       "path": "tavern/repositories/fate_support.py",
-      "bytes": 1991,
-      "sha256": "af4762c1581b7b9d5c180fcee7898de86ece8a711188d1b34e8188d938ec1ce5"
+      "bytes": 2062,
+      "sha256": "3167259dbc9b1043214be7576126acab4d22188aa2de61279a9c0eec7c49cf11"
     },
     {
       "path": "tavern/repositories/gameplay_runtime.py",
-      "bytes": 38738,
-      "sha256": "365b526d05df8407faa739eddfd96c8d2666c3525492c3625f55ab34554d001f"
+      "bytes": 39650,
+      "sha256": "bb0f45ca75b5a7e2e32e1c389b79286a9e7a22ab9ef512e4ecb9febc8bc7f4d0"
     },
     {
       "path": "tavern/repositories/generation_reminders.py",
-      "bytes": 30433,
-      "sha256": "d553a5b4a3378e27df7bd5a8fa052192045978932cbae342718399065de58cde"
+      "bytes": 31253,
+      "sha256": "3c65beaaf392519155332a6d07ca4005ee007e0e91ac8c6e140cbe76f81d5657"
     },
     {
       "path": "tavern/repositories/generation_runs.py",
-      "bytes": 7341,
-      "sha256": "9b639c675b49599555add1ffe33f59e0eaa7bb4ded4a7d4b1d4833a41148cb4e"
+      "bytes": 7548,
+      "sha256": "9bb47c5fa2e4751cef1c7814fa9dd4b8e444b192a9e3af3ec4235614265cc0a6"
     },
     {
       "path": "tavern/repositories/github_imports.py",
-      "bytes": 22343,
-      "sha256": "d0c061aee87f7ee9cc80dddec55e38b1cf4b685a19792f2d94914f96417fc7a9"
+      "bytes": 22907,
+      "sha256": "b277fc5f241ee9dc9522ebe34cddcda461f30ab1bc2e1f8c2a20b0a50779fef4"
     },
     {
       "path": "tavern/repositories/growth.py",
-      "bytes": 37332,
-      "sha256": "2ba1e722902e5aeeef1b84842b489c3f592cd1a8a81edbe9cbe68945525514b2"
+      "bytes": 38304,
+      "sha256": "4e675dac79d0109b903154dba5c1fec472fd0c2eb883cd0250c11c9c13ccd96e"
     },
     {
       "path": "tavern/repositories/health.py",
@@ -2045,18 +2060,18 @@
     },
     {
       "path": "tavern/repositories/item_mutations.py",
-      "bytes": 20858,
-      "sha256": "c6f5acc5fcd67d05614962c1fbab10f0520249e73aa90e452300c7776e835517"
+      "bytes": 21432,
+      "sha256": "2f9bde6bbac1d96f04f9eda5798896508850528d495926cc1e40b5f15fc82c1a"
     },
     {
       "path": "tavern/repositories/item_ownership.py",
-      "bytes": 11744,
-      "sha256": "df4af10387cf837bc716c724000d3f22ef04db06357d4ab8cfae65dcb9a7ead2"
+      "bytes": 12072,
+      "sha256": "afb6dcb65f5ef20a1e7b1e8e38e8dfafb554cfc7d0d89971a157627f774d5577"
     },
     {
       "path": "tavern/repositories/item_queries.py",
-      "bytes": 3739,
-      "sha256": "68d402781644f79ab135feef84b3faf3d7f2afca9c58a0b99a0bf644e1b1cf2b"
+      "bytes": 3867,
+      "sha256": "fbbee9800362be6ce053d70c7725ce3104c941c98eb16753167b0c925ce8d977"
     },
     {
       "path": "tavern/repositories/knowledge.py",
@@ -2065,8 +2080,8 @@
     },
     {
       "path": "tavern/repositories/memories.py",
-      "bytes": 23557,
-      "sha256": "f09362900ece8cba916207e6d9ab99a905b2b49b592d12db5a7a7e4efeafd566"
+      "bytes": 24117,
+      "sha256": "d31087edd15fca3b298de1310691830d48ea775960285b5ec7b6776493f47a88"
     },
     {
       "path": "tavern/repositories/outbox.py",
@@ -2075,23 +2090,23 @@
     },
     {
       "path": "tavern/repositories/pacing.py",
-      "bytes": 18295,
-      "sha256": "357697fcbb216c56a493ce77c5d3cbdd65baeb5604f711027d7a032261af2027"
+      "bytes": 18763,
+      "sha256": "fa2020ac979b21baa76846dd86ce75a59ab5b2a436ed24b3a1ea44db02ce0d51"
     },
     {
       "path": "tavern/repositories/participants.py",
-      "bytes": 31462,
-      "sha256": "15ad258905331b9989190d4870ead583d0b16890afd30d8f599f6a0948c7f2cd"
+      "bytes": 32317,
+      "sha256": "344db5502c0f12b0309929a8547f1dc3bfa4c9f371075b8f1d6bea5f3be8f753"
     },
     {
       "path": "tavern/repositories/participants_queries.py",
-      "bytes": 6272,
-      "sha256": "a9d485433b6291bf307599321907c844b2b1229305209b893a33ec70e8652683"
+      "bytes": 6439,
+      "sha256": "f44b91eaec23928168cffcf4b60b5279d73ec0b4e07cf843d4e305cc06e794b2"
     },
     {
       "path": "tavern/repositories/permissions.py",
-      "bytes": 7547,
-      "sha256": "2c17104f68b15b2adcef446867fde5f0ef0ff78f1eec15a19965fe97537e1066"
+      "bytes": 7770,
+      "sha256": "f29b9e3c6d5d804a4961a2f6da058642f4057707a60767157ad13d5a6de641f6"
     },
     {
       "path": "tavern/repositories/principal_bindings.py",
@@ -2100,8 +2115,8 @@
     },
     {
       "path": "tavern/repositories/rescue_windows.py",
-      "bytes": 16022,
-      "sha256": "eed0f5901e3c6cc13347b0b31738adfa6ccc17c441353d5f4616bd7e0f16df71"
+      "bytes": 16419,
+      "sha256": "692cacc14987a469e78024ca9963bd6801b2a8e51cc889785b31d0cd218cebfb"
     },
     {
       "path": "tavern/repositories/room_invites.py",
@@ -2110,48 +2125,48 @@
     },
     {
       "path": "tavern/repositories/rule_config.py",
-      "bytes": 29295,
-      "sha256": "c985342847ebd6a2532714ee750c108d26520ba4ab12f0dff96d19fd9ed86399"
+      "bytes": 30069,
+      "sha256": "6b056a76d19505d7c501a03b8bb1cff789ef31fa0e3142602736f1b3fe034bbe"
     },
     {
       "path": "tavern/repositories/rule_receipts.py",
-      "bytes": 32563,
-      "sha256": "7fe504d0f27ec266383bbbdcfbc1c55ca022b6f51966ebdf1b8841204a9496e3"
+      "bytes": 33453,
+      "sha256": "2959016eabdc8ca52711ca4d54a78af4cdbbafdb8cd9296b2085fcadc1d07152"
     },
     {
       "path": "tavern/repositories/rule_receipts_queries.py",
-      "bytes": 25363,
-      "sha256": "685f568e42ccee5ce26180234ed3f253e2435a4ddecd6dbddb2e86eeb0555f35"
+      "bytes": 25980,
+      "sha256": "82f27aae9deb2a4370923d32b6349a9af792dd0a01074decc5d81a8e277259c3"
     },
     {
       "path": "tavern/repositories/rule_runtime.py",
-      "bytes": 38857,
-      "sha256": "1051d909d8a9aeff7cf87f5f74bf5656f83bc4df0d89f2edc3a1199ed8722869"
+      "bytes": 39821,
+      "sha256": "d7dac86765ae071768c248d4d0f3f5077e69cfee84c6548476338d5bd0225259"
     },
     {
       "path": "tavern/repositories/rule_runtime_queries.py",
-      "bytes": 3117,
-      "sha256": "a83947c56acf8ca95be9158d348ce428fae7e646bbdc4299d52d0f84c919f1f6"
+      "bytes": 3193,
+      "sha256": "166bf771ac1dd46e9cd4329dacc9fe2fbb997bba792160249e8f34fc49836dd2"
     },
     {
       "path": "tavern/repositories/rules_support.py",
-      "bytes": 1692,
-      "sha256": "1253692b691eb8e9cc7256c8cd72fd704d94c22d5afa3feafd1018f2f786d94c"
+      "bytes": 1743,
+      "sha256": "d66103503ed0096836a3b03224f66251a8020b93ba8facf2e268825ff7f5ff12"
     },
     {
       "path": "tavern/repositories/session_lifecycle.py",
-      "bytes": 39560,
-      "sha256": "3a6e17730814c97d84b7bdda24958fcc0765bef65b1f4c1c26ad445717eeace2"
+      "bytes": 40495,
+      "sha256": "409100f2111bb2582a4e68a144c6b7b5d69e2a47115fca64293f59ae545d0572"
     },
     {
       "path": "tavern/repositories/session_lifecycle_mutations.py",
-      "bytes": 22873,
-      "sha256": "7970989b0ff872715db6514c82379670d10ce1b2a6262e6fb649424da50ddbee"
+      "bytes": 23444,
+      "sha256": "a465afb9a8229f693fa87593fe5112208d41542967eac8dfcf88fc46391ccd49"
     },
     {
       "path": "tavern/repositories/session_lifecycle_queries.py",
-      "bytes": 33384,
-      "sha256": "cc40e8c5eda8a988e421234cf26f9c4a08cd3bddc3f7de744be86e8c2671fc91"
+      "bytes": 34174,
+      "sha256": "0e153fe1820b1cd927e768715f62695ef2e4d4dfcf170079c50a51d0bc8a4b15"
     },
     {
       "path": "tavern/repositories/session_permissions.py",
@@ -2160,63 +2175,63 @@
     },
     {
       "path": "tavern/repositories/session_queries.py",
-      "bytes": 31924,
-      "sha256": "f62219b67e5ba1916176d86d9ba849246d1337e540b5a6626842a306358df48d"
+      "bytes": 32770,
+      "sha256": "367b7c86051040a8f5df8c09f04fa94277706507bc60bbcbe42564063c14ad70"
     },
     {
       "path": "tavern/repositories/sessions_support.py",
-      "bytes": 432,
-      "sha256": "03f9818cfbeeb23d5f6a1ad985afa1d50e1cee6e0468288ea925a037c7b9528d"
+      "bytes": 449,
+      "sha256": "f73d8f441d3ef34c9820bd3841fef0f1d460788c7cc8a23351caf5727c67439e"
     },
     {
       "path": "tavern/repositories/snapshots.py",
-      "bytes": 31602,
-      "sha256": "a49e28284958e04dbb8116be3d626536e8744c59f8adc7751377d230a9ca3a43"
+      "bytes": 32489,
+      "sha256": "46dd4df7b4f81d339e1f4328005b60512e0b6b7bc536e14368e4f5540e0ac7c2"
     },
     {
       "path": "tavern/repositories/snapshots_queries.py",
-      "bytes": 35877,
-      "sha256": "7ca51b8b9d922ad3ca1e7cdb7144a61772bf3c49ca6e3ee7f7b857f746384f39"
+      "bytes": 36792,
+      "sha256": "626328cf3458f057969d457dbeaba2e9890822eebc2e0219b2e32498bb307941"
     },
     {
       "path": "tavern/repositories/story_log.py",
-      "bytes": 22174,
-      "sha256": "e2fef8e723e25be5bb41c6fe6d261c7b120d1da8fc5b8f2f319c483b8f6386bd"
+      "bytes": 22796,
+      "sha256": "c8932f32b6d61f1e9e6a894d35e0323e339c652ddc8bbaaf4321a2e49265feaa"
     },
     {
       "path": "tavern/repositories/story_log_queries.py",
-      "bytes": 32590,
-      "sha256": "e475d677fed1b37675f5a4046ba053af1f6db93901b3ccc4e0fc99ad684dbee8"
+      "bytes": 33345,
+      "sha256": "d0ed39afa79a01545caa1fafd43f5ddd1393e9eb3e3e3a36d86a03c3661fcdfa"
     },
     {
       "path": "tavern/repositories/story_support.py",
-      "bytes": 1487,
-      "sha256": "b5f5adff0308409037b7fcebc08c9230f4724f783fd790d7c3c97c3eaf0b542c"
+      "bytes": 1530,
+      "sha256": "d6ed305a52ae6b38bc1a80d7d5b27c292dbc74c49184c4143ff2d9189bac0127"
     },
     {
       "path": "tavern/repositories/supplement_actions.py",
-      "bytes": 34812,
-      "sha256": "468e04c819fe944eaf13a0494b8300e864d8b0242a2d07288286bb7e9424326d"
+      "bytes": 35635,
+      "sha256": "0e0526d54475c1d628482d8844d8a2900a28dd2311b03cf74721b9b31872e050"
     },
     {
       "path": "tavern/repositories/supplement_actions_queries.py",
-      "bytes": 35766,
-      "sha256": "ebaf3431f6761a0e078abbf03c8298e7e68227766473c89f06f52d4d6429a37b"
+      "bytes": 36679,
+      "sha256": "e2ac79c9d699b5a19334ef166fd68f375a73c742746d214a66f2ede3f4259826"
     },
     {
       "path": "tavern/repositories/supplement_queries.py",
-      "bytes": 11308,
-      "sha256": "87fba93e6cecf0785873c50150697901b22b83b6394be89c71828a36ab4bff3c"
+      "bytes": 11611,
+      "sha256": "b2fb222fc2873dcbf533196bb7f9eab2fccdb53a292b82b933bd0564ef1782de"
     },
     {
       "path": "tavern/repositories/supplement_receipts.py",
-      "bytes": 3632,
-      "sha256": "556881e8731257c1c6044762d8220918ece7f6f02f5f861747d9f7971bc0bd08"
+      "bytes": 3752,
+      "sha256": "621de288e3ae3830d56e234d0f3e55cc176a8b5a8a398dcf43b0c21325ccb1b5"
     },
     {
       "path": "tavern/repositories/supplement_support.py",
-      "bytes": 1953,
-      "sha256": "03add29e781802e9e1ee9dedfa07c8c414c8dce23cb65630f91539a1c018190f"
+      "bytes": 2029,
+      "sha256": "61d08e9bf747a060777bdecb7509f7bdb4e01e68d206289b4486430a89c21a94"
     },
     {
       "path": "tavern/repositories/tendencies.py",
@@ -2230,28 +2245,28 @@
     },
     {
       "path": "tavern/repositories/terminal_state.py",
-      "bytes": 8239,
-      "sha256": "c0dce12cd3a1829f42c65d169b5acf1a5342ba5094026f6a425bd4904e338f28"
+      "bytes": 8454,
+      "sha256": "9c2839f2b824dbe8c0f5ac6f3e9a387aca9751c62afc0303ab5eb5070ac6cdc2"
     },
     {
       "path": "tavern/repositories/timer_policy.py",
-      "bytes": 11127,
-      "sha256": "86ab54939439f30d4c022778a7d162b47d9c013bb53a1f87b56fd2e282a83d2f"
+      "bytes": 11395,
+      "sha256": "31dc437663c444844c65e6c378258658dd6aeaa023c3bf7577eb03ea03532ac2"
     },
     {
       "path": "tavern/repositories/timer_runtime.py",
-      "bytes": 25341,
-      "sha256": "8c92f2e28a10571c4fac2db0e87ded89b2ffb5508bb43a562b1fe5be0408a5ea"
+      "bytes": 25962,
+      "sha256": "295293a7d3f951930494fe10afaff023720bc7ad737634452fa2c0bfd240d6ab"
     },
     {
       "path": "tavern/repositories/timer_scheduler.py",
-      "bytes": 31123,
-      "sha256": "95190a301c682433f468344b6eb99297a61a4a3d8843ca1bb593408ae5af571f"
+      "bytes": 31882,
+      "sha256": "76e4304c4a79aa24979cfa77519e44c65f25949fb8ed0886cacba49d0a2f20c5"
     },
     {
       "path": "tavern/repositories/timers_support.py",
-      "bytes": 894,
-      "sha256": "9643ce5781c9655e71dc15e28e636027cc3061751017a5062c59058592768637"
+      "bytes": 921,
+      "sha256": "18418a50441675d0f1bc25222189742d9646e709468c08b782e9271f970c3a48"
     },
     {
       "path": "tavern/repositories/turn_commits.py",
@@ -2260,13 +2275,13 @@
     },
     {
       "path": "tavern/repositories/turn_deliveries.py",
-      "bytes": 16109,
-      "sha256": "cdc074f4ed03c99eedd3d0ce1082586979140e4cc8dca4ece2c1143cc395855d"
+      "bytes": 16511,
+      "sha256": "ced1a1bc0f106760cc07e76ffcc1b2f77e2e4f53a30d52a1198226fb33281ccc"
     },
     {
       "path": "tavern/repositories/turn_queue.py",
-      "bytes": 29229,
-      "sha256": "4542951e570327c717090d641b9a2428ea680129644565a3f631961249538ef9"
+      "bytes": 29949,
+      "sha256": "5a7e53e9c9609489c4de6246dd96d754fbf6332ce89940a3bae5793939615c7c"
     },
     {
       "path": "tavern/repositories/turn_queue_queries.py",
@@ -2275,38 +2290,38 @@
     },
     {
       "path": "tavern/repositories/twp_imports.py",
-      "bytes": 7044,
-      "sha256": "0808e7cdd8c05747d75a514882421b8a15781ecb7d42fbf6d8accdbcd89aa72b"
+      "bytes": 7171,
+      "sha256": "75526fc7c20e71c6a3c7058897463784cc2a05e0eea72b676a0c8bf39b172caf"
     },
     {
       "path": "tavern/repositories/wallets.py",
-      "bytes": 7816,
-      "sha256": "b55706c279462ecee3e747bb887a8ea549f9ac6fc6c82065ad567b5482d834e4"
+      "bytes": 8022,
+      "sha256": "84ab591152b4ab1ff113dc14d8e76e90f58419687ba1a8fa7520d3fa117ac21c"
     },
     {
       "path": "tavern/repositories/workflow_operations.py",
-      "bytes": 22299,
-      "sha256": "030b86152155de5dd4bf96d6802e9c88ae9b65d318bc0691d0090e6075f191f4"
+      "bytes": 22831,
+      "sha256": "610a3a3a9c249ad20b06212c72458d1e2fdf6fd6976df9cac5f1fa6e01c67fa4"
     },
     {
       "path": "tavern/repositories/workflow_support.py",
-      "bytes": 1235,
-      "sha256": "af18cdef8499d76c3b5dede228d87eb89eb9d8939aa87fe7041cc4b83e14481d"
+      "bytes": 1275,
+      "sha256": "cbc0cf6fcfd9135ba11f5715318bc71d0c2a698d5be5a7d8ca87c36ca5448140"
     },
     {
       "path": "tavern/repositories/world_authoring.py",
-      "bytes": 34640,
-      "sha256": "bc4ce05f70ba2de84e90211a331cb34271b2199be0e34571bf436aa84ae7bcf8"
+      "bytes": 35498,
+      "sha256": "1297f99c80b101fefc822f7cc61ca2b9c8322e8b9f258b18a0b08bcb858c79bb"
     },
     {
       "path": "tavern/repositories/world_authoring_queries.py",
-      "bytes": 6046,
-      "sha256": "aa3ccf5c04c2d51982f91ecb31e6e72ee51666f4a936d8de1d5e22f513044f12"
+      "bytes": 6204,
+      "sha256": "26223238eec3c7a47e7f9b9273eb81cde9ccae10baf8f4b1511c586d6b3aa4a6"
     },
     {
       "path": "tavern/repositories/world_catalog.py",
-      "bytes": 21947,
-      "sha256": "1f7ebeb2be2a1737a6e7d3dedb7776d7ab37c5d709ba1badfb76ac7fcad74808"
+      "bytes": 22490,
+      "sha256": "97f4eb4c9f30ab6ce45a414ecb847ee35f3959e333853ee3148724892162efa5"
     },
     {
       "path": "tavern/repositories/world_commands.py",
@@ -2315,8 +2330,8 @@
     },
     {
       "path": "tavern/repositories/world_edits.py",
-      "bytes": 18998,
-      "sha256": "f8a710949088f25d65b0da6d2c8dba58c77790bdf9d1d99bde351b62767c1528"
+      "bytes": 19478,
+      "sha256": "08fbeb3f925dae22eb2976d9d148dc53b1242951f5fbc676d56e76b69f82b6a4"
     },
     {
       "path": "tavern/repositories/world_module_status.py",
@@ -2330,33 +2345,33 @@
     },
     {
       "path": "tavern/repositories/world_modules_queries.py",
-      "bytes": 38986,
-      "sha256": "7e52b41b24ffbb91b37da4a320d031ee5adf42367183d55bfa2cb6aeacdaffdf"
+      "bytes": 39948,
+      "sha256": "d4de93ded96173c784286df4f79c52c093de87594b5ba377832199f0f6125511"
     },
     {
       "path": "tavern/repositories/world_packages.py",
-      "bytes": 22373,
-      "sha256": "47f1094f61ac8076afb6625fa4020a483d46554b7a1671e086234718ee2b479c"
+      "bytes": 22897,
+      "sha256": "c477e1efbfc7a4b5cfe4ef2ce65421d88edb44ca16fc7efbb0b75984b1ba39f6"
     },
     {
       "path": "tavern/repositories/worlds_support.py",
-      "bytes": 2127,
-      "sha256": "e483c4e40b6f7ff7adabd2b30fa0d4104aa0cf7cf6b4f342ebe21d1ecbda7026"
+      "bytes": 2209,
+      "sha256": "62cd5a448e6e917a4277ea23914566be93da8178e333c23c815370d000c986b8"
     },
     {
       "path": "tavern/resolution.py",
-      "bytes": 33859,
-      "sha256": "6f40d52d1d3f9aeba6ea8c51429d840b29bbaa6f0f998f8f6ac239588595d925"
+      "bytes": 34799,
+      "sha256": "ce097f3acb79ecf77cacc510a77945ac56962e19daea0398c7a506011b6ce407"
     },
     {
       "path": "tavern/resolution_receipts.py",
-      "bytes": 5181,
-      "sha256": "03c04d8ee76851fac172e7fac9b07f67060c708644fa92c0f4fa37905c0e7387"
+      "bytes": 5300,
+      "sha256": "7ceb2c46f3afb6524017b3420062c878d24742d90f831def8830ce17bd428cb9"
     },
     {
       "path": "tavern/rule_runtime.py",
-      "bytes": 10353,
-      "sha256": "696b5702b44e2db40b55b6cfe90ae0fb44074c3cb786f052d1be68b8c3168219"
+      "bytes": 10594,
+      "sha256": "58a4fcd4587de2164104d4fe94a0b92dd15baf40251eea0f8b2fd456a04fdcbe"
     },
     {
       "path": "tavern/rules_digest.py",
@@ -2365,38 +2380,38 @@
     },
     {
       "path": "tavern/runtime/__init__.py",
-      "bytes": 302,
-      "sha256": "fbd68eff3935906796013736f6b83063ffac02e979e2e1309bfa7c0a49fe385b"
+      "bytes": 308,
+      "sha256": "8a30e711d6760c14218ce7e682dfe0d64329ae43d1fca32f6d8d2075498ed256"
     },
     {
       "path": "tavern/runtime/command_router.py",
-      "bytes": 6687,
-      "sha256": "b23acdaa745d4d1e910b7a1cf7cba5852ba3210585eef44063254a3fda979518"
+      "bytes": 6871,
+      "sha256": "6bdba39fbfc2ffb0b3aac83bf19b93da317275023cbcbdb4e2441ad2e639472b"
     },
     {
       "path": "tavern/runtime/contracts.py",
-      "bytes": 10689,
-      "sha256": "d86f598b6ac57072734891046a41555bc0fb398011200ca3c4d8aeb4dae507dc"
+      "bytes": 11023,
+      "sha256": "834af36eb69de9ea326ad3ce7215681e4e8c75b61567c57a9571eefdfa8cd5e3"
     },
     {
       "path": "tavern/runtime/fate_service.py",
-      "bytes": 33807,
-      "sha256": "9afcdcd094e775cab3126fea9113f04bf4cb51c15f85e283a5cd571d23b43376"
+      "bytes": 34751,
+      "sha256": "58f3f20de43bcc6b754ccb6a77a9a67308c3773525b68148d5a986ae77b6fac4"
     },
     {
       "path": "tavern/runtime/finalization_service.py",
-      "bytes": 13044,
-      "sha256": "20e4b2296b6f91802e2a14a7d7b8909cdb7746ed38da4b14f7990f00ea0317d4"
+      "bytes": 13422,
+      "sha256": "ba99ce70161d7a7ddbb7fe88b7fa7c2c8958ad5b3805d8c534d6ebec55f854c3"
     },
     {
       "path": "tavern/runtime/growth_service.py",
-      "bytes": 16706,
-      "sha256": "06f9bbc24d046c1c60b16270ddc289181f4d4b1898a4958bf4d3ecc389efeb30"
+      "bytes": 17231,
+      "sha256": "750f7a539e6045d77e77022ede1385ae13f03c31a0a5f7cd1dd690adfce16bac"
     },
     {
       "path": "tavern/runtime/health_service.py",
-      "bytes": 9359,
-      "sha256": "179cad2c8c254c24aa764701ef9725e4c99bf14e0f7476e0bdc430a359690eec"
+      "bytes": 9604,
+      "sha256": "9a55c9ead1f3071fad2178a002b7e2fc0b47c034a0eaec65174024d09d4fd719"
     },
     {
       "path": "tavern/runtime/model_router.py",
@@ -2405,13 +2420,13 @@
     },
     {
       "path": "tavern/runtime/models.py",
-      "bytes": 5559,
-      "sha256": "bebca7c9ae675dc428de776239aa9c25a02aa7656826ba0f4601ee92f6dfe21e"
+      "bytes": 5739,
+      "sha256": "183429bb36138e6aea06d0acbe89b1cc9d27119f6847f8cdb01d8903210370a9"
     },
     {
       "path": "tavern/runtime/orchestrator.py",
-      "bytes": 28195,
-      "sha256": "7f71742e976a2a1f7514cdea4e3213b286f0b1159b7b6ca5d3d346c9af1ebf5a"
+      "bytes": 28976,
+      "sha256": "10f8ec0c7797bebf410167038919e112d0e26db62fcc7bc4a350b586ac1b0aa7"
     },
     {
       "path": "tavern/runtime/proposal_parser.py",
@@ -2420,28 +2435,28 @@
     },
     {
       "path": "tavern/runtime/proposal_validator.py",
-      "bytes": 15989,
-      "sha256": "4512487d8b4b90f97eafc01b4f7856ae2354dd985c834ab228e8aea14429438a"
+      "bytes": 16404,
+      "sha256": "eb88b8b44b0c11d35031023de614d87ae718047efc63edaffa4092d46008b4bb"
     },
     {
       "path": "tavern/runtime/recovery_service.py",
-      "bytes": 21212,
-      "sha256": "a4a6bdc2fac0ea9fbbe7cf4445332e33bc132935038d80c98dcf6c0d3942228c"
+      "bytes": 21216,
+      "sha256": "ee4ba0cb90926cbb16a4581e19aec1b957b2c56739021abefb456b237caa8ba6"
     },
     {
       "path": "tavern/runtime/request.py",
-      "bytes": 5837,
-      "sha256": "3930281fd824d5fa48ca3d756c7a50ff494d0f7865ce0a33f085af76b3cf6d95"
+      "bytes": 6001,
+      "sha256": "fc4a5355eb0f2364e7f92a7e09d638720de08118ee9008200e83666c08229f2b"
     },
     {
       "path": "tavern/runtime/tendency_service.py",
-      "bytes": 10071,
-      "sha256": "32e932336bedde178d01c94dacf4a94d1bf7c567f656c88db33d0c2437823c35"
+      "bytes": 10374,
+      "sha256": "64fbef147b0f2d9a3baf5150edcf73cfe7d9b9e9147068820c5737f95c679244"
     },
     {
       "path": "tavern/runtime/terminal_service.py",
-      "bytes": 12094,
-      "sha256": "c2fc2e25a2bca49af030dcccdcfdb9ecc1fba3267fc95df1ca15bd4cb01ed71c"
+      "bytes": 12433,
+      "sha256": "2b3006beac2c6402cd3f9af7b35950d5e0714f78aefa0a8b2789d379d0adf2c0"
     },
     {
       "path": "tavern/runtime/turn_commit.py",
@@ -2450,33 +2465,33 @@
     },
     {
       "path": "tavern/runtime/web_services.py",
-      "bytes": 8615,
-      "sha256": "51721d05b4af57a61f08595230e2c7b7a8f6a7efa57c9026ec1b4967c19fe4ce"
+      "bytes": 8835,
+      "sha256": "2445be194b02c7ac8e114560a3db73c84f1f1160217c6cc7089bf92a2b89f45f"
     },
     {
       "path": "tavern/security.py",
-      "bytes": 4215,
-      "sha256": "2af5f3eba44dbdc591f58c57366ba33ad6efd728356db35e5594f35326368101"
+      "bytes": 4230,
+      "sha256": "acd23fafe9069c06627b04cd5b279ec901ec844a39ca4b85e73311448937ac9a"
     },
     {
       "path": "tavern/session_events.py",
-      "bytes": 11804,
-      "sha256": "88512d588d30256ee0ee18b70c4ee6694b315d947c161449df05ec6037cd0393"
+      "bytes": 12141,
+      "sha256": "36512ba60eac9b1df810a25c52eb1bc00be2df8e765b52edb988e8b45d157b01"
     },
     {
       "path": "tavern/session_lifecycle.py",
-      "bytes": 3765,
-      "sha256": "c8d14846bdaf711f4cc4f4a0acfc45fb17c203a429cb71b65f25ab30c61e7305"
+      "bytes": 3889,
+      "sha256": "fffa67ebace78e0477a504557d07f9c372c17b2276c985a0a1086c91d31df7a2"
     },
     {
       "path": "tavern/stat_generation.py",
-      "bytes": 29030,
-      "sha256": "09800b1905362cb10f510eaa221f19d8f2c648932e0fd749eb210f491a67032a"
+      "bytes": 29760,
+      "sha256": "083f08cdc0736925ee9624b3be0f4fce0ce2e69d50668a5c331748729615d326"
     },
     {
       "path": "tavern/storage/__init__.py",
-      "bytes": 5292,
-      "sha256": "f692f6254241738042e5d108625bf5353fe9cfee8068162a2d014422e2106ecf"
+      "bytes": 5297,
+      "sha256": "27fcab579315829157a214017aeebb4899151274a928466a5f8751ca90ec34f9"
     },
     {
       "path": "tavern/storage/archives.py",
@@ -2505,8 +2520,8 @@
     },
     {
       "path": "tavern/story_context.py",
-      "bytes": 24616,
-      "sha256": "6466a2a58960b359cd9c7628be50c248fb152fd074333c4ce8b95ae754a58d54"
+      "bytes": 25315,
+      "sha256": "9ba6010e2658b6b0bb2697a8b47a78899954d570a60db20b05620b95cab92500"
     },
     {
       "path": "tavern/story_pacing.py",
@@ -2515,73 +2530,73 @@
     },
     {
       "path": "tavern/supplement/__init__.py",
-      "bytes": 1461,
-      "sha256": "0dbe40025dd403494827d17e6315e2fac5dbf21c708a81bb1383630340fccd95"
+      "bytes": 1524,
+      "sha256": "d50513e4a65a59c75df5c98dd9f096af37f916ea7087901032213b5ba0db4fbd"
     },
     {
       "path": "tavern/supplement/candidates.py",
-      "bytes": 7326,
-      "sha256": "cc5a8ebae0e35ced3690a0518c844aef1af4dad863f329d9ab2193784884478d"
+      "bytes": 7555,
+      "sha256": "a89fc1bdb4c96105aec804ddf1e3def9083d7d07a98a60953637679bfc23d3c8"
     },
     {
       "path": "tavern/supplement/policy.py",
-      "bytes": 7970,
-      "sha256": "3ae6f71116d336e43bc98579e5e9c9a3f2490d39341f6fc952cb4a894a0a9b93"
+      "bytes": 8229,
+      "sha256": "c08da0a61a61ad36605e07718cdf833b2eedad0e153ac03209025fa40344f5ef"
     },
     {
       "path": "tavern/supplement/presentation.py",
-      "bytes": 3651,
-      "sha256": "c16d5ff64a5f2d0475c4c0e91507457dccc4e9ee79d2c192a871f2febd4461b9"
+      "bytes": 3756,
+      "sha256": "ccddb64339bf208e32374e2c7bbf3ea1636bfbdb0e5765bf1990871d0b277950"
     },
     {
       "path": "tavern/supplement/reply.py",
-      "bytes": 2199,
-      "sha256": "cb10f5a35513f6edc32e3cbab1ca7da9daa4e5ccbf3e4ef8af7eed0259bcd1d5"
+      "bytes": 2259,
+      "sha256": "baf16a72dc23b558444d91874c83088f9939fc08bde6b25c21b5eb0252371b06"
     },
     {
       "path": "tavern/tactical_capability_runtime.py",
-      "bytes": 25513,
-      "sha256": "ffd878c09f1fd6e7d21eeabf73b9c8d4350aeccc96cc4207db9c7241087486ca"
+      "bytes": 26089,
+      "sha256": "f21f4a2a029e1b42efdad60b6a66137f45d4a84554589eab1e2990353c6b7a4d"
     },
     {
       "path": "tavern/tactical_choices.py",
-      "bytes": 10936,
-      "sha256": "88936683dc6ee136067283ab1c95b9b2fe1b3ae20057bada4b889be16c0b4e07"
+      "bytes": 11200,
+      "sha256": "f2f827139eff0683f2ae1543bcada3ee1a037163b9412ade2160a6966a6af254"
     },
     {
       "path": "tavern/tactical_resolution.py",
-      "bytes": 4756,
-      "sha256": "e811b8db6d7c685ac173d7fe5addc7bf179620edc0c1d8ad62fa22286a34cc61"
+      "bytes": 4874,
+      "sha256": "8417ad4e11ec376431030524002bfb9f33ab0b426841710d518ae74e5d88306d"
     },
     {
       "path": "tavern/tactical_runtime.py",
-      "bytes": 38711,
-      "sha256": "edebee00d4bf6a2b6e7f56464e99db6e7102f2c52b0bc346534393c091b345e2"
+      "bytes": 39598,
+      "sha256": "0745f05bc8cf7951173f6cab7ccfc7e471686a19187abdde84b3fd3ced09f619"
     },
     {
       "path": "tavern/tactical_support.py",
-      "bytes": 5600,
-      "sha256": "f47b7c68102bc9bd59cd3f71ca9f810ddabc4e46c498b6393a85ba7f137e071e"
+      "bytes": 5740,
+      "sha256": "81048a565e8820b2c31567babf5dbc1e7b90febc0f75b17a5e2c1252748e18cf"
     },
     {
       "path": "tavern/turn_budget.py",
-      "bytes": 3940,
-      "sha256": "cb6883fde7485872117c839bc5b16bc38d5679fb32c05497b8417a14b276c062"
+      "bytes": 4068,
+      "sha256": "797cc5498296b366d6cadfe090837d65581e8c59853821230ccea2cacf813f72"
     },
     {
       "path": "tavern/turns.py",
-      "bytes": 5283,
-      "sha256": "b84211d452aa4073f53cb72498be968660978e623769eb6ba51a0c58a5377961"
+      "bytes": 5464,
+      "sha256": "429692cc9a431b2f7bfca023e80f56cd86cd26a16018efedd425b3cfd8c8e0cf"
     },
     {
       "path": "tavern/twp/__init__.py",
-      "bytes": 286,
-      "sha256": "3856bbf0e932f4665e53d93bc796f9510c5eca047a55ce674b48f9df49a8c3e2"
+      "bytes": 297,
+      "sha256": "d8fbf17003c4d8a87d9421b9119abffc5b7a9e413f80b2096edcd6c273184c99"
     },
     {
       "path": "tavern/twp/cascades.py",
-      "bytes": 5935,
-      "sha256": "18a566e45e7690979c771b454e55a137886d8652b671148b9c3a4c9571478b0f"
+      "bytes": 5939,
+      "sha256": "ef0f9d529a5c8b7800745b3d5dea86b49eaf8ac401e8467f4ec131ff07bdd124"
     },
     {
       "path": "tavern/twp/catalog.py",
@@ -2600,13 +2615,13 @@
     },
     {
       "path": "tavern/twp/commands/entities.py",
-      "bytes": 19275,
-      "sha256": "f7e881c156be9a4259b34fb48b6a89383cf33cbfee7c4535c0d6225f0b62df47"
+      "bytes": 19451,
+      "sha256": "222cc247730c70ccf94c2bc16ecc907658a13c5d85968141a579eac6277c2492"
     },
     {
       "path": "tavern/twp/commands/preview.py",
-      "bytes": 1388,
-      "sha256": "6d268b0c1a15c2e71e094ec0c44f825b5cb8a5e6095d195a5dec38267fe412ba"
+      "bytes": 1390,
+      "sha256": "881d7cdc12adcaa1ec5ad08a1eec518f2e6fcb376ac4f1928d94ac82e6845f2e"
     },
     {
       "path": "tavern/twp/commands/progression.py",
@@ -2615,13 +2630,13 @@
     },
     {
       "path": "tavern/twp/commands/scenes.py",
-      "bytes": 14802,
-      "sha256": "7c076f23c2b4db1a0e5c8fb24b40c4e03f92ff67dd38b61feaa0b2c5871cdc59"
+      "bytes": 14804,
+      "sha256": "9926f66adb684878ede2eae1bd8e3fede4b58ea5b72abd7dca3f3bf6ebb673ec"
     },
     {
       "path": "tavern/twp/commands/validation.py",
-      "bytes": 11991,
-      "sha256": "364ff417d8710b9493d15848525eb769fdc1c6037bf81fbe919ce43b3e170ac0"
+      "bytes": 11993,
+      "sha256": "64abc2c706315fc0e238629a58f539b924688864f3dc366b7324f268e2e04786"
     },
     {
       "path": "tavern/twp/designer.py",
@@ -2630,18 +2645,18 @@
     },
     {
       "path": "tavern/twp/endings.py",
-      "bytes": 11769,
-      "sha256": "497e5362427f39109ebba18f36e086bff1f2208353393b018a47d77d7c27a110"
+      "bytes": 12093,
+      "sha256": "e86918a02f75af06d3b6bb9c2016575cb7026f7dcfe1f5c78f2f570555a0fb7f"
     },
     {
       "path": "tavern/twp/localization.py",
-      "bytes": 3647,
-      "sha256": "41885bab7d70215af249e16392ea371ee2947c02dc5050dbf4d63526bdfd835b"
+      "bytes": 3753,
+      "sha256": "1ed30dfdb4c98a0cc73b7b5849f5d01e90b92080bb29b10d88ac75a649275621"
     },
     {
       "path": "tavern/twp/runtime.py",
-      "bytes": 2630,
-      "sha256": "22816d7dd89eb50080efef00a9e49e42121ce1f6617d91c8d01ad23dcedf7284"
+      "bytes": 2717,
+      "sha256": "36c88a981bbd2c1f288005cdb42f643e65648987a7dfec7e33b67a0d78acca99"
     },
     {
       "path": "tavern/twp/semantic_diff.py",
@@ -2655,153 +2670,153 @@
     },
     {
       "path": "tavern/twp/validation/common.py",
-      "bytes": 2108,
-      "sha256": "d1cd36a459f3fab598bbe0f9a4a1b9fd54a3fc1e85ffe31e42cb84962ca7658f"
+      "bytes": 2112,
+      "sha256": "6b8a8a74f3a56936cdeb681e2168d7bcce8f334837d46a63d18bc6f2ac6310d2"
     },
     {
       "path": "tavern/twp/validation/content.py",
-      "bytes": 17488,
-      "sha256": "a9dd895bc69cbb1b5475613d1c587382e70629d12c58e2d02263fe243978b7be"
+      "bytes": 17509,
+      "sha256": "1bc7f169841399ff26a5b3f647a4bb621d36e54b27288c28e46cedf0cedd66b0"
     },
     {
       "path": "tavern/twp/validation/privacy.py",
-      "bytes": 9134,
-      "sha256": "698def840e540360d590fd1daddc478cd4b0295b0a265f91eb0559ec9ef7dd18"
+      "bytes": 9138,
+      "sha256": "6695cb847be4462ec1c2d0b444d7bd0a33668f3f0b1fb672cf25d513e576790b"
     },
     {
       "path": "tavern/twp/validation/references.py",
-      "bytes": 15310,
-      "sha256": "7287f19833110dd8618981f4088b1636384d68f42cb9acab8335f69a3503d8e4"
+      "bytes": 15316,
+      "sha256": "bb451e77cd0dc77f037ad72654d42e3f0540fc1d4d3c8a68641ca2376b43e597"
     },
     {
       "path": "tavern/twp/validation/structure.py",
-      "bytes": 10765,
-      "sha256": "4017e0c3d78e1cd38f3c01a10ac09b4fc2e04980bfa31c80542c06c15968b125"
+      "bytes": 10768,
+      "sha256": "d55ee326c7f402ca40ab1cceee90c06fdbbfcd3994ec4a38aa0e4c550ec56c4c"
     },
     {
       "path": "tavern/visualization/__init__.py",
-      "bytes": 931,
-      "sha256": "62d1c253040edf218010be3d33ae2b084fb8175449501a26be62a883a236fdc7"
+      "bytes": 968,
+      "sha256": "d8700ed825aa6a95abde5393c611b6e39bf8ee875ad8aad51dd48f46edb0e675"
     },
     {
       "path": "tavern/visualization/clocks.py",
-      "bytes": 3785,
-      "sha256": "ada27a3f715ae2f1cc2936dbbbe16c6e488fe606080388714698a16558970320"
+      "bytes": 3895,
+      "sha256": "fe520f42be006ec1459a5f110902938c7745ba97f289df0d2af2053b585c79e0"
     },
     {
       "path": "tavern/visualization/common.py",
-      "bytes": 3630,
-      "sha256": "33e40e31a4f00ff2e8bfc286ed5223cd3d3e8ee983574241a2058f49f1a71a0c"
+      "bytes": 3761,
+      "sha256": "f74cf6c41a7e56384c0f8ba078b91187f42b72def3691452609639ebe336863a"
     },
     {
       "path": "tavern/visualization/deliveries.py",
-      "bytes": 6696,
-      "sha256": "4147fc20b1bdccd7ad2222895a0228468fbfa3c9e5205fe30c87ca291e628846"
+      "bytes": 6886,
+      "sha256": "9eab6172c7e4b9845e7980127c76ae865f78cd654a01d9d700a5f923453f2ea7"
     },
     {
       "path": "tavern/visualization/envelopes.py",
-      "bytes": 7420,
-      "sha256": "e6c7be61fe79af7fc6581809c86f49902a5435967e63834d642d1fab0d8b97dc"
+      "bytes": 7652,
+      "sha256": "8699eb92f22ba9d569ca33918856335074b4977cd8b856a7cee7c49f9f035566"
     },
     {
       "path": "tavern/visualization/generation.py",
-      "bytes": 14817,
-      "sha256": "cbcaed1fce8006eeb0911d91bf73aa3952d96f8a87dd53255fe4d0cf87f94f37"
+      "bytes": 15174,
+      "sha256": "97498e8a575a4a9908b78efe977799886b7dee4adeb99994841f6bdee8e48ab2"
     },
     {
       "path": "tavern/visualization/history.py",
-      "bytes": 4026,
-      "sha256": "332d6ef790423f4b6dc5275ed39e3a115da4c9ac5c5eeb75cc6f3f8a02a3a6e8"
+      "bytes": 4120,
+      "sha256": "537585ee61c53dcd4349ae348f6ab7c9d8eb871eb937343ef7f2ccc298e99d18"
     },
     {
       "path": "tavern/visualization/keys.py",
-      "bytes": 4429,
-      "sha256": "ab65ef9a0f23d5ce437a9466314610c1fde590c6f168e53e0543098c7f08becc"
+      "bytes": 4546,
+      "sha256": "b86f7bab758b3229de32e12608d174fe73b2de28d7db3a900ed4429872dd04ed"
     },
     {
       "path": "tavern/visualization/party.py",
-      "bytes": 26963,
-      "sha256": "90513b565fff7624ddb1ead97d9e8decabada75bb1ab30f373f416f277f183d5"
+      "bytes": 27724,
+      "sha256": "a0a469650ad8c489e9a8c1db1275757077acf4c3716b6d979446568a05d00481"
     },
     {
       "path": "tavern/visualization/public_states.py",
-      "bytes": 4534,
-      "sha256": "1e2df1b0b554541956cff8873214552b176d27b8537c3a86b1e6d606b73e95cb"
+      "bytes": 4676,
+      "sha256": "23193ca1bbabca0ea26c7505eee6aef7efb62a67f44fb38a1ba10d4d34721004"
     },
     {
       "path": "tavern/visualization/quest_tracks.py",
-      "bytes": 4168,
-      "sha256": "d1a800cb9703fb48e366f993626c5eca0842d429ff2c73488f8f6b4ee51497ad"
+      "bytes": 4297,
+      "sha256": "a6b351d94d6543e0d629b46c1d82221adb6f163eb6b175a2a4320fb9eaeee5b5"
     },
     {
       "path": "tavern/visualization/realtime.py",
-      "bytes": 4281,
-      "sha256": "19a5db44f3e3d6216d41b8143be94db4a144930d52ef5dbec9a7ffff2792ad3c"
+      "bytes": 4420,
+      "sha256": "084445b303fddfa6fecdd7a79b3e94ac70c1b4bac68b0ea8ac1d30065887dd46"
     },
     {
       "path": "tavern/visualization/relations.py",
-      "bytes": 7408,
-      "sha256": "d13ae7afff9a7bb3e1b9eaf35980daa7b0831c1ccf874ba5ec0539bd6c76d140"
+      "bytes": 7621,
+      "sha256": "4b14d24df668f6e598adbb1022374b7c4284ccf44fe63003e755bee6f049e368"
     },
     {
       "path": "tavern/visualization/scene_path.py",
-      "bytes": 5023,
-      "sha256": "b15d0cae24a43531e9623ef94f959eea0b9b575afc6a11e68a5cfd1efcc92b41"
+      "bytes": 5180,
+      "sha256": "47b7df8de48c5ceb57fc33511a52f5ecaf2a9ee30ab88832f4963ee749e2e3fa"
     },
     {
       "path": "tavern/visualization/service.py",
-      "bytes": 46078,
-      "sha256": "56568c5fd96e5f81f82797b1b06dec530920b73227b5fd589432f4de6d858959"
+      "bytes": 46259,
+      "sha256": "27668006fb2612b9baf7d4b140695f6debc0c9b9e85d84055b21472482a43538"
     },
     {
       "path": "tavern/visualization/session_activity.py",
-      "bytes": 5600,
-      "sha256": "00e1789081c286ca2e7b16e2767443fb95af93ad9e6dd660e171e6e1b6160368"
+      "bytes": 5770,
+      "sha256": "cbe40515f9a30c39688d0afe2b005f924be6ee732365a4819c8acc8472a1a785"
     },
     {
       "path": "tavern/visualization/surface_projectors.py",
-      "bytes": 27011,
-      "sha256": "7eb5b8da1a92326ea76a8a2b4aaeeb569a063f9fa61213137cec630ee1690619"
+      "bytes": 27537,
+      "sha256": "534edf971705aea59d57cc9f588d910f053d159bc712bc820b6f39a0569a2899"
     },
     {
       "path": "tavern/visualization/surface_registry.py",
-      "bytes": 7213,
-      "sha256": "287cb7214e3cec00a9606e22c71ab3635be6d3c5bc165d6dcfd030685a9351ce"
+      "bytes": 7329,
+      "sha256": "70b80de5c975ad7d7cf8a41d1388b52e014a4f331bd16b9c72dec94ffaadb677"
     },
     {
       "path": "tavern/visualization/ui_profile.py",
-      "bytes": 9406,
-      "sha256": "be7059c2ce2f603a2005385cd30678b12ec40b6b8afe509ce0be8f3383967aec"
+      "bytes": 9640,
+      "sha256": "620d3b4094c84bf0b955435540da50e84b6c829269ef88ee357f73da12afef62"
     },
     {
       "path": "tavern/web/__init__.py",
-      "bytes": 1663,
-      "sha256": "dd935c248b0c3406c0380950516603f85850b9060cdad5ea8a26ddeff4550cc9"
+      "bytes": 1732,
+      "sha256": "fe8e7f37a4536ba2ba362ec77282432c3aa405e7103e88b24eeebccc54739dbb"
     },
     {
       "path": "tavern/web/auth.py",
-      "bytes": 5864,
-      "sha256": "b69d5b6cdaef40e285cd7316059c16c4c0d3e98b2e27981edd8c29822cfc2031"
+      "bytes": 6059,
+      "sha256": "12d995dbeac5dd2c8aedf31ebfd589bab40e04c806337e739bcd10ecedfc6a4e"
     },
     {
       "path": "tavern/web/console/__init__.py",
-      "bytes": 63,
-      "sha256": "c64ba346f7a779d05d001ad219e1e2f9300cd0c1146a558248dd6caa75428d85"
+      "bytes": 64,
+      "sha256": "8ca0977f0cbdda0112bb7ceabf7502afd37da1c8c4edc6c672a3048172fffff5"
     },
     {
       "path": "tavern/web/console/context.py",
-      "bytes": 731,
-      "sha256": "83bcc1ff31bcc4cd7ec7262a2e472426cc841017b09c1372063f51bee21ce20c"
+      "bytes": 734,
+      "sha256": "6165118a6e08dab8155f0ab02154ae128ddd48ec552cae82962ca7d8bceeef94"
     },
     {
       "path": "tavern/web/console/context_identity.py",
-      "bytes": 37680,
-      "sha256": "382458be94e24364f758e0717b41c13e67072acb6eb6a0ae981f8a82de6d0f3a"
+      "bytes": 38070,
+      "sha256": "7f7ac2ed991c856a66df5dfb04e701609930ef0b426ce68d9c2e6dc05a1337bc"
     },
     {
       "path": "tavern/web/console/context_sessions.py",
-      "bytes": 37197,
-      "sha256": "163f8fa0a82d45161a4bd394cc61dd3f3fda09e0c2aa908cdc5064671fd3fd38"
+      "bytes": 37455,
+      "sha256": "c7c1b7f39b8a3be2e406720769440bfe4ec283d3fd63041df12a4c8a369fc552"
     },
     {
       "path": "tavern/web/console/errors.py",
@@ -2810,33 +2825,33 @@
     },
     {
       "path": "tavern/web/console/files.py",
-      "bytes": 37119,
-      "sha256": "c331c1a30211947a9fcc9bd1475d22f10f7dcf5d33d88c180361e5d3ea1b547c"
+      "bytes": 38008,
+      "sha256": "075f774b129621886cf6c032a3b90518be08105c1c60cfcf9fde25ff8de60806"
     },
     {
       "path": "tavern/web/console/operation_actions.py",
-      "bytes": 21619,
-      "sha256": "2081ec2eb6ee6775d1d5677f140cf5d3929522768cfc0d56a1212c2a85fba263"
+      "bytes": 21670,
+      "sha256": "19654fac10c0f5c726df08e25e30ada2a641c571db2bb4d1074f714b1e4ca200"
     },
     {
       "path": "tavern/web/console/operation_queries.py",
-      "bytes": 23003,
-      "sha256": "08615a9b2d930311bfb6f80744ecba49ed7b6f1d41f364acf61e58bb56deef4d"
+      "bytes": 23049,
+      "sha256": "1cdaf6b1e232383c1156873d4e21e63de94e55d6fef0da143be9322af7bbc6bf"
     },
     {
       "path": "tavern/web/console/operation_routes.py",
-      "bytes": 417,
-      "sha256": "a34b0967c95c17aeab9ec5114cf040b5a26abec49c12366bd466ccc81c7d88d4"
+      "bytes": 419,
+      "sha256": "390daaa6a8680971bb3f26e744472546a12bc8a4f99aab6bcf78199859b66178"
     },
     {
       "path": "tavern/web/console/overview_routes.py",
-      "bytes": 10810,
-      "sha256": "3404f37717feabbd71e77842d18459ecf4352c76c70224f4f60ae3f14610b3ea"
+      "bytes": 11066,
+      "sha256": "a4e6a5bf9ec07e5c14ec4bd4b1b60b161c72729d413edbe76d3c62710804de2d"
     },
     {
       "path": "tavern/web/console/registry.py",
-      "bytes": 463,
-      "sha256": "7eb70ddcae38586d8adceaa6b49fbff6297c67c6ee735287803712e0a9d081b3"
+      "bytes": 465,
+      "sha256": "07d040cd506672ad7397bd2db13ed95df8a09c1c089773b0e31e5bca149b6a49"
     },
     {
       "path": "tavern/web/console/registry_assets.py",
@@ -2845,8 +2860,8 @@
     },
     {
       "path": "tavern/web/console/registry_routes.py",
-      "bytes": 38457,
-      "sha256": "08ddb9b78995aa4347f8f3c2f52b3be61cc4aab8da622534dcb3d9456502f955"
+      "bytes": 38494,
+      "sha256": "2e378aefc001d65989a06c462db684fee8f34baa7875d625097fa46ed124d7c8"
     },
     {
       "path": "tavern/web/console/runtime_routes.py",
@@ -2855,8 +2870,8 @@
     },
     {
       "path": "tavern/web/console/system_routes.py",
-      "bytes": 42276,
-      "sha256": "dc716fbf2a3ab00b6d8ae5d2695e0f26a5f53e2a77339c1d9f468223121c3319"
+      "bytes": 43268,
+      "sha256": "f9361395a36e2da37d8538950cc49c8dade80a9941a6737333665c5e0a05ff9e"
     },
     {
       "path": "tavern/web/console/world_routes.py",
@@ -2865,68 +2880,68 @@
     },
     {
       "path": "tavern/web/errors.py",
-      "bytes": 13527,
-      "sha256": "43f0f19b31ef9c65d2268951b830dd4fb673f348dca32a7ec389612fc36377c5"
+      "bytes": 13946,
+      "sha256": "a661c89450b62d368325584fc32cc34ef4ddeda45e1fe5f847687c94cdcf6fe4"
     },
     {
       "path": "tavern/web/intents/__init__.py",
-      "bytes": 205,
-      "sha256": "5e480e22a2ea3f4bab8a32cc9f0e7949338bb3b624a77d2d4ed12ebcd003829d"
+      "bytes": 210,
+      "sha256": "bf761623baac02da3d339015765cfaa34ef611362094e4d2b636e2d817d62263"
     },
     {
       "path": "tavern/web/intents/actor_fate.py",
-      "bytes": 6817,
-      "sha256": "0c7eb507b2c0a9511c6d25757972389e2573f4ee65de300fc7ef546c62a7f5b2"
+      "bytes": 7012,
+      "sha256": "99a97660e630879ea2b218f5d674f45a2406d127dcc79cf720a60377efcc86b6"
     },
     {
       "path": "tavern/web/intents/author_jobs.py",
-      "bytes": 14316,
-      "sha256": "48580bce492d2c0eeac5cc3b7a3db8c63b812e923e91956f0b2e6427cf3bbb85"
+      "bytes": 14318,
+      "sha256": "a9d30fd6c4a1d54e2f92357c888fb54615cbfa36e309804d1838abf8fade44a2"
     },
     {
       "path": "tavern/web/intents/characters.py",
-      "bytes": 17700,
-      "sha256": "322dbf4a793d33003ebbe7417c13ca99d615d96f8b6461da527ee406aea0b054"
+      "bytes": 17803,
+      "sha256": "0c7ed7f88badd47ee764705d2d3ea4fc9ff70205b322f9d83470ca943f4740a6"
     },
     {
       "path": "tavern/web/intents/common.py",
-      "bytes": 10713,
-      "sha256": "477aca87143d91f638494ba4759b878674438fef75eaf45e655959d9cbe9fe48"
+      "bytes": 10801,
+      "sha256": "c0d35c04edfa5c4a9e4f96fbc7d9faf03d59682e66e2ca792deccce18dfd98d7"
     },
     {
       "path": "tavern/web/intents/dispatcher.py",
-      "bytes": 1077,
-      "sha256": "fe134498152fb7016d56d5eb8138df072e35c263dfc496a26fa04784c6182c01"
+      "bytes": 1080,
+      "sha256": "33a6ae45e021625ab1917b7245b694646ee06b969c14eef200d208052652c5f8"
     },
     {
       "path": "tavern/web/intents/operations.py",
-      "bytes": 13467,
-      "sha256": "8458f760011d5b62027665da45cffb1868de825a89c54b3c57a8a43b5e5d9db5"
+      "bytes": 13475,
+      "sha256": "5f1eb8ca7f90f0925cd25f86c89ccbb611a47d219781286d9bac0a4a567ac89d"
     },
     {
       "path": "tavern/web/intents/sessions.py",
-      "bytes": 24636,
-      "sha256": "47835535c3344794f15af25144f1204d9a064daacf18b373bc8084288f9fed5d"
+      "bytes": 25009,
+      "sha256": "9f8988163d900557f714de04a0fa37a71283efeec4ba43ac2fdf0af68e36f190"
     },
     {
       "path": "tavern/web/intents/settings.py",
-      "bytes": 15913,
-      "sha256": "031b517ab4f30b0a3c3ce63814de222055bfa5ec2f0c2399fa285454bc6da48b"
+      "bytes": 15915,
+      "sha256": "a4f359b771508f6f89db3edd2a6e4bf98bfaaf43a29412a68293093ffa0700af"
     },
     {
       "path": "tavern/web/intents/snapshots.py",
-      "bytes": 14073,
-      "sha256": "f1cb4fb0e94d0d67c3b8cda9bcdd4fd824089f6b7761e942ab8ca31d91aa2ffd"
+      "bytes": 14075,
+      "sha256": "a558cd67afb07301c6abac9d4a7fc70fe27d0313c120cc5b86b791fb23494f35"
     },
     {
       "path": "tavern/web/intents/worlds.py",
-      "bytes": 20628,
-      "sha256": "04467de17692547065d9320784650545d0d907f2571dfefe7c9b6890f6c4e098"
+      "bytes": 20698,
+      "sha256": "046218a792406f8fae6c87c63114df0f562ee51cd99b60a197744c6645a82630"
     },
     {
       "path": "tavern/web/principal.py",
-      "bytes": 11952,
-      "sha256": "e26b527788e48249a2fccfd22dd21ee4fa048dcfb4f7315e58b405d78287ddd1"
+      "bytes": 11956,
+      "sha256": "14cf79e7b65969f6accd14226081d5deccbc9e96f185d6365b014a3ebb4c5444"
     },
     {
       "path": "tavern/web/query.py",
@@ -2935,33 +2950,33 @@
     },
     {
       "path": "tavern/web/routes/__init__.py",
-      "bytes": 4438,
-      "sha256": "0a7c7c35f5126a86700644d170b87cfb67fcf077b6cb868c375501cc00407b3a"
+      "bytes": 4605,
+      "sha256": "46946566bd0c0202023fd6b75d8f4f568ca4f1acd0cf08241a7f477fef88ab56"
     },
     {
       "path": "tavern/web/routes/actor_fate.py",
-      "bytes": 14478,
-      "sha256": "173b2440f1d18f835e3c0b5b375b742b332e28b15cefd5002f02c8403266c450"
+      "bytes": 14865,
+      "sha256": "923a28c2a4973280a7597bdbc87b4f5a83ff0046d90732648d9abfda5f6bf93b"
     },
     {
       "path": "tavern/web/routes/ai_companions.py",
-      "bytes": 3874,
-      "sha256": "0d2475fbcc1d19ccb073fd721e3eb2e8294b89d58c67f4a773090e75a86a8c7f"
+      "bytes": 4012,
+      "sha256": "ccd360d3408937b4997846ac70d3fd98947dc34405e4da27bb709976908ba686"
     },
     {
       "path": "tavern/web/routes/assets.py",
-      "bytes": 29997,
-      "sha256": "733134856d423d302b906c3da7ec67f2dceecb4c8c79c71f3e4ff9463bdddcc5"
+      "bytes": 30895,
+      "sha256": "acf12d8c7a1e9f5b75e163077773f2198de4d413d3f45d213d0be07bb2fdf82c"
     },
     {
       "path": "tavern/web/routes/authoring_intents.py",
-      "bytes": 13878,
-      "sha256": "8b64d61f5763a67e1a4d4d56ee038f9c637c1f80b015c08d4006d8e36026b08e"
+      "bytes": 14285,
+      "sha256": "248b1188e6cd0bd4fadcc79e9dba2d31a7300601fc66d09818641f4025880c2f"
     },
     {
       "path": "tavern/web/routes/character_intents.py",
-      "bytes": 5308,
-      "sha256": "fa4d22f629ea23ef7c4b9cfbea1422a691c6adf046fde0dc88caa43de93a0643"
+      "bytes": 5468,
+      "sha256": "4a5e17a42587f303839451c7098b3fd375cf056563a19cbbf1e4686ba74b9765"
     },
     {
       "path": "tavern/web/routes/characters.py",
@@ -2970,98 +2985,98 @@
     },
     {
       "path": "tavern/web/routes/designer_content.py",
-      "bytes": 8457,
-      "sha256": "284464c9e9a50fb989e99e7fb7b66f3ba5d5fcf76e84a1f85a7dc0a00a8772e0"
+      "bytes": 8484,
+      "sha256": "236f0bfbe16fd8dd38bb5d6cd4af3564cd208d91ebd55ad851c841650bd7a2c8"
     },
     {
       "path": "tavern/web/routes/designer_simulation.py",
-      "bytes": 4496,
-      "sha256": "cb43a76a0454fd9799765dfde847ed4f09274b94bf33b0607c0c50d0fbfdc269"
+      "bytes": 4521,
+      "sha256": "f0d467ee1b2d193e1be21f0bbc0c5fe55f656671b78613bf7250781d91ae1f7f"
     },
     {
       "path": "tavern/web/routes/designer_validation.py",
-      "bytes": 9030,
-      "sha256": "2332dd42abff7882be313c3039e7e313b12ec4bee41f60179cb765a8cdbed178"
+      "bytes": 9056,
+      "sha256": "74c030a1d641d8fec4eb6d5e47d4bcd9ab608a0e24ee8346009bdd41bde5d4a8"
     },
     {
       "path": "tavern/web/routes/event_stream.py",
-      "bytes": 19532,
-      "sha256": "1d841ce096fc3882a59b9b5d8c2ac71159fa9d1141e1448b649fdb80f751323a"
+      "bytes": 20068,
+      "sha256": "836f15faddc8df81fd092d3338573f00555232122f964a1f310c5662dea24805"
     },
     {
       "path": "tavern/web/routes/gameplay_freeze.py",
-      "bytes": 39493,
-      "sha256": "6eaceb66339c6289103779e14cf8f3545a693c9086849a616e636b3700ac1935"
+      "bytes": 40286,
+      "sha256": "f8a60a279736543ce7127311a30c96750521d01785b51eefffb3f00c37ebc9a0"
     },
     {
       "path": "tavern/web/routes/gameplay_replay.py",
-      "bytes": 14922,
-      "sha256": "d450e5a360513534e926cd124790f94c39d3773041638ebd76a728e852f323fe"
+      "bytes": 15342,
+      "sha256": "c90cbfcb40cb6c5c76d72db698e1c74f4d68ca9816932deac1ab0769e5df0a0d"
     },
     {
       "path": "tavern/web/routes/gameplay_runtime.py",
-      "bytes": 35409,
-      "sha256": "8833a1493cdd3657d1a6fbc869e4de97d7fba6aadb19bdad0b1acb74aa950db9"
+      "bytes": 36046,
+      "sha256": "2d75f50fa85f87f4413ffedbbf36021fcb34b3affc397b299abca5bd7442d535"
     },
     {
       "path": "tavern/web/routes/gameplay_start.py",
-      "bytes": 14730,
-      "sha256": "962b6e3455057ea945d8a3d25ae1327d7117bf064bbae9d8e8763bdfc3c270f7"
+      "bytes": 15035,
+      "sha256": "b41191074c1d9d4c9d67d560ed87d9240a59f56c9f011e865abe403b4804a02f"
     },
     {
       "path": "tavern/web/routes/github_imports.py",
-      "bytes": 6832,
-      "sha256": "50b595af2daba858bf3232f6d05c3136a61fbc57b1ffb86147e52e645dd90d5a"
+      "bytes": 7038,
+      "sha256": "d29eeb53834bcce2903490d5a2003450d8f49040f0f01ea55af78b664fdc1993"
     },
     {
       "path": "tavern/web/routes/narrative_control.py",
-      "bytes": 16256,
-      "sha256": "1c90d3f614fadca38427050cd5cccc1adaf6a8f38e14cea5cc82c83206922068"
+      "bytes": 16720,
+      "sha256": "7db22d791d70e44bfcfe296a68c2e91a014f585ebc65334760c5eef823a69bfa"
     },
     {
       "path": "tavern/web/routes/narrative_mode.py",
-      "bytes": 5253,
-      "sha256": "384dc07fcd9e17f6df302c7f789c8fd87b93484331d9887fd69b3edc1289d764"
+      "bytes": 5395,
+      "sha256": "186795309dad5dfc5668556090f7e17e206881e431f5af6f04fc98b06e54764c"
     },
     {
       "path": "tavern/web/routes/narrative_style.py",
-      "bytes": 3597,
-      "sha256": "9744b6d5c0c758c42ba7375a284378ed55e0ffb99fa6f5ade7109ab934197d71"
+      "bytes": 3692,
+      "sha256": "58f047be3b0c4a81c24e364603b44d7f07c6df09bc12ad174356ebab7467c0b2"
     },
     {
       "path": "tavern/web/routes/openings.py",
-      "bytes": 2641,
-      "sha256": "59a37ac7ac25efd2998f2482f53b613a1cf98e2cee4cc03240f94f563969202c"
+      "bytes": 2737,
+      "sha256": "943539512a71a67f42aacc4343457ec01447a155afabebd9f6d1a52b27b2888c"
     },
     {
       "path": "tavern/web/routes/operations.py",
-      "bytes": 25805,
-      "sha256": "796ae50c040c3e8ae7e772b2c7abb5c0b58f9d12264e9fc345bf404c316fa27d"
+      "bytes": 26574,
+      "sha256": "809b0c9b2213dc83f2bee16231a6d6165001d15f53e29129bfecf5e01037db31"
     },
     {
       "path": "tavern/web/routes/session_generation.py",
-      "bytes": 936,
-      "sha256": "e86156601df0ad4daa93f6ae96b2f0d72278de0f2ee3d4766d832c07c6ca6003"
+      "bytes": 968,
+      "sha256": "ed54e39b1459a989f41db256ddabf07d3102a0d7d13a7fbf30dcb0da270942d5"
     },
     {
       "path": "tavern/web/routes/session_history.py",
-      "bytes": 1041,
-      "sha256": "235cb6f5ac45af880fe61f4ca44a4f69c7560ebd677720ea9ce909c593bf0dc5"
+      "bytes": 1043,
+      "sha256": "6b909494b258d945a2e158cf16496caed4819fdfd7796c58141bc28eeeb14488"
     },
     {
       "path": "tavern/web/routes/session_party.py",
-      "bytes": 10749,
-      "sha256": "c8a5a909519954a7ee496a98f735795665c09763723756d5108c83263f3e2a58"
+      "bytes": 10812,
+      "sha256": "90088acc5811171e84c872cb0805edd4e19b8c6d09f9caa2f5f6a3648b2ae347"
     },
     {
       "path": "tavern/web/routes/session_summary.py",
-      "bytes": 8357,
-      "sha256": "0256a55b63616f0da5e134e3df5cd7b8c4b3917e81d995a4b8937075c7771be2"
+      "bytes": 8359,
+      "sha256": "912479e199ccc525df2d4cdce2eb9773d170c1f40764e82f0fe23f7df069cec2"
     },
     {
       "path": "tavern/web/routes/session_world.py",
-      "bytes": 23048,
-      "sha256": "f3daecf0f00b71f0467a53ffc4183af0457bfeca83bde47e10d070d2d7c45a96"
+      "bytes": 23129,
+      "sha256": "97c44f1ceb61a4b14b508870ae5aa19993d447b320226179d34bd12aa882afea"
     },
     {
       "path": "tavern/web/routes/sessions.py",
@@ -3070,18 +3085,18 @@
     },
     {
       "path": "tavern/web/routes/snapshot_intents.py",
-      "bytes": 22924,
-      "sha256": "b6582a07843bdf8c81033d74875581c6e57e8a7b197926f6a86280864554b55f"
+      "bytes": 23633,
+      "sha256": "82ea7fa3aa9d8ca9ce2bf8d3eb471307abb64a6f5a2ed319af3760bca52b0bba"
     },
     {
       "path": "tavern/web/routes/tendencies.py",
-      "bytes": 13680,
-      "sha256": "3116a5d8f19cd0b9e6bca6dde3720e37914e8c4db633d4f5f1157ec959cea649"
+      "bytes": 14139,
+      "sha256": "9768cd1fed92f8d7d46899f55ce585e46a54cbada14cd805b57a973050e90d1d"
     },
     {
       "path": "tavern/web/routes/visual_support.py",
-      "bytes": 1637,
-      "sha256": "00be729bffc1c7e23e88d3edc67b2be2efb64a78a2bbac43a1fe5ee07e003030"
+      "bytes": 1640,
+      "sha256": "42ebd35cfcc938a4137ee7a62ee74ffd80338900c8e53e3e3d80189cecc348e1"
     },
     {
       "path": "tavern/web/routes/world_imports.py",
@@ -3090,88 +3105,88 @@
     },
     {
       "path": "tavern/web/routes/world_packages.py",
-      "bytes": 9283,
-      "sha256": "e852e501ef5c2e430ea68ceea597b7eef4b988e2e7075592a16ed5ef4c250ed1"
+      "bytes": 9325,
+      "sha256": "821254bceba808ea6b66eedbf4cfab8830862d87f1c2eef6d91c42a6fb954a90"
     },
     {
       "path": "tavern/web/routes/world_state.py",
-      "bytes": 16735,
-      "sha256": "ca254d04219306955866fe16ae5d6c4af88bcbe0b0d0db25b47f9102f3f3b1d7"
+      "bytes": 16798,
+      "sha256": "9b06a1d5c2460ea7145da442f96741b6a971231ec011cdd8d71d47a40145ec52"
     },
     {
       "path": "tavern/web/routes/worlds.py",
-      "bytes": 11441,
-      "sha256": "bf8e092facccddb19345782b2860be6544ee530f02dd0ae82207fbc2ce4a41a2"
+      "bytes": 11823,
+      "sha256": "1a3cabc4249e759d67dc3feb68506cd97c7a3cbc03ffb4bebd6eae4b28d65843"
     },
     {
       "path": "tavern/web/surfaces/__init__.py",
-      "bytes": 2430,
-      "sha256": "603f05aead645fece22ee9b117d55a3acb5f2ef03978cb876875fdcaecf90340"
+      "bytes": 2452,
+      "sha256": "855e28a689ee2996ec819130c1ed7b3504d27c3bb1b51ed3979a8834737f9272"
     },
     {
       "path": "tavern/web/surfaces/author_jobs_support.py",
-      "bytes": 592,
-      "sha256": "f39e646be15bbba3fd35565df37a384c5a3f74f817efaa0c69afa16b7ccd08cb"
+      "bytes": 614,
+      "sha256": "6740dce9cef1fdfb6e70dfa0f5e0ef06054560486212bd45be877a7658ef2651"
     },
     {
       "path": "tavern/web/surfaces/capabilities.py",
-      "bytes": 8973,
-      "sha256": "6a6b4981753cce6d509f854dcdd2ca478740e53a52139cdaf23c182b2cfce824"
+      "bytes": 9072,
+      "sha256": "bc7b5996a745ca64f3178f8a76be2302b3dd67c292e19658fcb8fcb61f5a6941"
     },
     {
       "path": "tavern/web/surfaces/dashboard.py",
-      "bytes": 35182,
-      "sha256": "9fd02fdfcdf78d0472275c5e888e5f14e1ca95c1d925911b80fe7d7e32f8c29a"
+      "bytes": 35573,
+      "sha256": "7e68eb01f532aeeb3a7dab98de1b047ae9c36d16508f86ec8431832b684824ef"
     },
     {
       "path": "tavern/web/surfaces/designer_matrix.py",
-      "bytes": 1297,
-      "sha256": "070677b4a03a01ed8a62b0846c6a126527f7add46ab6f4ad3283eafc70cc3c64"
+      "bytes": 1344,
+      "sha256": "c1711cdec8556c6cf632709b0bd01a83cb32ebc581dd0b667f8e1717d9f450de"
     },
     {
       "path": "tavern/web/surfaces/health.py",
-      "bytes": 10714,
-      "sha256": "2007b0cb310087f25c5b6016b305a0158eb4a0a27187563d240f573d8a33cd4c"
+      "bytes": 10985,
+      "sha256": "c091a3d4b0d906a2451089ae57ac4a1e127d4d93604a334502e2fb3afb2f89fa"
     },
     {
       "path": "tavern/web/surfaces/health_support.py",
-      "bytes": 886,
-      "sha256": "6a0ddaaeedcdfb17bb69ded0867e4e61dc67c908b8406fd76901d5b37cfcd8e9"
+      "bytes": 916,
+      "sha256": "3d55b5dbd3b98423a6beca216ef8660df3e9a6bdd8288a17a45f5e7a108aebe3"
     },
     {
       "path": "tavern/web/surfaces/module_categories.py",
-      "bytes": 5204,
-      "sha256": "0f6c9bac8fa340636b4a19f31cd58550155b16fac6fad0d5b1cb3f5db4f6b429"
+      "bytes": 5346,
+      "sha256": "2ec01fd598bd66ea336bf308e25bdffb529466534e4fabe8e3a9ad0e55bd8c83"
     },
     {
       "path": "tavern/web/surfaces/operations.py",
-      "bytes": 42363,
-      "sha256": "f472d814dbd8ad4dd604fff735ee4ca0970a15c6d288638cb3f135ff583d891c"
+      "bytes": 42769,
+      "sha256": "5a67098b2e20e30e3a98c432e62bf35215de8b2de45749c94014843f0590aa9e"
     },
     {
       "path": "tavern/web/surfaces/registry.py",
-      "bytes": 32057,
-      "sha256": "e82504f7733379d38f4cc6abe0da1491f6542c42bbf18dfd70a5cd7a76eda39d"
+      "bytes": 32265,
+      "sha256": "cb894d4539ab3c311a171db3e531a09e3796c26e5d17b88bc6a5b969e05e7e41"
     },
     {
       "path": "tavern/web/surfaces/runtime.py",
-      "bytes": 30291,
-      "sha256": "6a197cf599a9a7db02e3645b2d452c3bf5129cd3c817966016f38926b6af3708"
+      "bytes": 30493,
+      "sha256": "ba06268d0ae65627def298ca701a94f40d9e3697e5b6a3db61c68d799c829f79"
     },
     {
       "path": "tavern/web/surfaces/settings_contract.py",
-      "bytes": 4201,
-      "sha256": "e3b3ef34b456f7012d1a741499e9cd093082224dfa0fb07fb3e4ef9b42b93fa0"
+      "bytes": 4303,
+      "sha256": "24b964ba62ccc59ce53676b783bc5f46c78521a4ab0981f483e359c86d9b8764"
     },
     {
       "path": "tavern/web/surfaces/system.py",
-      "bytes": 46001,
-      "sha256": "31822a089af6f65e263e5629f4e7bb96f9475d1bdd9955dcfb33d9ea9ef997da"
+      "bytes": 46545,
+      "sha256": "9f5db69afb81a83aeeae8ccad42b66e4f87c33cc4b13753862fa68daf6c40342"
     },
     {
       "path": "tavern/web/surfaces/world_projection.py",
-      "bytes": 9502,
-      "sha256": "d1b977f345651aa4eddcd811af407e952cd377cb54e72bf6192341ff79f49d01"
+      "bytes": 9755,
+      "sha256": "e18cf1d48da4af616282a989d245c918e8c232e421043a69fe541f391da31f91"
     },
     {
       "path": "tavern/web/surfaces/world_public_details.py",
@@ -3180,28 +3195,28 @@
     },
     {
       "path": "tavern/web/surfaces/worlds.py",
-      "bytes": 42436,
-      "sha256": "24a6bb6255cdf76a9380064703b732ba9e40a1b1cfde1c0696432085d2a18694"
+      "bytes": 42668,
+      "sha256": "9399a61dbd0a4756a048203749c0c181647796cd93e54accbfb383e7dcae6d9b"
     },
     {
       "path": "tavern/web_console.py",
-      "bytes": 900,
-      "sha256": "30d31e209adadf61aeb0fb69b9d96c5d3892a32df1b53f6d29c5ff9c7adf8588"
+      "bytes": 916,
+      "sha256": "fdb9cdf2c48992eb75f7ae0f39fc450c468c253d183cc006424e4444947a36f8"
     },
     {
       "path": "tavern/web_console_compat.py",
-      "bytes": 8774,
-      "sha256": "cbfcea4f53b60017e8cb064b4c57396e99d50c7d8f7a2ac38f3bfeeeb6df251b"
+      "bytes": 9069,
+      "sha256": "5639773749aac84542ce52ba96a76bd259c6de55bb3c6679e620e2054ca3bf69"
     },
     {
       "path": "tavern/web_console_shared.py",
-      "bytes": 24864,
-      "sha256": "5b0100727ff45887b166ee3769cf944a360d6a2e03b5bab9a1c580cb3d15292d"
+      "bytes": 24870,
+      "sha256": "ca0ea0e0e6d5ac58896957e5b806d890245bd1aff53d64cb35337bbeb501fab2"
     },
     {
       "path": "tavern/workers/__init__.py",
-      "bytes": 272,
-      "sha256": "9febc77795de7d87be2502566ead39d89e05ba516f38d6fb5b8f4903451851fc"
+      "bytes": 283,
+      "sha256": "10eb25185a5d688cbdeaddc1af4801d7c9ab5952452d8a11abe4402e3dcbbbe4"
     },
     {
       "path": "tavern/workers/author_job_worker.py",
@@ -3210,18 +3225,18 @@
     },
     {
       "path": "tavern/workers/event_outbox_worker.py",
-      "bytes": 2299,
-      "sha256": "c10dc29750946a4b6e2e9589269b80cb24e4c256d977ec7e32583f928743ef18"
+      "bytes": 2368,
+      "sha256": "f0eb0d07bea218fd046194b29a47b634880c39bce60be076faba409df23d08bf"
     },
     {
       "path": "tavern/workers/storage_sync_worker.py",
-      "bytes": 3446,
-      "sha256": "36fea7e3e3724f31133250e3d9e5ef31a3b510ef3074a03ddca05b063e1c8b0c"
+      "bytes": 3544,
+      "sha256": "f5fcd204439cf2ef4caf1edb0f2f0078003b0192b064628300fc046642364f53"
     },
     {
       "path": "tavern/world_contract.py",
-      "bytes": 32025,
-      "sha256": "70912f95880a5731e69522b036dc9903645dabd1c7be0ad4bdcacb7605146d0a"
+      "bytes": 32385,
+      "sha256": "5c9c8136f58170451196b9ee89e6f94f00b9ba02ad6104f88e528f95be8f0b63"
     },
     {
       "path": "tavern/world_migration.py",

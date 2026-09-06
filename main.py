@@ -86,6 +86,16 @@ class TavernPlugin(PrivateMessagesMixin, GroupMessagesMixin, PluginLifecycleMixi
         ).strip()
         command = parse_tavern_command("/" + message)
         if command.matched and command.action != "unknown":
+            # Help 走图片分支：绕过 _run_native_command，避免 webhooks 输出一大坨文本。
+            if command.action == "help":
+                group_id = self._group_id(event)
+                scope = "private" if not group_id else "group"
+                image_path = await self._render_help_image(event, scope=scope)
+                if image_path:
+                    event.stop_event()  # 必须 stop_event，否则 priority=100 的 on_group_message 会再发 contextual_help 大段文本
+                    yield event.image_result(image_path)
+                    return
+                # 渲染失败时仍走文本兜底
             response = await self._run_native_command(event, command.action)
             if response:
                 yield await self._message_result(event, response)
@@ -172,6 +182,15 @@ class TavernPlugin(PrivateMessagesMixin, GroupMessagesMixin, PluginLifecycleMixi
     )
     tavern_card_fill = tavern.command("填写", priority=200)(
         CommandMethods.tavern_card_fill
+    )
+    tavern_card_random = tavern.command(
+        "随机", alias={"sj"}, priority=200
+    )(CommandMethods.tavern_card_random)
+    tavern_card_expand = tavern.command(
+        "补全", alias={"bq"}, priority=200
+    )(CommandMethods.tavern_card_expand)
+    tavern_card_web = tavern.command("网页建卡", priority=200)(
+        CommandMethods.tavern_card_web
     )
     tavern_card_previous = tavern.command("上一步", priority=200)(
         CommandMethods.tavern_card_previous

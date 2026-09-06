@@ -479,7 +479,7 @@
       "host": {
         "description": "监听地址",
         "type": "string",
-        "hint": "默认 127.0.0.1（仅本机）。如需外网直连请改为 0.0.0.0，并务必配置 HTTPS 反代/隧道或开启 allow_insecure_http（不推荐）。",
+        "hint": "默认 127.0.0.1（仅本机）。公网访问二选一：① 有域名时改为 0.0.0.0 并配 HTTPS 反代；② 无域名直连 IP 时改为 0.0.0.0 并开启 allow_insecure_http（需自行放行端口，明文传输风险自负，详见 README 公网访问章节）。",
         "default": "127.0.0.1"
       },
       "port": {
@@ -491,7 +491,7 @@
       "allow_insecure_http": {
         "description": "允许明文 HTTP 登录",
         "type": "bool",
-        "hint": "默认关闭：非本机访问时要求 HTTPS（反代/隧道）。开启后允许明文传输密码，风险自负。",
+        "hint": "默认关闭：非本机访问时要求 HTTPS（反代/隧道），不开则直接拒绝连接。无域名直连服务器 IP 部署时必须开启本项才能从外部访问；开启后密码与令牌明文传输，请先修改默认管理员密码，风险自负。",
         "default": false
       },
       "external_scheme": {
@@ -510,9 +510,17 @@
         "description": "可信反向代理来源段",
         "type": "list",
         "hint": "仅来自这些 CIDR 的直连对端才会读取 X-Forwarded-Proto 等转发头；默认仅回环。",
-        "default": ["127.0.0.1", "::1"]
+        "default": [
+          "127.0.0.1",
+          "::1"
+        ]
+      },
+      "public_url": {
+        "description": "网页建卡公网访问地址",
+        "type": "string",
+        "hint": "网页建卡链接的前缀（含协议，结尾不带斜杠），例如 https://www.example.com。有域名填域名；无域名直连 IP 可填 http://服务器IP:8766。留空时使用 http://监听地址:端口，仅本机/内网可访问。",
+        "default": ""
       }
     }
   }
-
 }

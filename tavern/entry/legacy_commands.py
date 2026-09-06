@@ -795,10 +795,12 @@ class LegacyCommandMethods:
             pending = _pending_review_cards(roster)
             argument = str(command.argument or "").strip()
             list_page = parse_instance_list_page(argument)
-            if not argument or list_page is not None:
+            if not argument:
+                return format_pending_reviews_compact(pending)
+            if list_page is not None:
                 return format_pending_reviews(
                     pending,
-                    page=list_page or 1,
+                    page=list_page,
                 )
 
             parts = argument.split(maxsplit=2)

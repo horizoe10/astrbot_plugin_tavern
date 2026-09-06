@@ -143,6 +143,47 @@ class MessageMethods:
         return result
 
 
+    async def _render_help_image(
+        self,
+        event: Any,
+        *,
+        scope: str,
+    ) -> str | None:
+        """把开团帮助渲染成 PNG，返回本地路径；失败返回 None。
+
+        私聊精简版 / 群聊全指令版共用同一套渲染器。图片写到插件
+        数据目录下的 temp 子目录，发送后由宿主负责传输。
+        """
+
+        from ..help_renderer import (
+            render_group_help_image,
+            render_private_help_image,
+        )
+        try:
+            config = self.runtime_config()
+            prefix = str(config.trigger_prefix or "").strip()
+        except Exception:
+            prefix = "t"
+        output_dir = str(
+            getattr(self, "data_dir", None) or "/tmp"
+        ) + "/temp/help"
+        try:
+            if scope == "private":
+                image_path = render_private_help_image(
+                    output_dir=output_dir,
+                    plugin_version=str(PLUGIN_VERSION),
+                )
+            else:
+                image_path = render_group_help_image(
+                    output_dir=output_dir,
+                    trigger_prefix=prefix,
+                    plugin_version=str(PLUGIN_VERSION),
+                )
+        except Exception:
+            logger.exception("321开团帮助图渲染失败，回退文本")
+            return None
+        return str(image_path)
+
     async def _write_security_audit(
         self,
         *,
@@ -444,6 +485,11 @@ class MessageMethods:
             action,
         )
         if not group_id:
+            if action == "review":
+                # 私聊 /团 审核：为主持人签发网页审核链接（/cw/review）。
+                # 注意：本方法开头已 stop_event，若不在此拦截，
+                # 会落入下方「仅支持群聊」兜底文案。
+                return await self._private_review_web_entry(event, command)
             if action in PRIVATE_CARD_ACTIONS:
                 activated_text = await self._activate_pending_private_card(event)
                 if activated_text:
