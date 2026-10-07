@@ -1,3 +1,0 @@
-import { createPageAdapter, firstSource } from "./core.js";
-const paths={summary:["summary","$summary"],world_cards:["items"],github_previews:["github_previews","import_sources"],pagination:["pagination"]};
-export const toWorldsPageModel=createPageAdapter({workspace:"worlds",spec:[["summary","DensityStrip",false],["world_cards","WorldCardGrid",true],["github_previews","ImportPreviewList",false],["pagination","Pagination",false]],paths,filterSources:{status:"statuses",author:"authors",capability:"capabilities"},resolveSection(id,data,envelope){if(id==="summary")return{...(envelope.summary||{}),capabilities:data.capabilities||null,changes:data.changes||[]};return firstSource(paths[id],data,envelope);}});

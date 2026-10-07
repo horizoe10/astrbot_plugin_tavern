@@ -1,3 +1,0 @@
-import { createPageAdapter, firstSource } from "./core.js";
-const paths={summary:["summary","$summary"],review_cards:["items"],privacy:["privacy","context"],pagination:["pagination"]};
-export const toCharactersPageModel=createPageAdapter({workspace:"characters",spec:[["summary","DensityStrip",false],["review_cards","ReviewCardGrid",true],["privacy","PrivacyBoundary",false],["pagination","Pagination",false]],paths,filterSources:{session_key:"sessions",status:"statuses"},resolveSection(id,data,envelope){if(id==="summary")return{...(envelope.summary||{}),metrics:data.queue||[]};return firstSource(paths[id],data,envelope);}});

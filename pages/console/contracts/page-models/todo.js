@@ -1,2 +1,0 @@
-import { createPageAdapter } from "./core.js";
-export const toTodoPageModel=createPageAdapter({workspace:"todo",spec:[["actionable","ActionableTodoList",true],["blockers","RuntimeBlockerList",false],["queue_summary","QueueSummary",false],["delivery_boundary","SupportNote",false],["pagination","Pagination",false]],paths:{actionable:["items"],blockers:["blockers"],queue_summary:["groups","summary","$summary"],delivery_boundary:["context","$summary"],pagination:["pagination"]},filterSources:{status:"statuses"}});

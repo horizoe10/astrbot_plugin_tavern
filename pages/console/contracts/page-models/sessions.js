@@ -1,3 +1,0 @@
-import { createPageAdapter, firstSource } from "./core.js";
-const paths={summary:["summary","$summary"],capability_panels:["capability_panels"],groups:["groups","items"],pagination:["pagination"]};
-export const toSessionsPageModel=createPageAdapter({workspace:"sessions",spec:[["summary","DensityStrip",false],["capability_panels","CapabilityHub",false],["groups","GroupedSessionList",true],["pagination","Pagination",false]],paths,filterSources:{status:"statuses",world:"worlds",group:"groups"},resolveSection(id,data,envelope){if(id==="summary")return{...(envelope.summary||{}),metrics:data.stage_counts||[]};return firstSource(paths[id],data,envelope);}});

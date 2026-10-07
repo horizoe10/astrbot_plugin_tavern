@@ -1,2 +1,0 @@
-import { createPageAdapter } from "./core.js";
-export const toAboutPageModel=createPageAdapter({workspace:"about",spec:[["version","VersionInfo",true],["support","SupportBoundary",true],["features","FeatureGrid",false],["resources","ResourceLinks",false],["diagnostics","DiagnosticSummary",false]],paths:{version:["version","items"],support:["support","boundaries"],features:["features","items"],resources:["resources"],diagnostics:["diagnostics"]}});

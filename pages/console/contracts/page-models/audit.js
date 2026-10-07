@@ -1,2 +1,0 @@
-import { createPageAdapter } from "./core.js";
-export const toAuditPageModel=createPageAdapter({workspace:"audit",spec:[["delivery","DeliveryDataList",false],["audit","AuditTimeline",false],["pagination","Pagination",false]],paths:{delivery:["deliveries","items"],audit:["records","items"],pagination:["pagination"]},filterSources:{status:"statuses",object:"objects",actor:"actors",action:"actions",time:"times"}});
