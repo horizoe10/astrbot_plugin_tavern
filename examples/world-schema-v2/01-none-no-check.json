@@ -1,0 +1,94 @@
+{
+  "world_schema_version": 2,
+  "slug": "example-none",
+  "name": "example-none",
+  "description": "协议 v2 最小示例",
+  "system_prompt": "保持因果连续，不替玩家决定行动。",
+  "opening_scene": "故事开始。",
+  "capabilities": {
+    "character_stats": false,
+    "attribute_checks": false,
+    "dice_resolution": false
+  },
+  "rules": {
+    "world_schema_version": 2,
+    "character_card": {
+      "version": 1,
+      "fields": [
+        {
+          "key": "name",
+          "label": "角色姓名",
+          "type": "text",
+          "required": true,
+          "max_chars": 12
+        },
+        {
+          "key": "code",
+          "label": "副本代号",
+          "type": "text",
+          "required": true,
+          "max_chars": 12
+        },
+        {
+          "key": "profession",
+          "label": "职业",
+          "type": "select",
+          "required": true,
+          "options_source": "profession_presets"
+        },
+        {
+          "key": "primary_attribute",
+          "label": "主属性",
+          "type": "select",
+          "required": true,
+          "options": [
+            "体魄",
+            "心智"
+          ]
+        }
+      ],
+      "stats": {
+        "mode": "none"
+      }
+    },
+    "resolution": {
+      "mode": "none"
+    },
+    "opening_choices": [
+      {
+        "key": "A",
+        "text": "观察现场",
+        "danger_id": "safe",
+        "check": null,
+        "collective": false
+      },
+      {
+        "key": "B",
+        "text": "询问线索",
+        "danger_id": "safe",
+        "check": null,
+        "collective": false
+      },
+      {
+        "key": "C",
+        "text": "整理物品",
+        "danger_id": "safe",
+        "check": null,
+        "collective": false
+      },
+      {
+        "key": "D",
+        "text": "保持警戒",
+        "danger_id": "safe",
+        "check": null,
+        "collective": false
+      }
+    ]
+  },
+  "initial_state": {
+    "location": "起点",
+    "facts": [],
+    "inventory": {},
+    "relationships": {}
+  }
+}

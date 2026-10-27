@@ -1,0 +1,10 @@
+{
+  "display_name": "AI酒馆",
+  "desc": "暂停维护，请使用321roll以获取更优体验。",
+  "pages": {
+    "console": {
+      "title": "Tavern Console",
+      "description": "Manage world preflight, stable numbering, rule simulation, isolated runs, capabilities, NPCs, recovery, receipts, and model chains."
+    }
+  }
+}

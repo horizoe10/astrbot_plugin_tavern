@@ -1,0 +1,784 @@
+{
+  "template_metadata": {
+    "template_bundle_version": "4.0.0",
+    "compatible_plugin_version": "0.12.1",
+    "world_schema_version": 5,
+    "character_card_template_version": 6,
+    "purpose": "复制后修改的 v0.12.0 能力接口世界包；本文件自身可通过严格世界包体检",
+    "edit_note": "请替换世界标识、设定、预设、开场、NPC引用和初始状态，不要删除协议字段",
+    "minimum_plugin_version": "0.12.0"
+  },
+  "slug": "v5-capabilities-template",
+  "name": "v5 能力接口模板",
+  "description": "世界协议 v5 模块化示例；只启用本文件实际使用的功能。",
+  "system_prompt": "【世界定位】\n请把本段替换为题材、时代、活动范围和玩家共同身份。\n\n【稳定常识】\n分别写明普通人、专业人士和玩家开局知道的事实；隐藏历史、幕后动机和私人秘密不得提前公开。\n\n【底层规律】\n所有魔法、科技、超自然能力或特殊资源都必须有来源、条件、代价和上限。任何角色都不能全知全能，也不能为了推进剧情临时获得无来源能力。\n\n【身份与知识边界】\n角色只能依据角色卡、亲历事件、公开事实、已获线索和合理信息来源行动；不得读取其他玩家私人秘密、后台指令或未公开 NPC 动机。\n\n【因果与连续性】\n已发生事件、消耗、伤势、关系、位置与世界变化必须连续。失败产生合理代价或新局面，不抹去玩家行动，也不让故事无路可走。\n\n【玩家自主权】\n只描述环境、NPC 和玩家已声明行动造成的结果；不得替玩家决定思想、感情、台词、承诺、背叛、恋爱、投降、信仰改变或死亡确认。\n\n【建卡与裁定权限】\n建卡预设由插件按当前步骤展示和校验。选项检定参数由插件规则锁定，随机数、加值、DC 和结果档位由机器骰制计算并持久化。文字 AI 只能根据已经公开的检定回执续写，不得重投、修改 DC、改变结果或追加未预告的永久惩罚。\n\n【叙事要求】\n每回合聚焦可见变化、明确因果和下一步可行动信息。保留角色知识差异与 NPC 局限，不替玩家行动，不输出程序字段或后台秘密。",
+  "opening_scene": "请把这里替换为开场正文：交代当前地点、可见异常、立即目标和可互动对象，但不要替玩家选择行动。",
+  "rules": {
+    "world_schema_version": 5,
+    "strict_choices": true,
+    "check_density": "standard",
+    "allow_player_result_claims": false,
+    "death_requires_confirmation": true,
+    "player_limits": {
+      "recommended_min": 1,
+      "recommended_max": 4,
+      "minimum_start": 1,
+      "maximum": 4
+    },
+    "character_card": {
+      "version": 6,
+      "auto_approve": false,
+      "edit_requires_review": true,
+      "preset_sets": {
+        "species_presets": [
+          {
+            "id": "species_example_a",
+            "value": "示例种族甲",
+            "label": "示例种族甲",
+            "summary": "替换为该种族的公开特征、文化或生活经验。",
+            "limitations": "说明不能自动获得的能力、知识或社会特权。",
+            "knowledge_profile_ref": "knowledge.common",
+            "content_profile_ref": "content.default_player"
+          },
+          {
+            "id": "species_example_b",
+            "value": "示例种族乙",
+            "label": "示例种族乙",
+            "summary": "第二个可选种族，用于演示稳定 ID 与分页选择。",
+            "limitations": "不要把种族描述写成无条件数值加成或全知权限。",
+            "knowledge_profile_ref": "knowledge.common",
+            "content_profile_ref": "content.default_player"
+          }
+        ],
+        "profession_presets": [
+          {
+            "id": "profession_example_a",
+            "value": "示例职业甲",
+            "label": "示例职业甲",
+            "summary": "替换为职业定位、主要手段和典型行动。",
+            "ability_source": "替换为训练、装备、契约、科技或其他能力来源。",
+            "limitations": "替换为资源消耗、环境条件与能力上限。",
+            "knowledge_profile_ref": "knowledge.common",
+            "content_profile_ref": "content.default_player"
+          },
+          {
+            "id": "profession_example_b",
+            "value": "示例职业乙",
+            "label": "示例职业乙",
+            "summary": "第二个可选职业；展示内容只在职业步骤出现。",
+            "ability_source": "说明能力来源。",
+            "limitations": "说明职业弱点和禁止越界的能力。",
+            "knowledge_profile_ref": "knowledge.common",
+            "content_profile_ref": "content.default_player"
+          }
+        ],
+        "origin_presets": [
+          {
+            "id": "origin_example_a",
+            "value": "示例地区甲",
+            "label": "示例地区甲",
+            "summary": "替换为地区环境、常识、语言倾向和合理联系人。",
+            "knowledge_profile_ref": "knowledge.common",
+            "content_profile_ref": "content.default_player"
+          },
+          {
+            "id": "origin_example_b",
+            "value": "示例地区乙",
+            "label": "示例地区乙",
+            "summary": "第二个可选出身地区。",
+            "knowledge_profile_ref": "knowledge.common",
+            "content_profile_ref": "content.default_player"
+          }
+        ]
+      },
+      "fields": [
+        {
+          "key": "name",
+          "label": "角色姓名",
+          "type": "text",
+          "required": true,
+          "private": false,
+          "max_chars": 12
+        },
+        {
+          "key": "code",
+          "label": "副本代号",
+          "type": "text",
+          "required": true,
+          "private": false,
+          "max_chars": 12
+        },
+        {
+          "key": "species",
+          "label": "选择种族",
+          "type": "preset_select",
+          "preset_source": "species_presets",
+          "page_size": 5,
+          "required": true,
+          "private": false,
+          "max_chars": 30
+        },
+        {
+          "key": "profession",
+          "label": "选择职业",
+          "type": "preset_select",
+          "preset_source": "profession_presets",
+          "page_size": 5,
+          "required": true,
+          "private": false,
+          "max_chars": 30
+        },
+        {
+          "key": "origin_region",
+          "label": "选择出身地区",
+          "type": "preset_select",
+          "preset_source": "origin_presets",
+          "page_size": 5,
+          "required": true,
+          "private": false,
+          "max_chars": 40
+        },
+        {
+          "key": "background",
+          "label": "角色背景与能力来源",
+          "type": "textarea",
+          "required": true,
+          "private": false,
+          "max_chars": 800
+        },
+        {
+          "key": "goal",
+          "label": "当前目标",
+          "type": "textarea",
+          "required": true,
+          "private": false,
+          "max_chars": 300
+        },
+        {
+          "key": "secret",
+          "label": "私人秘密",
+          "type": "textarea",
+          "required": false,
+          "private": true,
+          "max_chars": 600
+        }
+      ],
+      "stats": {
+        "mode": "manual",
+        "budget": 8,
+        "attributes": [
+          {
+            "key": "body",
+            "label": "体魄",
+            "minimum": 0,
+            "maximum": 5,
+            "default": 2,
+            "description": "力量、耐力、负重和承受伤势。"
+          },
+          {
+            "key": "agility",
+            "label": "敏捷",
+            "minimum": 0,
+            "maximum": 5,
+            "default": 2,
+            "description": "反应、平衡、潜行和精细操作。"
+          },
+          {
+            "key": "insight",
+            "label": "洞察",
+            "minimum": 0,
+            "maximum": 5,
+            "default": 2,
+            "description": "观察、推理、知识和识别异常。"
+          },
+          {
+            "key": "presence",
+            "label": "影响",
+            "minimum": 0,
+            "maximum": 5,
+            "default": 2,
+            "description": "说服、威慑、领导和情绪感染。"
+          }
+        ],
+        "modifier_table": {
+          "0": -3,
+          "1": -2,
+          "2": -1,
+          "3": 0,
+          "4": 1,
+          "5": 2
+        }
+      },
+      "preset_dimensions": [
+        {
+          "id": "gender",
+          "label": "性别与称谓",
+          "selection": {
+            "mode": "single",
+            "min": 1,
+            "max": 1
+          },
+          "required": true,
+          "allow_custom": false,
+          "randomizable": true,
+          "display_order": 10,
+          "options": [
+            {
+              "id": "gender_female",
+              "value": "女",
+              "label": "女性",
+              "knowledge_profile_ref": "knowledge.common",
+              "content_profile_ref": "content.default_player"
+            },
+            {
+              "id": "gender_male",
+              "value": "男",
+              "label": "男性",
+              "knowledge_profile_ref": "knowledge.common",
+              "content_profile_ref": "content.default_player"
+            },
+            {
+              "id": "gender_unspecified",
+              "value": "未明示",
+              "label": "不公开说明",
+              "knowledge_profile_ref": "knowledge.common",
+              "content_profile_ref": "content.default_player"
+            }
+          ]
+        },
+        {
+          "id": "personality",
+          "label": "性格倾向",
+          "selection": {
+            "mode": "single",
+            "min": 1,
+            "max": 1
+          },
+          "required": true,
+          "allow_custom": false,
+          "randomizable": true,
+          "display_order": 20,
+          "options": [
+            {
+              "id": "calm",
+              "value": "沉静谨慎",
+              "label": "沉静谨慎",
+              "behavior_rules": [
+                "先观察再行动"
+              ],
+              "knowledge_profile_ref": "knowledge.common",
+              "content_profile_ref": "content.default_player"
+            },
+            {
+              "id": "open",
+              "value": "外向爽朗",
+              "label": "外向爽朗",
+              "behavior_rules": [
+                "愿意主动交流"
+              ],
+              "knowledge_profile_ref": "knowledge.common",
+              "content_profile_ref": "content.default_player"
+            },
+            {
+              "id": "resolute",
+              "value": "坚定果断",
+              "label": "坚定果断",
+              "behavior_rules": [
+                "明确表达原则，但关键决定仍由玩家确认"
+              ],
+              "knowledge_profile_ref": "knowledge.common",
+              "content_profile_ref": "content.default_player"
+            }
+          ]
+        },
+        {
+          "id": "species",
+          "label": "选择种族",
+          "selection": {
+            "mode": "single",
+            "min": 1,
+            "max": 1
+          },
+          "required": true,
+          "allow_custom": false,
+          "randomizable": true,
+          "display_order": 30,
+          "page_size": 5,
+          "options": [
+            {
+              "id": "species_example_a",
+              "value": "示例种族甲",
+              "label": "示例种族甲",
+              "summary": "替换为该种族的公开特征、文化或生活经验。",
+              "limitations": "说明不能自动获得的能力、知识或社会特权。",
+              "knowledge_profile_ref": "knowledge.common",
+              "content_profile_ref": "content.default_player"
+            },
+            {
+              "id": "species_example_b",
+              "value": "示例种族乙",
+              "label": "示例种族乙",
+              "summary": "第二个可选种族，用于演示稳定 ID 与分页选择。",
+              "limitations": "不要把种族描述写成无条件数值加成或全知权限。",
+              "knowledge_profile_ref": "knowledge.common",
+              "content_profile_ref": "content.default_player"
+            }
+          ]
+        },
+        {
+          "id": "profession",
+          "label": "选择职业",
+          "selection": {
+            "mode": "single",
+            "min": 1,
+            "max": 1
+          },
+          "required": true,
+          "allow_custom": false,
+          "randomizable": true,
+          "display_order": 40,
+          "page_size": 5,
+          "options": [
+            {
+              "id": "profession_example_a",
+              "value": "示例职业甲",
+              "label": "示例职业甲",
+              "summary": "替换为职业定位、主要手段和典型行动。",
+              "ability_source": "替换为训练、装备、契约、科技或其他能力来源。",
+              "limitations": "替换为资源消耗、环境条件与能力上限。",
+              "knowledge_profile_ref": "knowledge.common",
+              "content_profile_ref": "content.default_player"
+            },
+            {
+              "id": "profession_example_b",
+              "value": "示例职业乙",
+              "label": "示例职业乙",
+              "summary": "第二个可选职业；展示内容只在职业步骤出现。",
+              "ability_source": "说明能力来源。",
+              "limitations": "说明职业弱点和禁止越界的能力。",
+              "knowledge_profile_ref": "knowledge.common",
+              "content_profile_ref": "content.default_player"
+            }
+          ]
+        },
+        {
+          "id": "origin_region",
+          "label": "选择出身地区",
+          "selection": {
+            "mode": "single",
+            "min": 1,
+            "max": 1
+          },
+          "required": true,
+          "allow_custom": false,
+          "randomizable": true,
+          "display_order": 50,
+          "page_size": 5,
+          "options": [
+            {
+              "id": "origin_example_a",
+              "value": "示例地区甲",
+              "label": "示例地区甲",
+              "summary": "替换为地区环境、常识、语言倾向和合理联系人。",
+              "knowledge_profile_ref": "knowledge.common",
+              "content_profile_ref": "content.default_player"
+            },
+            {
+              "id": "origin_example_b",
+              "value": "示例地区乙",
+              "label": "示例地区乙",
+              "summary": "第二个可选出身地区。",
+              "knowledge_profile_ref": "knowledge.common",
+              "content_profile_ref": "content.default_player"
+            }
+          ]
+        }
+      ]
+    },
+    "resolution": {
+      "mode": "attribute",
+      "dice_system": "d20",
+      "unknown_attribute": "reject",
+      "allowed_attributes": [
+        "body",
+        "agility",
+        "insight",
+        "presence"
+      ],
+      "generic_check": {
+        "enabled": false,
+        "label": "通用",
+        "modifier": 0
+      },
+      "difficulty_policy": {
+        "safe": null,
+        "controlled": 9,
+        "dangerous": 13,
+        "desperate": 17,
+        "lethal": 21
+      },
+      "outcome_policy": {
+        "natural_20_critical": true,
+        "natural_1_critical": true,
+        "critical_success_margin": 10,
+        "cost_success_min_margin": -4,
+        "failure_min_margin": -9
+      },
+      "parameter_authority": "plugin_rule_engine",
+      "ai_role": "narrative_only_after_locked_receipt"
+    },
+    "danger_levels": [
+      {
+        "id": "safe",
+        "label": "安全",
+        "requires_visible_consequence": false
+      },
+      {
+        "id": "controlled",
+        "label": "可控",
+        "requires_visible_consequence": false
+      },
+      {
+        "id": "dangerous",
+        "label": "危险",
+        "requires_visible_consequence": false
+      },
+      {
+        "id": "desperate",
+        "label": "绝境",
+        "requires_visible_consequence": false
+      },
+      {
+        "id": "lethal",
+        "label": "致命",
+        "requires_visible_consequence": true
+      }
+    ],
+    "option_presentation": {
+      "annotation": {
+        "enabled": true,
+        "show_danger": true,
+        "show_check_attribute": true,
+        "show_failure_consequence": true,
+        "check_template": "需“{attribute}”检定",
+        "separator": " · "
+      }
+    },
+    "dice_rules": {
+      "system": "d20",
+      "advantage": "2d20_keep_high",
+      "disadvantage": "2d20_keep_low",
+      "stacking": false,
+      "opposites_cancel": true,
+      "outcome_bands": true,
+      "visibility": "public"
+    },
+    "inspiration": {
+      "initial": 1,
+      "maximum": 3,
+      "uses": [
+        "advantage_before_roll",
+        "reroll_full_pool"
+      ]
+    },
+    "npc_policy": {
+      "enabled": true,
+      "auto_register": true,
+      "max_new_per_turn": 2,
+      "require_named_or_relevant": true,
+      "generated_requires_review": true,
+      "archive_after_inactive_rounds": 12
+    },
+    "context_budget": {
+      "recent_turns": 6,
+      "memories": 6,
+      "active_npcs": 6,
+      "ledger_items": 8,
+      "locked_facts_always_include": true
+    },
+    "time_rules": {
+      "card_code_ttl_seconds": 1800,
+      "card_draft_ttl_seconds": 604800,
+      "card_completion_timeout_seconds": null,
+      "preparation_timeout_seconds": null,
+      "ready_timeout_seconds": null,
+      "turn_timeout_seconds": null,
+      "turn_reminder_seconds": null,
+      "max_consecutive_timeouts": -1,
+      "standby_timeout_seconds": null,
+      "delegation_ttl_seconds": null,
+      "vote_round_one_seconds": null,
+      "vote_round_two_seconds": null,
+      "vote_reminder_seconds": null,
+      "all_idle_pause_seconds": null,
+      "pause_stops_clock": true,
+      "announce_timeouts": false,
+      "turn_timeout_action": "hold",
+      "card_timeout_action": "remind",
+      "ready_timeout_action": "remind"
+    },
+    "opening_choices": [
+      {
+        "key": "A",
+        "text": "观察当前场景中最明显的异常",
+        "danger_id": "safe",
+        "requires_check": false,
+        "check": null,
+        "collective": false
+      },
+      {
+        "key": "B",
+        "text": "与在场关键 NPC 进行谨慎交涉",
+        "danger_id": "controlled",
+        "requires_check": true,
+        "check_type": "standard",
+        "check_stat": "影响",
+        "difficulty": 9,
+        "known_consequences": "失败会让对方提高戒心或要求额外条件",
+        "check": {
+          "required": true,
+          "attribute_id": "presence",
+          "type": "standard",
+          "difficulty": 9,
+          "known_consequences": "失败会让对方提高戒心或要求额外条件"
+        },
+        "collective": false
+      },
+      {
+        "key": "C",
+        "text": "立即进入危险区域追查线索",
+        "danger_id": "dangerous",
+        "requires_check": true,
+        "check_type": "standard",
+        "check_stat": "洞察",
+        "difficulty": 13,
+        "known_consequences": "失败可能暴露行踪、失去时间或触发新的威胁",
+        "check": {
+          "required": true,
+          "attribute_id": "insight",
+          "type": "standard",
+          "difficulty": 13,
+          "known_consequences": "失败可能暴露行踪、失去时间或触发新的威胁"
+        },
+        "collective": false
+      },
+      {
+        "key": "D",
+        "text": "召集团队讨论并决定共同路线",
+        "danger_id": "safe",
+        "requires_check": false,
+        "check": null,
+        "collective": true
+      }
+    ],
+    "event_pool": [
+      {
+        "id": "event_example_01",
+        "title": "示例动态事件",
+        "description": "替换为能改变局面、提供线索或制造代价的世界事件。",
+        "weight": 1,
+        "minimum_round": 2,
+        "cooldown_rounds": 4,
+        "once": true,
+        "severity": "standard",
+        "conditions": {
+          "locations": [],
+          "required_facts": [],
+          "excluded_facts": [],
+          "minimum_players": 1,
+          "maximum_players": 4
+        }
+      }
+    ],
+    "safe_exit_templates": [
+      "{character}在安全地点留下联络方式后暂时离队，并带走个人装备与私人线索。"
+    ],
+    "return_rules": {
+      "allow_return": true,
+      "allow_resurrection": false,
+      "requires_vote": true,
+      "requires_story_condition": true
+    },
+    "knowledge_boundary": {
+      "policy": "strict",
+      "global_rules": [
+        "只读取明确授权的知识。"
+      ],
+      "forbidden_domains": [
+        "导演秘密"
+      ],
+      "metagame_policy": "deny",
+      "unknown_fact_behavior": "承认不知道或发起调查"
+    },
+    "knowledge_profiles": {
+      "common": {
+        "label": "世界普通成年人",
+        "domains": {
+          "公开世界常识": "basic",
+          "导演秘密": "unknown"
+        },
+        "known_facts": [
+          "知道世界包明确列出的公开常识"
+        ],
+        "unknown_facts": [
+          "不知道导演秘密与其他角色私人秘密"
+        ]
+      }
+    },
+    "content_profiles": {
+      "default_player": {
+        "additional_denials": [
+          "以预设替玩家决定关键立场或主动台词"
+        ],
+        "narrative_rules": [
+          "预设只影响倾向，不代替玩家选择"
+        ]
+      }
+    },
+    "content_boundary": {
+      "hard_blocked_tags": [
+        "替玩家决定重大意志"
+      ],
+      "player_may_relax": false,
+      "safety_pause_overrides_all": true
+    },
+    "entity_registry": {
+      "entities": [
+        {
+          "entity_type": "stat",
+          "id": "mastery",
+          "label": "熟练度"
+        },
+        {
+          "entity_type": "story_flag",
+          "id": "advanced_training",
+          "label": "完成进阶训练"
+        }
+      ]
+    },
+    "resources": {
+      "definitions": [
+        {
+          "resource_id": "focus",
+          "label": "专注",
+          "value_type": "integer",
+          "range": {
+            "min": 0,
+            "max": 10
+          },
+          "initial_value": 5,
+          "persistence_scope": "scene"
+        }
+      ]
+    },
+    "capabilities": {
+      "definitions": [
+        {
+          "capability_id": "basic",
+          "label": "基础能力",
+          "description": "可替换为武学、调查、权限或配方。",
+          "costs": [
+            {
+              "resource_ref": "resource:focus",
+              "operation": "subtract",
+              "value": 1
+            }
+          ],
+          "effects": [
+            {
+              "op": "add_narrative_constraint",
+              "value": "按世界规则表现基础能力。"
+            }
+          ]
+        },
+        {
+          "capability_id": "advanced",
+          "label": "进阶能力",
+          "description": "示例进阶节点。"
+        }
+      ],
+      "initial_grants": [],
+      "transitions": [
+        {
+          "transition_id": "basic_to_advanced",
+          "from": [
+            "capability:basic"
+          ],
+          "when": {
+            "all": [
+              {
+                "scope": "actor",
+                "ref": "stat:mastery",
+                "operator": ">=",
+                "value": 3
+              },
+              {
+                "scope": "world",
+                "ref": "story_flag:advanced_training",
+                "operator": "==",
+                "value": true
+              }
+            ]
+          },
+          "operations": [
+            {
+              "op": "set_availability",
+              "target_ref": "capability:basic",
+              "value": false
+            },
+            {
+              "op": "grant_reference",
+              "target_ref": "capability:advanced"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "initial_state": {
+    "location": "替换为开场地点",
+    "time": "替换为世界内时间",
+    "scene_summary": "替换为开场局势、当前异常与立即目标。",
+    "progress": {
+      "chapter": "序章",
+      "current_objective": "调查开场事件",
+      "completed_milestones": 0,
+      "total_milestones": 0
+    },
+    "facts": [
+      "玩家共同身份与本世界基础规则已经成立",
+      "角色只能依据角色卡、亲历事件与已获得线索行动"
+    ],
+    "inventory": {
+      "party_supplies": {},
+      "quest_items": {}
+    },
+    "relationships": {},
+    "check_modifiers": {
+      "advantages": [],
+      "disadvantages": []
+    }
+  },
+  "world_schema_version": 5,
+  "world_content_version": "1.0.0",
+  "minimum_plugin_version": "0.12.0",
+  "protocol": {
+    "core_version": 5,
+    "features": {
+      "entity_registry": "1.0",
+      "condition_engine": "1.0",
+      "operation_engine": "1.0",
+      "event_pipeline": "1.0",
+      "resolution_receipt": "1.0",
+      "capabilities": "1.0",
+      "resources": "1.0",
+      "action_intents": "1.0"
+    }
+  },
+  "required_features": [
+    "entity_registry@>=1.0",
+    "condition_engine@>=1.0",
+    "operation_engine@>=1.0",
+    "capabilities@>=1.0"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "id_aliases": {
+    "capability:old_fire_spell": "capability:fire_spell",
+    "object:old_royal_seal": "object:royal_seal"
+  },
+  "rules": [
+    "别名只用于旧引用读取；所有新写入使用目标 ID。",
+    "显示名称变化不需要别名。",
+    "删除仍被引用的 ID 时必须同时提供替代或终止操作。"
+  ]
+}

@@ -1,0 +1,282 @@
+[
+  {
+    "slug": "herbert-lane",
+    "name": "赫伯特·莱恩",
+    "role": "npc",
+    "profile": {
+      "identity": "鸦渡镇银炬公会分会长",
+      "appearance": "五十岁上下的独眼人类男性，穿旧锁甲和深绿色公会外套，左手缺两根手指。",
+      "personality": "谨慎、务实、讨厌空话，愿意为可靠冒险者承担有限风险。",
+      "public_background": "曾是北境军队斥候，退役后管理鸦渡镇分会。",
+      "faction": "银炬冒险者公会",
+      "location": "鸦渡镇银炬冒险者公会",
+      "known_facts": [
+        "三份异常委托的原始提交人",
+        "失踪驿骑最后一次登记时间",
+        "镇内可调用的基础资源"
+      ],
+      "misunderstandings": [
+        "认为灰月异常主要源于旧战场亡灵"
+      ],
+      "relationship_stance": "中立偏合作，重视证据与职业纪律",
+      "capabilities": [
+        "熟悉北境道路与公会流程",
+        "中等战斗能力",
+        "可调动少量后勤"
+      ],
+      "limitations": [
+        "不会高阶魔法",
+        "不能越权调动王国军队",
+        "不会把全部公会情报无条件交出"
+      ],
+      "actor_complexity": "full",
+      "capability_refs": [
+        "capability:knight.signature"
+      ],
+      "resource_refs": [
+        "resource:endurance"
+      ],
+      "runtime_effect_refs": [],
+      "object_refs": [],
+      "custom_tags": [
+        "faction.银炬冒险者公会"
+      ]
+    },
+    "prompt": "他隐瞒自己十年前曾在旧桥下见过相同符文，但当时任务记录被七塔议会收走。他害怕旧事证明自己当年判断失误，不会主动承认，除非玩家取得记录或建立信任。",
+    "sort_order": 0
+  },
+  {
+    "slug": "mira",
+    "name": "米拉",
+    "role": "npc",
+    "profile": {
+      "identity": "受伤的王国信使少年",
+      "appearance": "约十五岁的人类少年，短发被泥水粘在额前，右肩有撕裂伤。",
+      "personality": "倔强、警觉、急于证明自己不是累赘。",
+      "public_background": "鸦渡驿站的见习信使。",
+      "faction": "北境王国驿站",
+      "location": "鸦渡镇银炬冒险者公会",
+      "known_facts": [
+        "驿骑队伍遇袭的大致地点",
+        "呼名声出现的顺序",
+        "徽章来自哪位驿骑"
+      ],
+      "misunderstandings": [
+        "认为追击者一定是亡灵"
+      ],
+      "relationship_stance": "害怕但愿意配合救助者",
+      "capabilities": [
+        "熟悉驿道",
+        "记忆路线细节",
+        "会骑马"
+      ],
+      "limitations": [
+        "伤势严重",
+        "没有战斗经验",
+        "只看见事件的一部分"
+      ],
+      "actor_complexity": "simplified",
+      "capability_refs": [
+        "capability:hunter.signature"
+      ],
+      "resource_refs": [
+        "resource:endurance"
+      ],
+      "runtime_effect_refs": [],
+      "object_refs": [],
+      "custom_tags": [
+        "faction.北境王国驿站"
+      ]
+    },
+    "prompt": "他曾听见呼名声使用了自己已故姐姐的声音，因此隐瞒了短暂跟随声音离队的事实。该秘密是心理与线索来源，不代表他被永久控制。",
+    "sort_order": 10
+  },
+  {
+    "slug": "sister-elena",
+    "name": "伊莲娜修女",
+    "role": "npc",
+    "profile": {
+      "identity": "晨辉教会鸦渡礼拜堂负责人",
+      "appearance": "银灰发的人类女性，穿朴素白袍与锁链圣徽，手持刻痕木杖。",
+      "personality": "温和而坚定，对禁术零容忍，但会优先保护平民。",
+      "public_background": "在边境服务二十年的牧师与医者。",
+      "faction": "晨辉教会",
+      "location": "鸦渡镇晨辉礼拜堂",
+      "known_facts": [
+        "近期墓地异常",
+        "镇民灵魂状态",
+        "本地教会封印记录"
+      ],
+      "misunderstandings": [
+        "认为七塔议会正在隐瞒死灵实验"
+      ],
+      "relationship_stance": "对守序和救助行为友好，对术士保持谨慎",
+      "capabilities": [
+        "基础与中阶治疗",
+        "驱邪仪式",
+        "神学与亡灵知识"
+      ],
+      "limitations": [
+        "无法复活死者",
+        "神术受圣徽和祷告条件限制",
+        "不会主动泄露忏悔内容"
+      ],
+      "actor_complexity": "simplified",
+      "capability_refs": [
+        "capability:priest.signature"
+      ],
+      "resource_refs": [
+        "resource:endurance"
+      ],
+      "runtime_effect_refs": [],
+      "object_refs": [],
+      "custom_tags": [
+        "faction.晨辉教会"
+      ]
+    },
+    "prompt": "她发现礼拜堂地下旧封印正在变弱，却担心公开消息引发恐慌。她会先测试队伍是否可靠，再提供进入地下室的机会。",
+    "sort_order": 20
+  },
+  {
+    "slug": "seville-raven",
+    "name": "塞维尔·乌鸦",
+    "role": "npc",
+    "profile": {
+      "identity": "黑烛商会情报掮客",
+      "appearance": "戴黑羽宽檐帽的半精灵男性，衣着考究，右手常戴一只无指黑手套。",
+      "personality": "礼貌、狡猾、从不免费回答第二个问题。",
+      "public_background": "自称经营护运、古董与失物寻回。",
+      "faction": "黑烛商会",
+      "location": "鸦渡镇渡鸦酒馆",
+      "known_facts": [
+        "禁忌材料最近的流向",
+        "灰白环纹在黑市上的别名",
+        "某些阵营的秘密交易"
+      ],
+      "misunderstandings": [
+        "认为灰冠余党仍由旧贵族统一领导"
+      ],
+      "relationship_stance": "把队伍视为潜在客户和棋子",
+      "capabilities": [
+        "情报网",
+        "伪造文书",
+        "雇佣护卫",
+        "基础幻术道具"
+      ],
+      "limitations": [
+        "正面战斗能力普通",
+        "不会为玩家无偿冒险",
+        "情报可能过时或带有交易目的"
+      ],
+      "actor_complexity": "full",
+      "capability_refs": [
+        "capability:mage.signature",
+        "capability:mage.fireball"
+      ],
+      "resource_refs": [
+        "resource:endurance"
+      ],
+      "runtime_effect_refs": [],
+      "object_refs": [],
+      "custom_tags": [
+        "faction.黑烛商会"
+      ]
+    },
+    "prompt": "他持有一张通往旧帝国地下驿站的残图，但只有在队伍替他取回被教会扣押的封印箱或提供同等价值情报时才会交易。",
+    "sort_order": 30
+  },
+  {
+    "slug": "audra-stonering",
+    "name": "奥德拉·石环",
+    "role": "npc",
+    "profile": {
+      "identity": "灰脊矮人工匠与符文鉴定师",
+      "appearance": "身材矮壮的矮人女性，红褐色辫发穿过铜环，围裙上满是银粉与烧痕。",
+      "personality": "直率、严谨、对不尊重工艺的人毫无耐心。",
+      "public_background": "受银炬公会邀请在鸦渡镇修理装备与鉴定遗物。",
+      "faction": "灰脊氏族与银炬公会合作方",
+      "location": "鸦渡镇铁砧巷",
+      "known_facts": [
+        "旧帝国金属与符文工艺",
+        "灰白环纹的材料异常",
+        "本地矿道结构"
+      ],
+      "misunderstandings": [
+        "认为所有星辉构装体都能用同一类核心关闭"
+      ],
+      "relationship_stance": "尊重提供实物证据和诚实交易的人",
+      "capabilities": [
+        "装备修理",
+        "符文鉴定",
+        "锻造",
+        "矿道知识"
+      ],
+      "limitations": [
+        "不会施展高阶奥术",
+        "鉴定需要时间和工具",
+        "拒绝制作禁忌奴役符文"
+      ],
+      "actor_complexity": "simplified",
+      "capability_refs": [
+        "capability:alchemist.signature"
+      ],
+      "resource_refs": [
+        "resource:endurance"
+      ],
+      "runtime_effect_refs": [],
+      "object_refs": [],
+      "custom_tags": [
+        "faction.灰脊氏族与银炬公会合作方"
+      ]
+    },
+    "prompt": "她认出徽章背面的环纹使用了失传的“逆流蚀刻”技术，但会先要求队伍证明物品来源合法，以免卷入走私案。",
+    "sort_order": 40
+  },
+  {
+    "slug": "sharai-woodspeak",
+    "name": "林语者莎芮",
+    "role": "npc",
+    "profile": {
+      "identity": "翡翠盟约巡守与自然术使",
+      "appearance": "深褐肤色的精灵女性，披苔绿色斗篷，肩上停着一只灰羽夜鸮。",
+      "personality": "冷静、寡言、重视承诺，对破坏林地者敌意明显。",
+      "public_background": "负责调查北林动物迁徙与地脉异常。",
+      "faction": "翡翠盟约",
+      "location": "北林边缘",
+      "known_facts": [
+        "北林道路变化规律",
+        "动物异常的时间线",
+        "被污染地脉的位置"
+      ],
+      "misunderstandings": [
+        "认为城镇中的炼金废液是灰月异变主因"
+      ],
+      "relationship_stance": "观察队伍是否尊重自然与弱者",
+      "capabilities": [
+        "追踪",
+        "自然术",
+        "动物沟通",
+        "林地机动"
+      ],
+      "limitations": [
+        "在城镇政治中影响有限",
+        "不会透露盟约圣地位置",
+        "污染区施法受限"
+      ],
+      "actor_complexity": "simplified",
+      "capability_refs": [
+        "capability:druid.signature"
+      ],
+      "resource_refs": [
+        "resource:endurance"
+      ],
+      "runtime_effect_refs": [],
+      "object_refs": [],
+      "custom_tags": [
+        "faction.翡翠盟约"
+      ]
+    },
+    "prompt": "她知道北林深处出现了一座原本不存在的旧帝国门塔，但担心人类势力涌入，因此不会在初次见面时公开精确位置。",
+    "sort_order": 50
+  }
+]

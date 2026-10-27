@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="none">
+  <defs>
+    <linearGradient id="tavern-bg" x1="38" y1="22" x2="218" y2="236" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#3A281C"/>
+      <stop offset="1" stop-color="#17110D"/>
+    </linearGradient>
+    <linearGradient id="amber" x1="66" y1="55" x2="189" y2="209" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFE2A4"/>
+      <stop offset=".48" stop-color="#D99B42"/>
+      <stop offset="1" stop-color="#8D5126"/>
+    </linearGradient>
+    <filter id="soft-shadow" x="34" y="37" width="188" height="190" filterUnits="userSpaceOnUse">
+      <feDropShadow dy="8" stdDeviation="8" flood-color="#080503" flood-opacity=".5"/>
+    </filter>
+  </defs>
+  <rect width="256" height="256" rx="58" fill="url(#tavern-bg)"/>
+  <path d="M42 76 128 35l86 41" stroke="#765233" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M54 79h148" stroke="#A06A35" stroke-width="5" stroke-linecap="round"/>
+  <g stroke="#C4863F" stroke-linejoin="round">
+    <path d="M128 51 194 90l-15 79-51 38-51-38-15-79 66-39Z" fill="#2A1C13" stroke-width="7"/>
+    <path d="m128 51-28 53 28 76 28-76-28-53Z" fill="#352419" stroke="#E3AF5A" stroke-width="4"/>
+    <path d="m62 90 38 14 28-53 28 53 38-14M62 90l39 72 27 18 27-18 39-72M77 169l24-7M179 169l-24-7" stroke-width="4"/>
+  </g>
+  <path d="M112 136h32l-16-32-16 32Z" fill="#F4C876"/>
+  <path d="M128 111v25" stroke="#23170F" stroke-width="7" stroke-linecap="round"/>
+  <path d="M119 150h18" stroke="#F4C876" stroke-width="6" stroke-linecap="round"/>
+  <path d="M97 205c7 8 17 13 31 16 14-3 24-8 31-16" stroke="#765233" stroke-width="5" stroke-linecap="round"/>
+</svg>

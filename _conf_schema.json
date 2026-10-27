@@ -1,0 +1,477 @@
+{
+  "security": {
+    "description": "权限与群范围",
+    "type": "object",
+    "items": {
+      "admin_ids": {
+        "description": "酒馆管理员 ID",
+        "type": "list",
+        "hint": "只有这些真实平台用户 ID 可以开启、暂停、继续、关闭、读档或回滚。请填写字符串形式的 QQ 号/OpenID。",
+        "default": []
+      },
+      "allowed_group_ids": {
+        "description": "允许群 ID",
+        "type": "list",
+        "hint": "可留空；已配置的管理员首次在目标群发送 /酒馆 开启 时会自动识别并加入，然后显示副本选择。也可手动填写群号或平台群 OpenID。",
+        "default": []
+      },
+      "require_group_whitelist": {
+        "description": "强制群白名单",
+        "type": "bool",
+        "default": true
+      },
+      "unauthorized_command_behavior": {
+        "description": "未授权管理命令",
+        "type": "string",
+        "options": [
+          "silent",
+          "deny"
+        ],
+        "labels": [
+          "静默拦截",
+          "回复无权限"
+        ],
+        "default": "silent"
+      },
+      "public_status": {
+        "description": "参与者可查看状态",
+        "type": "bool",
+        "default": true
+      }
+    }
+  },
+  "model": {
+    "description": "叙事模型",
+    "type": "object",
+    "items": {
+      "provider_id": {
+        "description": "固定聊天模型",
+        "type": "string",
+        "_special": "select_provider",
+        "hint": "留空则使用当前群会话所选模型。",
+        "default": ""
+      },
+      "fallback_provider_1_id": {
+        "description": "备用聊天模型 1",
+        "type": "string",
+        "_special": "select_provider",
+        "hint": "主模型不可用时首先尝试；留空可跳过。",
+        "default": ""
+      },
+      "fallback_provider_2_id": {
+        "description": "备用聊天模型 2",
+        "type": "string",
+        "_special": "select_provider",
+        "hint": "按编号依次回退；留空可跳过。",
+        "default": ""
+      },
+      "fallback_provider_3_id": {
+        "description": "备用聊天模型 3",
+        "type": "string",
+        "_special": "select_provider",
+        "hint": "按编号依次回退；留空可跳过。",
+        "default": ""
+      },
+      "fallback_provider_4_id": {
+        "description": "备用聊天模型 4",
+        "type": "string",
+        "_special": "select_provider",
+        "hint": "按编号依次回退；留空可跳过。",
+        "default": ""
+      },
+      "image_caption_provider_id": {
+        "description": "图片转述模型",
+        "type": "string",
+        "_special": "select_provider",
+        "hint": "用于把带 jg 前缀消息中的图片转成客观文字，再交给叙事模型。留空时带图行动会被明确拒绝。",
+        "default": ""
+      },
+      "image_caption_prompt": {
+        "description": "图片转述提示词",
+        "type": "text",
+        "default": "请用简洁、客观的中文描述图片中与角色行动、场景、物品、人物姿态和可见文字有关的信息。不要猜测看不见的事实。"
+      },
+      "max_images_per_turn": {
+        "description": "单回合图片上限",
+        "type": "int",
+        "hint": "只读取带 jg 前缀的当前玩家消息中的图片。",
+        "default": 4
+      },
+      "temperature": {
+        "description": "叙事随机度",
+        "type": "float",
+        "hint": "建议 0.4—0.5，可减少结构修复与额外模型请求。",
+        "default": 0.5
+      },
+      "max_tokens": {
+        "description": "单次最大输出 Tokens",
+        "type": "int",
+        "hint": "100—300 字故事与四组选项通常不需要过高输出上限。",
+        "default": 1400
+      },
+      "request_timeout_seconds": {
+        "description": "模型超时秒数",
+        "type": "int",
+        "default": 120
+      },
+      "json_repair_attempts": {
+        "description": "结构修复次数",
+        "type": "int",
+        "default": 1
+      }
+    }
+  },
+  "runtime": {
+    "description": "运行规则",
+    "type": "object",
+    "items": {
+      "default_world_slug": {
+        "description": "新副本默认世界包",
+        "type": "string",
+        "hint": "仅作为控制台建立副本时的初始选择；/酒馆 开启 仍要求明确选择副本。",
+        "default": "aelvion-ashen-crown"
+      },
+      "trigger_prefix": {
+        "description": "剧情触发前缀",
+        "type": "string",
+        "hint": "默认 jg。只有“前缀 + 空格 + 内容”才会进入酒馆叙事与记忆，普通群聊完全忽略。",
+        "default": "jg"
+      },
+      "two_phase_checks": {
+        "description": "严格两阶段行动判定",
+        "type": "bool",
+        "hint": "模型先申请检定，插件生成不可篡改的骰点，再由模型叙述结果。",
+        "default": true
+      },
+      "max_input_chars": {
+        "description": "玩家单次输入上限",
+        "type": "int",
+        "default": 2000
+      },
+      "max_output_chars": {
+        "description": "单次回复上限",
+        "type": "int",
+        "default": 5000
+      },
+      "enforce_mobile_output": {
+        "description": "手机端短篇输出约束",
+        "type": "bool",
+        "hint": "开启后每回合故事正文强制 100—300 字，每个选项（含括号）最多 50 字。",
+        "default": true
+      },
+      "recent_turns": {
+        "description": "带入最近回合数",
+        "type": "int",
+        "hint": "默认 6；长期事实由记忆与故事账本补充。",
+        "default": 6
+      },
+      "memory_limit": {
+        "description": "每轮检索记忆数",
+        "type": "int",
+        "hint": "默认 6；锁定事实仍按世界策略优先进入上下文。",
+        "default": 6
+      },
+      "user_cooldown_seconds": {
+        "description": "同一玩家冷却秒数",
+        "type": "float",
+        "default": 1.5
+      },
+      "auto_snapshot_interval": {
+        "description": "自动快照间隔回合",
+        "type": "int",
+        "default": 5
+      },
+      "ooc_prefixes": {
+        "description": "场外发言前缀",
+        "type": "list",
+        "default": [
+          "【OOC】",
+          "[OOC]",
+          "OOC:"
+        ]
+      },
+      "time_rules": {
+        "description": "全局时间与流程默认值",
+        "type": "object",
+        "hint": "世界模板可覆盖这些值，新建副本会复制快照；留空或 -1 表示不限时，0 非法。",
+        "items": {
+          "card_code_ttl_seconds": {
+            "description": "私聊建卡码有效秒数",
+            "type": "int",
+            "default": 1800
+          },
+          "card_draft_ttl_seconds": {
+            "description": "角色卡草稿保留秒数",
+            "type": "int",
+            "default": 604800
+          },
+          "card_completion_timeout_seconds": {
+            "description": "等待完成建卡秒数（-1 不限时）",
+            "type": "int",
+            "default": -1
+          },
+          "preparation_timeout_seconds": {
+            "description": "准备大厅最长秒数（-1 不限时）",
+            "type": "int",
+            "default": -1
+          },
+          "ready_timeout_seconds": {
+            "description": "玩家准备确认秒数（-1 不限时）",
+            "type": "int",
+            "default": -1
+          },
+          "turn_timeout_seconds": {
+            "description": "个人回合秒数",
+            "type": "int",
+            "default": -1
+          },
+          "turn_reminder_seconds": {
+            "description": "回合提前提醒秒数",
+            "type": "int",
+            "default": -1
+          },
+          "max_consecutive_timeouts": {
+            "description": "连续超时转候补次数",
+            "type": "int",
+            "default": -1
+          },
+          "standby_timeout_seconds": {
+            "description": "候补自动退场秒数（-1 不限时）",
+            "type": "int",
+            "default": -1
+          },
+          "delegation_ttl_seconds": {
+            "description": "代控授权有效秒数（-1 不限时）",
+            "type": "int",
+            "default": -1
+          },
+          "vote_round_one_seconds": {
+            "description": "第一轮集体投票秒数",
+            "type": "int",
+            "default": -1
+          },
+          "vote_round_two_seconds": {
+            "description": "第二轮集体投票秒数",
+            "type": "int",
+            "default": -1
+          },
+          "vote_reminder_seconds": {
+            "description": "投票提前提醒秒数",
+            "type": "int",
+            "default": -1
+          },
+          "all_idle_pause_seconds": {
+            "description": "全员无互动后自动暂停秒数（留空关闭）",
+            "type": "int",
+            "default": -1
+          },
+          "pause_stops_clock": {
+            "description": "暂停期间停止计时",
+            "type": "bool",
+            "default": true
+          },
+          "announce_timeouts": {
+            "description": "在群内公布超时与提醒",
+            "type": "bool",
+            "default": false
+          },
+          "turn_timeout_action": {
+            "description": "个人回合超时处理",
+            "type": "string",
+            "options": [
+              "skip",
+              "hold"
+            ],
+            "labels": [
+              "跳过并累计超时",
+              "保留行动权"
+            ],
+            "default": "hold"
+          },
+          "card_timeout_action": {
+            "description": "建卡超时处理",
+            "type": "string",
+            "options": [
+              "standby",
+              "release",
+              "remind"
+            ],
+            "labels": [
+              "转候补",
+              "释放席位",
+              "仅提醒"
+            ],
+            "default": "remind"
+          },
+          "ready_timeout_action": {
+            "description": "准备超时处理",
+            "type": "string",
+            "options": [
+              "standby",
+              "remind"
+            ],
+            "labels": [
+              "转候补",
+              "仅提醒"
+            ],
+            "default": "remind"
+          }
+        }
+      }
+    }
+  },
+  "advanced": {
+    "description": "高级设置",
+    "type": "object",
+    "items": {
+      "audit_retention_days": {
+        "description": "审计日志保留天数",
+        "type": "int",
+        "default": 90
+      },
+      "store_model_payloads": {
+        "description": "保存原始模型结构",
+        "type": "bool",
+        "hint": "排错用途，可能增加数据库体积；默认关闭。",
+        "default": false
+      },
+      "debug": {
+        "description": "调试日志",
+        "type": "bool",
+        "default": false
+      }
+    }
+  },
+  "token_quota": {
+    "description": "Token 配额默认值",
+    "type": "object",
+    "items": {
+      "enabled": {
+        "description": "默认启用配额",
+        "type": "bool",
+        "hint": "开启后，新建副本若尚未配置任何 Token 配额策略，将按本组默认值自动创建策略；关闭则保持“无配额不限量”的运行时行为（已有策略不受影响）。",
+        "default": false
+      },
+      "window_seconds": {
+        "description": "滚动窗口秒数",
+        "type": "int",
+        "hint": "配额统计的时间窗口，例如 86400 = 按最近 24 小时累计。",
+        "default": 86400
+      },
+      "token_limit": {
+        "description": "窗口内 Token 上限",
+        "type": "int",
+        "hint": "窗口内累计消耗超过该值将拒绝新的模型请求。",
+        "default": 400000
+      }
+    }
+  },
+  "world_market": {
+    "description": "世界包远程市场",
+    "type": "object",
+    "items": {
+      "enabled": {
+        "description": "启用远程市场",
+        "type": "bool",
+        "hint": "开启后，市场视图会在本地条目之外合并拉取 remote_manifest_url 指向的远程条目。启用即代表你信任该注册表源（内容审核由注册表维护方负责，插件只做技术校验）。默认关闭。",
+        "default": false
+      },
+      "remote_manifest_url": {
+        "description": "远程清单地址",
+        "type": "string",
+        "hint": "指向一个 JSON 清单文件（条目含 package_key/url/sha256/size 等字段），如 https://raw.githubusercontent.com/{owner}/{repo}/{ref}/worlds/manifest.json。",
+        "default": ""
+      },
+      "allowed_hosts": {
+        "description": "允许的远程主机白名单",
+        "type": "list",
+        "hint": "仅允许从这些主机拉取（防 SSRF）；留空则仅允许 raw.githubusercontent.com、github.com、objects.githubusercontent.com、codeload.github.com。",
+        "default": [
+          "raw.githubusercontent.com",
+          "github.com",
+          "objects.githubusercontent.com",
+          "codeload.github.com"
+        ]
+      },
+      "cache_ttl_seconds": {
+        "description": "清单缓存秒数",
+        "type": "int",
+        "hint": "清单与已拉取包的缓存时长，缓解 GitHub raw 限流。",
+        "default": 600
+      },
+      "max_package_bytes": {
+        "description": "单包体积上限",
+        "type": "int",
+        "hint": "超过该字节数的远程世界包将被拒绝（防滥用）。",
+        "default": 2000000
+      },
+      "verify_sha256": {
+        "description": "强制哈希校验",
+        "type": "bool",
+        "hint": "开启后，远程包必须匹配清单中的 sha256 才会被接受。",
+        "default": true
+      }
+    }
+  },
+  "auto_backup": {
+    "description": "自动备份",
+    "type": "object",
+    "items": {
+      "enabled": {
+        "description": "启用自动备份",
+        "type": "bool",
+        "hint": "开启后，插件按固定间隔在 data_dir/exports 下导出完整备份 ZIP（bundle.json + catalog.sqlite3 + 各群独立存档），并只保留最近 keep_count 份。默认关闭。",
+        "default": false
+      },
+      "interval_hours": {
+        "description": "备份间隔（小时）",
+        "type": "float",
+        "hint": "两次自动备份的最小间隔，最小 1 小时，最大 720 小时（30 天）。",
+        "default": 24
+      },
+      "keep_count": {
+        "description": "保留份数",
+        "type": "int",
+        "hint": "自动备份只保留最近 N 份，更早的会被自动清理（手动导出的备份不受影响）。",
+        "default": 7
+      }
+    }
+  },
+  "webhook": {
+    "description": "Webhook 事件通知",
+    "type": "object",
+    "items": {
+      "enabled": {
+        "description": "启用 Webhook 通知",
+        "type": "bool",
+        "hint": "开启后，酒馆内部事件（回合/世界/会话/备份等）会以 POST JSON 推送到下方地址，默认全部事件；可填写 events 过滤。",
+        "default": false
+      },
+      "urls": {
+        "description": "推送地址列表",
+        "type": "list",
+        "hint": "每个地址都会收到事件推送。仅支持 HTTPS/HTTP POST，请求体为 JSON 对象，包含 event / at / data 字段。",
+        "default": []
+      },
+      "secret": {
+        "description": "签名密钥（可选）",
+        "type": "string",
+        "hint": "填写后，每次推送会附加 X-Tavern-Signature: sha256=<hex> 头（对请求体做 HMAC-SHA256），接收方可据此校验来源。",
+        "default": ""
+      },
+      "events": {
+        "description": "事件类型过滤（留空＝全部）",
+        "type": "list",
+        "hint": "只推送列出的 type（如 turn、session、world、backup、settings、vote、inspiration、character）；留空推送全部。",
+        "default": []
+      },
+      "timeout_seconds": {
+        "description": "推送超时（秒）",
+        "type": "float",
+        "hint": "单次推送的最长等待时间，默认 10 秒。",
+        "default": 10
+      }
+    }
+  }
+
+}

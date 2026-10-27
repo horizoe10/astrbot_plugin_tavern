@@ -1,0 +1,36 @@
+{
+  "enabled": true,
+  "character_creation": {
+    "primary": "private_code",
+    "fallbacks": ["webui_token"]
+  },
+  "multiplayer": {
+    "spotlight": "round_robin",
+    "group_decisions": "vote",
+    "absent_player": "standby"
+  },
+  "safety": {
+    "enabled": true,
+    "anonymous_pause": false,
+    "consent_reminder": "任何玩家都可以安全暂停，无需说明原因。",
+    "lines": [],
+    "veils": []
+  },
+  "continuity": {
+    "recap_every_turns": 5,
+    "checkpoint_every_turns": 5,
+    "unresolved_threads_limit": 8,
+    "preserve_npc_intent": true
+  },
+  "delivery": {
+    "proactive_fallback": "next_event",
+    "mention_style": "name",
+    "max_text_length": 3500
+  },
+  "dm": {
+    "allow_narrative_override": true,
+    "allow_secret_whispers": true,
+    "allow_manual_checks": true,
+    "allow_state_intervention": true
+  }
+}

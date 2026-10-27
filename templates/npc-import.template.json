@@ -1,0 +1,52 @@
+{
+  "template_metadata": {
+    "template_bundle_version": "4.0.0",
+    "compatible_plugin_version": "0.12.1",
+    "npc_import_template_version": 2
+  },
+  "template_version": 2,
+  "minimum_plugin_version": "0.12.0",
+  "world_slug": "replace-with-world-slug",
+  "items": [
+    {
+      "slug": "simple-actor",
+      "name": "简化 NPC",
+      "role": "npc",
+      "profile": {
+        "actor_complexity": "simplified",
+        "identity": "身份",
+        "capability_refs": [],
+        "resource_refs": [],
+        "runtime_effect_refs": [],
+        "object_refs": [],
+        "custom_tags": []
+      },
+      "prompt": "只写该 NPC 的私密动机与行为边界。",
+      "sort_order": 10
+    },
+    {
+      "slug": "full-actor",
+      "name": "完整 NPC",
+      "role": "npc",
+      "profile": {
+        "actor_complexity": "full",
+        "identity": "身份",
+        "capability_refs": [
+          "capability:basic"
+        ],
+        "resources": {
+          "resource:focus": 5
+        },
+        "runtime_effect_refs": [],
+        "object_refs": [
+          "object:example_object"
+        ],
+        "custom_tags": [
+          "faction.example"
+        ]
+      },
+      "prompt": "不得读取玩家私密信息或临时获得未声明能力。",
+      "sort_order": 20
+    }
+  ]
+}

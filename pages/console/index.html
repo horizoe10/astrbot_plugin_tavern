@@ -1,0 +1,974 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="AI 酒馆专业叙事引擎管理控制台"
+    />
+    <title>酒馆控制台</title>
+    <link rel="icon" type="image/svg+xml" href="./assets/mark.svg" />
+    <link rel="stylesheet" href="./style.css?v=0.12.1" />
+
+  </head>
+  <body>
+    <div class="ambient ambient-a"></div>
+    <div class="ambient ambient-b"></div>
+    <div class="app-shell">
+      <aside class="sidebar" id="sidebar">
+        <div class="brand">
+          <div class="brand-mark" aria-hidden="true">
+            <img src="./assets/mark.svg" alt="" />
+          </div>
+          <div>
+            <div class="eyebrow">AI TAVERN</div>
+            <div class="brand-title">AI 酒馆</div>
+          </div>
+        </div>
+
+        <nav class="nav" aria-label="控制台导航">
+          <div class="nav-group">
+            <div class="nav-group-title">运行与监管</div>
+            <button class="nav-item is-active" data-view="dashboard">
+              <span class="nav-icon" aria-hidden="true">⌂</span>
+              <span>总览</span>
+            </button>
+            <button class="nav-item" data-view="sessions">
+              <span class="nav-icon" aria-hidden="true">◉</span>
+              <span>群会话</span>
+            </button>
+            <button class="nav-item" data-view="todo">
+              <span class="nav-icon" aria-hidden="true">☑</span>
+              <span>待办</span>
+              <span class="nav-badge" id="todo-badge" hidden>0</span>
+            </button>
+          </div>
+          <div class="nav-group">
+            <div class="nav-group-title">内容与资源</div>
+            <button class="nav-item" data-view="worlds">
+              <span class="nav-icon" aria-hidden="true">◇</span>
+              <span>世界与角色</span>
+            </button>
+            <button class="nav-item" data-view="market">
+              <span class="nav-icon" aria-hidden="true">▦</span>
+              <span>世界市场</span>
+            </button>
+            <button class="nav-item" data-view="memories">
+              <span class="nav-icon" aria-hidden="true">❖</span>
+              <span>长期记忆</span>
+            </button>
+          </div>
+          <div class="nav-group">
+            <div class="nav-group-title">系统与审计</div>
+            <button class="nav-item" data-view="audit">
+              <span class="nav-icon" aria-hidden="true">⌁</span>
+              <span>审计记录</span>
+            </button>
+            <button class="nav-item" data-view="settings">
+              <span class="nav-icon" aria-hidden="true">⚙</span>
+              <span>安全与设置</span>
+            </button>
+            <button class="nav-item" data-view="about">
+              <span class="nav-icon" aria-hidden="true">ⓘ</span>
+              <span>关于插件</span>
+            </button>
+          </div>
+        </nav>
+
+        <div class="sidebar-foot">
+          <div class="health-dot" id="side-health-dot"></div>
+          <div>
+            <div class="sidebar-foot-label">叙事引擎</div>
+            <div class="sidebar-foot-value" id="side-health">正在连接</div>
+          </div>
+        </div>
+      </aside>
+
+      <main class="main">
+        <header class="topbar">
+          <button
+            class="icon-button menu-toggle"
+            id="menu-toggle"
+            aria-label="展开导航"
+          >
+            ☰
+          </button>
+          <div>
+            <div class="eyebrow" id="page-kicker">COMMAND CENTER</div>
+            <h1 id="page-title">运行总览</h1>
+          </div>
+          <div class="topbar-actions">
+            <span class="live-pill" id="live-pill">
+              <span class="live-dot"></span>
+              <span id="live-text">连接中</span>
+            </span>
+            <button
+              class="icon-button"
+              id="theme-toggle"
+              type="button"
+              aria-label="切换浅色/深色主题"
+              title="切换浅色/深色主题"
+            >
+              ☾
+            </button>
+            <button class="button button-quiet" id="refresh-button">
+              刷新
+            </button>
+          </div>
+        </header>
+
+        <div class="notice notice-warning is-hidden" id="security-notice">
+          <div>
+            <strong>安全配置尚未完成</strong>
+            <span id="security-notice-text">
+              请至少设置一个真实管理员 ID。
+            </span>
+          </div>
+          <button class="button button-small" data-jump="settings">
+            立即设置
+          </button>
+        </div>
+
+        <section class="view is-active" data-view-panel="dashboard">
+          <div class="metric-grid" id="metrics">
+            <article class="metric-card skeleton"></article>
+            <article class="metric-card skeleton"></article>
+            <article class="metric-card skeleton"></article>
+            <article class="metric-card skeleton"></article>
+          </div>
+
+          <details class="panel keydata-panel">
+            <summary>
+              <span>关键数据概览</span>
+              <span class="keydata-meta" id="keydata-meta"></span>
+            </summary>
+            <table class="keydata-table" id="keydata-table"></table>
+          </details>
+
+          <div class="dashboard-grid">
+            <article class="panel panel-span-2">
+              <div class="panel-head">
+                <div>
+                  <div class="eyebrow">LIVE SESSIONS</div>
+                  <h2>正在发生</h2>
+                </div>
+                <button class="text-button" data-jump="sessions">
+                  管理全部 →
+                </button>
+              </div>
+              <div id="dashboard-sessions" class="session-stack">
+                <div class="empty-state compact">
+                  <div class="empty-symbol">◌</div>
+                  <span>正在读取会话</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="panel col-4 overview-compact">
+              <div class="panel-head">
+                <div>
+                  <div class="eyebrow">SYSTEM INTEGRITY</div>
+                  <h2>运行完整性</h2>
+                </div>
+              </div>
+              <div class="integrity-list" id="integrity-list"></div>
+            </article>
+
+            <article class="panel col-4 overview-compact">
+              <div class="panel-head">
+                <div>
+                  <div class="eyebrow">QUICK START</div>
+                  <h2>开馆前检查</h2>
+                </div>
+              </div>
+              <div class="checklist" id="readiness-checklist"></div>
+            </article>
+
+            <article class="panel col-4 command-reference overview-compact">
+              <div class="panel-head">
+                <div>
+                  <div class="eyebrow">CHAT COMMANDS</div>
+                  <h2>群内指令</h2>
+                </div>
+              </div>
+              <div class="command-list">
+                <code>/酒馆 开启 → 选择副本</code>
+                <code>/酒馆 开启 &lt;副本标识&gt;</code>
+                <code>/酒馆 加入 → 私聊建卡 → 准备</code>
+                <code>/酒馆 开演｜暂停｜继续｜关闭</code>
+                <code>jg A｜/酒馆 选择 A</code>
+                <code>/酒馆 投票 A｜重整选项</code>
+                <code>/酒馆 灵感 A 优势｜灵感重投 A</code>
+                <code>/酒馆 安全暂停</code>
+                <code>/酒馆 存档 &lt;名称&gt;</code>
+                <code>/酒馆 读档 &lt;名称&gt;</code>
+                <code>/酒馆 回滚｜状态</code>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="view" data-view-panel="todo">
+          <div class="section-toolbar">
+            <div>
+              <p>建卡审核、进行中投票、活跃倒计时与运行中副本的统一入口（刷新复用顶栏）。</p>
+            </div>
+          </div>
+          <div id="todo-root">
+            <div class="empty-state compact">
+              <div class="empty-symbol">◌</div>
+              <span>正在读取待办</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="view" data-view-panel="about">
+          <div class="section-toolbar">
+            <div>
+              <p>插件版本信息、核心功能、模块构成与兼容性说明。</p>
+            </div>
+          </div>
+          <div id="about-root">
+            <div class="empty-state compact">
+              <div class="empty-symbol">◌</div>
+              <span>正在读取信息</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="view" data-view-panel="worlds">
+          <div class="section-toolbar">
+            <div>
+              <p>世界规则、开场状态与常驻 NPC 在这里统一维护。</p>
+            </div>
+            <div class="toolbar-actions">
+              <label class="toggle-line">
+                <input type="checkbox" id="show-archived-worlds" />
+                <span>显示已归档</span>
+              </label>
+              <button class="button button-secondary" id="import-world-package-button" type="button">
+                导入世界包
+              </button>
+              <button class="button button-secondary" id="import-npc-button" type="button">
+                导入常驻NPC
+              </button>
+              <button class="button button-secondary" id="world-wizard-button" type="button">
+                向导创建
+              </button>
+              <button class="button button-primary" id="new-world-button">
+                ＋ 新建世界
+              </button>
+            </div>
+          </div>
+          <div class="card-grid" id="world-grid"></div>
+        </section>
+
+        <section class="view" data-view-panel="sessions">
+          <div class="section-toolbar session-toolbar">
+            <div>
+              <p>同一群可建立多个互不串档的副本；一次只会选中并运行一个。</p>
+            </div>
+            <div class="toolbar-actions">
+              <div class="session-search">
+                <label class="sr-only" for="session-search">检索群或故事副本</label>
+                <input id="session-search" type="search"
+                  placeholder="群备注、群 ID、副本名称或标识…" />
+                <label class="sr-only" for="session-search-scope">检索范围</label>
+                <select id="session-search-scope">
+                  <option value="all">全部</option>
+                  <option value="group">仅群</option>
+                  <option value="story">仅故事副本</option>
+                </select>
+                <button class="action-button" id="session-search-clear"
+                  type="button">清除</button>
+              </div>
+              <button class="button button-primary" id="new-session-button">
+                ＋ 建立群会话
+              </button>
+            </div>
+          </div>
+          <div class="session-results-bar">
+            <span id="session-result-count">共 0 个故事副本</span>
+            <div class="session-pagination">
+              <button class="action-button" id="session-page-prev"
+                type="button">上一页</button>
+              <span id="session-page-label">1 / 1</span>
+              <button class="action-button" id="session-page-next"
+                type="button">下一页</button>
+            </div>
+          </div>
+          <div class="session-group-stack" id="session-card-grid"></div>
+        </section>
+
+        <section class="view" data-view-panel="session_detail">
+          <div class="section-toolbar session-toolbar">
+            <div>
+              <p>LIVE OPERATIONS · 副本实时仪表盘：受控世界状态、行动者、倒计时、选项、投票与事件时间线，每 5 秒自动刷新。</p>
+            </div>
+            <div class="toolbar-actions">
+              <select id="live-session-picker" aria-label="选择副本">
+                <option value="">选择副本…</option>
+              </select>
+              <button class="button button-primary" id="live-refresh-button"
+                type="button">立即刷新</button>
+              <button class="action-button" id="live-seed-quota-button"
+                type="button" title="用配置默认值给未配置配额的副本播种">播种默认配额</button>
+            </div>
+          </div>
+          <div id="live-detail-root">
+            <div class="empty-state compact">
+              <div class="empty-symbol">◔</div>
+              <span>正在读取副本实时状态</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="view" data-view-panel="memories">
+          <div class="section-toolbar memory-toolbar">
+            <div class="field inline-field">
+              <label for="memory-session-select">群会话</label>
+              <select id="memory-session-select"></select>
+            </div>
+            <div class="field search-field">
+              <label class="sr-only" for="memory-search">搜索记忆</label>
+              <input
+                id="memory-search"
+                type="search"
+                placeholder="按内容、类型或标签检索…"
+              />
+            </div>
+            <button class="button button-primary" id="new-memory-button">
+              ＋ 添加记忆
+            </button>
+          </div>
+          <div class="memory-list" id="memory-grid"></div>
+        </section>
+
+        <section class="view" data-view-panel="market">
+          <div class="section-toolbar session-toolbar market-toolbar">
+            <div>
+              <p>世界包社区注册表：浏览内置世界、示例与模板，导入前自动体检与冲突检查。</p>
+            </div>
+            <div class="toolbar-actions">
+              <div class="session-search">
+                <label class="sr-only" for="market-search">检索世界包</label>
+                <input id="market-search" type="search"
+                  placeholder="检索 slug、名称、描述或标签…" />
+              </div>
+              <button class="action-button" id="market-search-clear"
+                type="button">清除</button>
+            </div>
+          </div>
+          <div class="session-results-bar market-fetch-bar">
+            <div class="remote-fetch market-fetch">
+              <label class="sr-only" for="market-url-input">GitHub 直链清单地址</label>
+              <input id="market-url-input" type="url"
+                placeholder="GitHub 直链清单（…/manifest.json），回车拉取远程世界包" />
+              <button class="action-button" id="market-url-fetch"
+                type="button">拉取远程</button>
+              <button class="action-button" id="market-url-clear"
+                type="button" hidden>清空远程</button>
+            </div>
+            <span id="market-result-count" class="market-hint">共 0 个世界包</span>
+          </div>
+          <div class="session-group-list" id="market-card-grid"></div>
+        </section>
+
+        <section class="view" data-view-panel="audit">
+          <div class="section-toolbar">
+            <div class="field inline-field">
+              <label for="audit-session-select">筛选会话</label>
+              <select id="audit-session-select"></select>
+            </div>
+            <button class="button button-quiet" id="audit-refresh-button">
+              刷新记录
+            </button>
+          </div>
+          <article class="panel table-panel">
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>时间</th>
+                    <th>动作</th>
+                    <th>操作者</th>
+                    <th>目标</th>
+                    <th>详情</th>
+                  </tr>
+                </thead>
+                <tbody id="audit-table-body"></tbody>
+              </table>
+            </div>
+          </article>
+        </section>
+
+        <section class="view" data-view-panel="settings">
+          <form id="settings-form" class="settings-layout">
+            <article class="panel settings-panel">
+              <div class="panel-head">
+                <div>
+                  <div class="eyebrow">ACCESS CONTROL</div>
+                  <h2>权限边界</h2>
+                </div>
+                <span class="risk-label">关键设置</span>
+              </div>
+              <div class="form-grid">
+                <div class="field field-span-2">
+                  <label for="setting-admin-ids">管理员 ID</label>
+                  <textarea
+                    id="setting-admin-ids"
+                    rows="4"
+                    placeholder="每行一个真实用户 ID"
+                  ></textarea>
+                  <small>
+                    只有这些真实用户 ID 能执行启停、读档与回滚；至少填写一个。
+                  </small>
+                </div>
+                <div class="field field-span-2">
+                  <label for="setting-group-ids">允许群 ID</label>
+                  <textarea
+                    id="setting-group-ids"
+                    rows="4"
+                    placeholder="每行一个群 ID"
+                  ></textarea>
+                  <small>
+                    可留空；授权管理员首次在目标群发送 /酒馆 开启
+                    时会自动识别并加入，再显示可选副本。也可在此手动维护。
+                  </small>
+                </div>
+                <label class="switch-field">
+                  <input id="setting-require-whitelist" type="checkbox" />
+                  <span>
+                    <strong>强制群白名单</strong>
+                    <small>建议始终保持开启</small>
+                  </span>
+                </label>
+                <label class="switch-field">
+                  <input id="setting-public-status" type="checkbox" />
+                  <span>
+                    <strong>参与者可查状态</strong>
+                    <small>仅开放 /酒馆 状态</small>
+                  </span>
+                </label>
+                <div class="field">
+                  <label for="setting-unauthorized">未授权命令</label>
+                  <select id="setting-unauthorized">
+                    <option value="silent">静默拦截</option>
+                    <option value="deny">回复无权限</option>
+                  </select>
+                </div>
+              </div>
+            </article>
+
+            <article class="panel settings-panel">
+              <div class="panel-head">
+                <div>
+                  <div class="eyebrow">TIME &amp; FLOW</div>
+                  <h2>全局时间默认值</h2>
+                </div>
+                <div class="toolbar-actions">
+                  <button type="button" class="action-button" data-time-preset="instant">
+                    即时团
+                  </button>
+                  <button type="button" class="action-button" data-time-preset="slow">
+                    慢速群团
+                  </button>
+                  <button type="button" class="action-button" data-time-preset="manual">
+                    全手动
+                  </button>
+                </div>
+              </div>
+              <p>
+                每项可选择秒、分钟、小时或天；勾选不限时后内部保存为 null。
+                世界模板可以覆盖这里，新建副本再复制快照。
+                正在运行的副本请在“群会话 → 时间与流程”单独调整。
+              </p>
+              <div class="form-grid">
+                <div class="field">
+                  <label for="gtime-card-code">建卡码有效期</label>
+                  <input id="gtime-card-code" type="number" min="1" />
+                </div>
+                <div class="field">
+                  <label for="gtime-card-draft">草稿保留</label>
+                  <input id="gtime-card-draft" type="number" min="1" />
+                </div>
+                <div class="field">
+                  <label for="gtime-card-completion">等待完成建卡</label>
+                  <input id="gtime-card-completion" type="number" min="1" />
+                </div>
+                <div class="field">
+                  <label for="gtime-preparation">准备大厅</label>
+                  <input id="gtime-preparation" type="number" min="1" />
+                </div>
+                <div class="field">
+                  <label for="gtime-ready">准备确认</label>
+                  <input id="gtime-ready" type="number" min="1" />
+                </div>
+                <div class="field">
+                  <label for="gtime-turn">个人回合</label>
+                  <input id="gtime-turn" type="number" min="1" />
+                </div>
+                <div class="field">
+                  <label for="gtime-turn-reminder">回合提醒</label>
+                  <input id="gtime-turn-reminder" type="number" min="1" />
+                </div>
+                <div class="field">
+                  <label for="gtime-timeout-count">连续超时次数</label>
+                  <input id="gtime-timeout-count" type="number" min="-1" max="20" />
+                  <small>-1 表示永不自动转候补</small>
+                </div>
+                <div class="field">
+                  <label for="gtime-standby">候补自动退场</label>
+                  <input id="gtime-standby" type="number" min="1" />
+                </div>
+                <div class="field">
+                  <label for="gtime-delegation">代控授权有效期</label>
+                  <input id="gtime-delegation" type="number" min="1" />
+                </div>
+                <div class="field">
+                  <label for="gtime-all-idle">全员无互动暂停</label>
+                  <input id="gtime-all-idle" type="number" min="1" />
+                </div>
+                <div class="field">
+                  <label for="gtime-vote-one">第一轮投票</label>
+                  <input id="gtime-vote-one" type="number" min="1" />
+                </div>
+                <div class="field">
+                  <label for="gtime-vote-two">第二轮投票</label>
+                  <input id="gtime-vote-two" type="number" min="1" />
+                </div>
+                <div class="field">
+                  <label for="gtime-vote-reminder">投票提醒</label>
+                  <input id="gtime-vote-reminder" type="number" min="1" />
+                </div>
+                <div class="field">
+                  <label for="gtime-turn-action">回合超时处理</label>
+                  <select id="gtime-turn-action">
+                    <option value="skip">跳过并累计超时</option>
+                    <option value="hold">保留行动权</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label for="gtime-card-action">建卡超时处理</label>
+                  <select id="gtime-card-action">
+                    <option value="standby">转候补</option>
+                    <option value="release">释放席位</option>
+                    <option value="remind">仅提醒</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label for="gtime-ready-action">准备超时处理</label>
+                  <select id="gtime-ready-action">
+                    <option value="standby">转候补</option>
+                    <option value="remind">仅提醒</option>
+                  </select>
+                </div>
+                <label class="switch-field">
+                  <input id="gtime-pause-clock" type="checkbox" />
+                  <span>
+                    <strong>暂停期间停止计时</strong>
+                    <small>恢复后接着剩余时间</small>
+                  </span>
+                </label>
+                <label class="switch-field">
+                  <input id="gtime-announce" type="checkbox" />
+                  <span>
+                    <strong>在群内公布超时结果</strong>
+                    <small>提醒和处理结果会发送到对应会话</small>
+                  </span>
+                </label>
+              </div>
+            </article>
+
+            <article class="panel settings-panel">
+              <div class="panel-head">
+                <div>
+                  <div class="eyebrow">NARRATIVE MODEL</div>
+                  <h2>模型与裁定</h2>
+                </div>
+                <span class="settings-revision" id="settings-revision">
+                  配置修订：读取中
+                </span>
+              </div>
+              <div class="form-grid">
+                <div class="field field-span-2">
+                  <label for="setting-provider">主聊天模型</label>
+                  <select id="setting-provider"></select>
+                  <small>可跟随当前群会话，也可固定一个已配置模型。</small>
+                </div>
+                <div class="field field-span-2">
+                  <div class="field-label-row">
+                    <label>备用回退聊天模型</label>
+                    <button
+                      type="button"
+                      class="action-button"
+                      id="add-fallback-provider"
+                    >
+                      ＋ 添加
+                    </button>
+                  </div>
+                  <div
+                    class="provider-fallback-list"
+                    id="fallback-provider-list"
+                  ></div>
+                  <small>
+                    从上到下依次回退；原生插件设置页同步为四个标准供应商选择器。
+                  </small>
+                </div>
+                <div class="field field-span-2">
+                  <label>模型链健康状态</label>
+                  <div class="provider-health-list" id="provider-health-list"></div>
+                </div>
+                <div class="field field-span-2">
+                  <label for="setting-image-provider">图片转述模型</label>
+                  <select id="setting-image-provider"></select>
+                  <small>
+                    仅处理当前行动者带 jg 前缀消息中的图片；留空时带图行动会被明确拒绝。
+                  </small>
+                </div>
+                <div class="field field-span-2">
+                  <label for="setting-image-prompt">图片转述提示词</label>
+                  <textarea
+                    id="setting-image-prompt"
+                    rows="4"
+                    maxlength="2000"
+                  ></textarea>
+                </div>
+                <div class="field">
+                  <label for="setting-max-images">单回合图片上限</label>
+                  <input
+                    id="setting-max-images"
+                    type="number"
+                    min="1"
+                    max="8"
+                  />
+                </div>
+                <div class="field">
+                  <label for="setting-temperature">随机度</label>
+                  <input
+                    id="setting-temperature"
+                    type="number"
+                    min="0"
+                    max="2"
+                    step="0.1"
+                  />
+                </div>
+                <div class="field">
+                  <label for="setting-max-tokens">最大 Tokens</label>
+                  <input
+                    id="setting-max-tokens"
+                    type="number"
+                    min="256"
+                    max="16000"
+                  />
+                </div>
+                <div class="field">
+                  <label for="setting-timeout">超时（秒）</label>
+                  <input
+                    id="setting-timeout"
+                    type="number"
+                    min="15"
+                    max="600"
+                  />
+                </div>
+                <div class="field">
+                  <label for="setting-repair">JSON 修复次数</label>
+                  <input
+                    id="setting-repair"
+                    type="number"
+                    min="0"
+                    max="2"
+                  />
+                </div>
+                <label class="switch-field field-span-2">
+                  <input id="setting-two-phase" type="checkbox" />
+                  <span>
+                    <strong>严格两阶段检定</strong>
+                    <small>先申请检定，插件投骰，再生成最终结果</small>
+                  </span>
+                </label>
+              </div>
+            </article>
+
+            <article class="panel settings-panel">
+              <div class="panel-head">
+                <div>
+                  <div class="eyebrow">CONTEXT POLICY</div>
+                  <h2>上下文与节流</h2>
+                </div>
+              </div>
+              <div class="form-grid">
+                <div class="field field-span-2">
+                  <label for="setting-trigger-prefix">剧情触发前缀</label>
+                  <input
+                    id="setting-trigger-prefix"
+                    type="text"
+                    maxlength="16"
+                    placeholder="jg"
+                  />
+                  <small>
+                    只有“前缀 + 空格 + 内容”会进入酒馆，例如 jg
+                    我推开木门；普通群聊完全忽略。
+                  </small>
+                </div>
+                <div class="field">
+                  <label for="setting-default-world">新副本默认世界标识</label>
+                  <input id="setting-default-world" type="text" />
+                  <small>
+                    仅作为控制台建副本时的初始选择；群内开馆仍需选择副本。
+                  </small>
+                </div>
+                <div class="field">
+                  <label for="setting-recent-turns">最近回合数</label>
+                  <input
+                    id="setting-recent-turns"
+                    type="number"
+                    min="2"
+                    max="50"
+                  />
+                </div>
+                <div class="field">
+                  <label for="setting-memory-limit">检索记忆数</label>
+                  <input
+                    id="setting-memory-limit"
+                    type="number"
+                    min="0"
+                    max="40"
+                  />
+                </div>
+                <div class="field">
+                  <label for="setting-snapshot-interval">
+                    自动快照间隔
+                  </label>
+                  <input
+                    id="setting-snapshot-interval"
+                    type="number"
+                    min="0"
+                    max="100"
+                  />
+                </div>
+                <div class="field">
+                  <label for="setting-cooldown">玩家冷却（秒）</label>
+                  <input
+                    id="setting-cooldown"
+                    type="number"
+                    min="0"
+                    max="60"
+                    step="0.1"
+                  />
+                </div>
+                <div class="field">
+                  <label for="setting-input-limit">输入字符上限</label>
+                  <input
+                    id="setting-input-limit"
+                    type="number"
+                    min="100"
+                    max="12000"
+                  />
+                </div>
+                <div class="field">
+                  <label for="setting-output-limit">回复字符上限</label>
+                  <input
+                    id="setting-output-limit"
+                    type="number"
+                    min="500"
+                    max="20000"
+                  />
+                </div>
+                <div class="field field-span-2">
+                  <label for="setting-ooc-prefixes">OOC 前缀</label>
+                  <input
+                    id="setting-ooc-prefixes"
+                    type="text"
+                    placeholder="用英文逗号分隔"
+                  />
+                </div>
+              </div>
+            </article>
+
+            <article class="panel settings-panel">
+              <div class="panel-head">
+                <div>
+                  <div class="eyebrow">DATA & RECOVERY</div>
+                  <h2>数据与恢复</h2>
+                </div>
+              </div>
+              <div class="backup-block">
+                <div>
+                  <strong>完整 ZIP 备份</strong>
+                  <p>包含目录库、全部群／副本文件、独立存档与兼容 JSON。</p>
+                </div>
+                <button
+                  type="button"
+                  class="button button-quiet"
+                  id="export-backup-button"
+                >
+                  导出备份
+                </button>
+              </div>
+              <div class="backup-block">
+                <div>
+                  <strong>导入备份</strong>
+                  <p>合并模式保留现有数据；覆盖模式会替换全部酒馆数据。</p>
+                </div>
+                <div class="backup-actions">
+                  <select id="import-mode" aria-label="导入模式">
+                    <option value="merge">安全合并</option>
+                    <option value="replace">全部覆盖</option>
+                  </select>
+                  <label class="button button-quiet file-button">
+                    选择文件
+                    <input
+                      id="import-backup-file"
+                      type="file"
+                      accept=".zip,.json,application/zip,application/json"
+                    />
+                  </label>
+                </div>
+              </div>
+              <div class="form-grid advanced-grid">
+                <div class="field">
+                  <label for="setting-audit-days">审计保留天数</label>
+                  <input
+                    id="setting-audit-days"
+                    type="number"
+                    min="1"
+                    max="3650"
+                  />
+                </div>
+                <label class="switch-field">
+                  <input id="setting-model-payloads" type="checkbox" />
+                  <span>
+                    <strong>保存模型结构</strong>
+                    <small>仅建议排错时开启</small>
+                  </span>
+                </label>
+                <label class="switch-field">
+                  <input id="setting-debug" type="checkbox" />
+                  <span>
+                    <strong>调试日志</strong>
+                    <small>输出更多诊断信息</small>
+                  </span>
+                </label>
+              </div>
+            </article>
+
+            <div class="settings-savebar">
+              <span id="settings-dirty-text">所有更改均会接受范围校验</span>
+              <button type="submit" class="button button-primary">
+                保存全部设置
+              </button>
+            </div>
+          </form>
+        </section>
+      </main>
+    </div>
+
+    <dialog class="modal" id="editor-modal">
+      <form method="dialog" class="modal-card" id="editor-modal-form">
+        <header class="modal-head">
+          <div>
+            <div class="eyebrow" id="editor-modal-kicker">EDITOR</div>
+            <h2 id="editor-modal-title">编辑</h2>
+          </div>
+          <button
+            type="button"
+            class="icon-button"
+            id="editor-modal-close"
+            aria-label="关闭编辑器"
+          >
+            ×
+          </button>
+        </header>
+        <div class="modal-body" id="editor-modal-body"></div>
+        <footer class="modal-foot" id="editor-modal-foot">
+          <button
+            type="button"
+            class="button button-quiet"
+            id="editor-cancel-button"
+          >
+            取消
+          </button>
+          <button
+            type="submit"
+            class="button button-primary"
+            id="editor-save-button"
+          >
+            保存
+          </button>
+        </footer>
+      </form>
+    </dialog>
+
+    <dialog class="modal modal-wide" id="session-modal">
+      <div class="modal-card">
+        <header class="modal-head">
+          <div>
+            <div class="eyebrow">SESSION INSPECTOR</div>
+            <h2 id="session-modal-title">会话详情</h2>
+          </div>
+          <button
+            type="button"
+            class="icon-button"
+            id="session-modal-close"
+            aria-label="关闭会话详情"
+          >
+            ×
+          </button>
+        </header>
+        <div class="modal-body" id="session-modal-body"></div>
+      </div>
+    </dialog>
+
+    <dialog class="confirm-modal" id="confirm-modal">
+      <form method="dialog" class="confirm-card">
+        <div class="confirm-symbol" id="confirm-symbol">!</div>
+        <h2 id="confirm-title">确认操作</h2>
+        <p id="confirm-message"></p>
+        <div class="confirm-actions">
+          <button
+            type="submit"
+            class="button button-quiet"
+            value="cancel"
+          >
+            取消
+          </button>
+          <button
+            type="submit"
+            class="button button-danger"
+            value="confirm"
+            id="confirm-submit"
+          >
+            确认
+          </button>
+        </div>
+      </form>
+    </dialog>
+
+    <dialog class="wizard-modal" id="world-wizard-modal">
+      <form method="dialog" id="world-wizard-form">
+        <header class="wizard-head">
+          <div>
+            <div class="eyebrow" id="wizard-kicker">WORLD WIZARD</div>
+            <h2 id="wizard-title">新建世界 · 向导</h2>
+          </div>
+          <button class="icon-button" value="cancel" aria-label="关闭" type="submit">×</button>
+        </header>
+        <div class="wizard-steps" id="wizard-steps"></div>
+        <div class="wizard-body" id="wizard-body"></div>
+        <footer class="wizard-foot">
+          <div class="wizard-draft-hint" id="wizard-draft-hint"></div>
+          <div class="table-actions">
+            <button class="button button-quiet" id="wizard-prev" type="button" disabled>上一步</button>
+            <button class="button button-primary" id="wizard-next" type="button">下一步</button>
+          </div>
+        </footer>
+      </form>
+    </dialog>
+
+
+    <div class="toast-region" id="toast-region" aria-live="polite"></div>
+    <script type="module" src="./app.js?v=0.12.1"></script>
+  </body>
+</html>

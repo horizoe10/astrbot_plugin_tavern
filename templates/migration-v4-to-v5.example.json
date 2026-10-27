@@ -1,0 +1,22 @@
+{
+  "migration_id": "replace-with-stable-id",
+  "source_core_version": 4,
+  "target_core_version": 5,
+  "mode": "clone_and_upgrade",
+  "id_aliases": {
+    "capability:old_id": "capability:new_id"
+  },
+  "operations": [
+    {
+      "op": "revoke_reference",
+      "target_ref": "capability:old_id"
+    },
+    {
+      "op": "grant_reference",
+      "target_ref": "capability:new_id"
+    }
+  ],
+  "requires_preview": true,
+  "requires_confirmation": true,
+  "mutate_running_session": false
+}
