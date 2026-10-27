@@ -4,7 +4,7 @@ import json
 from pathlib import Path
 
 PLUGIN_NAME = "astrbot_plugin_tavern"
-PLUGIN_VERSION = "0.12.1"
+PLUGIN_VERSION = "0.12.2"
 DATABASE_SCHEMA_VERSION = 12
 TEMPLATE_BUNDLE_VERSION = "4.0.0"
 CHARACTER_CARD_TEMPLATE_VERSION = 6

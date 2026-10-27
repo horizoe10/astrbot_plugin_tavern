@@ -1,7 +1,7 @@
 {
   "template_metadata": {
     "template_bundle_version": "4.0.0",
-    "compatible_plugin_version": "0.12.1",
+    "compatible_plugin_version": "0.12.2",
     "world_schema_version": 5,
     "character_card_template_version": 6,
     "purpose": "复制后修改的 v0.12.0 能力接口世界包；本文件自身可通过严格世界包体检",

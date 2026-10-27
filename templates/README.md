@@ -1,12 +1,12 @@
 # 通用世界包与 NPC 模板
 
-本目录随 AI 酒馆 `v0.12.1` 发布，模板包版本为 `4.0.0`。这里的文件既供人工复制填写，也供 AI 在明确字段边界下生成或修改世界内容。
+本目录随 AI 酒馆 `v0.12.2` 发布，模板包版本为 `4.0.0`。这里的文件既供人工复制填写，也供 AI 在明确字段边界下生成或修改世界内容。
 
 ## 文件说明
 
 | 文件 | 用途 | 当前接口 |
 |---|---|---|
-| `template-manifest.json` | 机器可读的兼容清单与发布同步规则 | 插件 v0.12.1 |
+| `template-manifest.json` | 机器可读的兼容清单与发布同步规则 | 插件 v0.12.2 |
 | `world-package.template.json` | 可直接通过严格体检的手动属性世界包 | 世界协议 v4、角色卡模板 v5 |
 | `world-package-preset-stack.template.json` | 多个建卡预设共同生成属性的完整示例 | `preset_stack`、全组合体检 |
 | `world-package-capabilities.template.json` | 可选能力定义、授予与成长变更 | 世界协议 v5、`capabilities@1.0` |
