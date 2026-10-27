@@ -1,6 +1,6 @@
 {
   "template_bundle_version": "4.0.0",
-  "compatible_plugin_version": "0.12.2",
+  "compatible_plugin_version": "0.12.3",
   "world_schema_version": 5,
   "character_card_template_version": 6,
   "world_schema_versions": [

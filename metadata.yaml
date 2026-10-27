@@ -4,7 +4,7 @@ desc: "暂停维护，请使用321roll以获取更优体验。"
 short_desc: "暂停维护，请使用321roll以获取更优体验。"
 help: "配置管理员 ID 后使用 /酒馆 开启 <副本>；建卡码过期会自动补发。使用 /酒馆 主持 开启 可接管叙事，再以 推进、直述、交棒、自动 控制流程。"
 author: "horizoe10"
-version: 0.12.2
+version: 0.12.3
 repo: "https://github.com/horizoe10/astrbot_plugin_tavern"
 astrbot_version: ">=4.26,<5"
 support_platforms:

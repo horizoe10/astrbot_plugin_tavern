@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.12.3 — 2026-10-27
+
+- 发布日志合规修复：engine、errors 与 economy 统一使用 astrbot.api.logger，移除内置 logging。
+- 错误上报直接使用 AstrBot logger 的 info、warning 和 exception，保留错误分类与瞬时性覆盖行为。
+- 增加日志回归测试，同步插件、帮助文本、WebUI 资源和模板兼容版本至 0.12.3。
+
 ## v0.12.2 — 2026-10-27
 
 - 插件版本提升至 0.12.2，同步帮助文本、WebUI 资源版本、备份默认文件名和模板兼容版本。

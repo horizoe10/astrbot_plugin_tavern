@@ -6319,7 +6319,7 @@ $("#export-backup-button").addEventListener("click", async (event) => {
       await bridge.download(
         "backup/export",
         {},
-        "backup_tavern_v0.12.2.zip",
+        "backup_tavern_v0.12.3.zip",
       );
     });
     toast("备份已生成", "success");
