@@ -933,7 +933,6 @@ class TavernWebConsole:
                     self.logger.warning("AI 酒馆远程市场拉取失败：%s", exc)
                 except Exception as exc:
                     report_failure(
-                        self.logger,
                         stage="market",
                         operation="manifest",
                         exc=exc,
@@ -1021,7 +1020,6 @@ class TavernWebConsole:
         # v0.12.0：未知异常统一经 report_failure 上报（含请求上下文），
         # 避免被静默吞掉；同时保留原 500 响应语义。
         report_failure(
-            self.logger,
             stage="webui",
             operation=str(getattr(request, "path", "unknown")),
             exc=exc,

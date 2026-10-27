@@ -2,11 +2,12 @@ from __future__ import annotations
 
 import asyncio
 import inspect
-import logging
 import re
 from collections.abc import Callable, Mapping, Sequence
 from dataclasses import asdict, dataclass, replace
 from typing import Any
+
+from astrbot.api import logger
 
 from .config import TavernConfig
 from .database import (
@@ -51,9 +52,6 @@ from .world_contract import world_contract
 from .operations import operation_key, transport_event_id
 from .narrative_quality import inspect_narrative
 from .chat_experience import normalize_chat_experience
-
-
-logger = logging.getLogger(__name__)
 
 
 def _owner_tuple(owner_type: Any, owner_ref: Any) -> tuple[str, str] | None:

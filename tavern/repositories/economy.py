@@ -12,15 +12,14 @@
 """
 from __future__ import annotations
 
-import logging
 from collections.abc import Mapping, Sequence
 from decimal import Decimal, InvalidOperation
 from typing import Any
 
+from astrbot.api import logger
+
 from ..database_support import new_id, json_dump, json_load, utc_now
 from ..errors import EconomyDisabledError, InsufficientFundsError
-
-logger = logging.getLogger(__name__)
 
 ECONOMY_SOURCE_STORY = "story"
 ECONOMY_SOURCE_ADMIN = "admin"

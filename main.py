@@ -683,7 +683,6 @@ class TavernPlugin(Star):
             )
         except Exception as exc:
             report_failure(
-                logger,
                 stage="command",
                 operation=str(action),
                 exc=exc,
